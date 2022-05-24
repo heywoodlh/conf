@@ -29,6 +29,23 @@ blog () {
 	fi
 }
 
+clear-git-history () {
+	working_dir="$(pwd)"
+	echo "We will download a copy of the remote repo so we don't mess anything up locally"
+	echo "Repo URL to download: "
+	read repo
+
+	git clone ${repo} /tmp/git-history-clean \
+		&& cd /tmp/git-history-clean \
+		&& git checkout --orphan temp_branch \
+		&& git add -Af \
+		&& git branch -D master \
+		&& git branch -m master \
+		&& git push -f origin master 
+
+	rm -rf /tmp/git-history-clean 
+}
+
 geoiplookup () {
 	curl -s ipinfo.io/$1
 }

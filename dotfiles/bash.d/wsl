@@ -1,0 +1,18 @@
+alias pbcopy="clip.exe"
+alias ping="ping.exe $@"
+alias winfetch="Powershell.exe winfetch $@ 2>/dev/null"
+alias winget="Powershell.exe winget.exe $@"
+
+choco () {
+  if echo $@ | grep -iqE 'install|remove|upgrade'
+  then
+    Powershell.exe sudo.exe choco $@
+  else
+    Powershell.exe choco $@
+  fi
+}
+
+function windows-buku () {
+        local selection=$(buku -p -j | jq -r '.[] | "\(.title) || (\(.uri))"' | fzf | cut -d'|' -f3 | tr -d '( )')
+	Powershell.exe '[system.Diagnostics.Process]::Start("firefox","'${selection}'")'
+}

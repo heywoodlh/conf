@@ -1,0 +1,90 @@
+alias git="ssh-unlock && git $@"
+alias mosh="ssh-wrapper mosh $@"
+alias pbcopy="xclip -selection clipboard"
+alias scp="ssh-wrapper scp $@"
+alias screenshot="maim -s -c "0.56,0.63,0.70,0.4" | pbcopy"
+alias selector="rofi -dmenu"
+alias ssh="ssh-wrapper ssh $@"
+alias sudo='sudo '
+
+exit() {
+	ps aux | grep ${SSH_AGENT_PID} | grep -q ssh-agent && kill -9 ${SSH_AGENT_PID}
+	builtin exit
+}
+
+pixel-usb() {
+        local interface="enp0s20f0u1"
+        local pixel_ip="$(ip route | grep ${interface} | grep via | awk '{print $3}')"
+
+        ssh -p 9854 -o "StrictHostKeyChecking=no" u0_a193@${pixel_ip}
+}
+
+pixel-wireguard() {
+        ssh -p 9854 -o "StrictHostKeyChecking=no" u0_a193@10.50.50.7
+}
+
+alias pass-choose="rofi-pass"
+
+if [ -f /dev/.cros_milestone ]
+then
+	unalias pass-choose
+        function pass-choose () {
+        	local dependencies=("pass" "rofi")
+        	local missing_dependencies=()
+        	
+        	for package in ${dependencies[@]}
+        	do
+        		if ! command -v ${package} > /dev/null
+        		then
+        			missing_dependencies+="${package} "
+        		fi
+        	done
+        	
+        	if [[ -n ${missing_dependencies} ]]
+        	then
+        		echo "Missing dependencies: ${missing_dependencies[@]}" \
+        			&& echo 'Exiting' 
+        	fi
+        	
+        	local entries=$(cd ~/.password-store && find -L . -name '*.gpg' | sed -e 's/.\///' -e 's/.gpg//')
+        	local selection=$(echo "${entries}" | rofi -dmenu -window-title "pass")
+        	
+        	if [[ -n ${selection} ]]
+        	then
+        		local action=$(printf "totp\npassword" | rofi -dmenu -window-title "pass")
+        	fi
+        	
+        	if [[ ${action} == 'totp' ]]
+        	then
+        		pass otp ${selection} | pbcopy && success='true'
+        		pass otp ${selection} | pbcopy && success='true'
+        	else
+        		pass ${selection} | head -1 | pbcopy && success='true'
+        		pass ${selection} | head -1 | pbcopy && success='true'
+        	fi
+        	
+        }
+fi
+
+## Gnome tweaks
+if [[ ${DESKTOP_SESSION} == 'gnome' ]]
+then
+	## Map caps lock to super key
+	if ! gsettings get org.gnome.desktop.input-sources xkb-options | grep caps | grep -q super
+	then
+		dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:super']"
+	fi
+
+	## Disable super+p shortcut (switch display)
+	gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
+fi
+
+## Add function for enabling/disabling trackpad
+if [[ -n ${DISPLAY} ]]
+then
+	if command -v xinput > /dev/null
+	then
+		alias trackpad-off="xinput disable $(xinput list | grep Synaptics | grep -oP 'id=\K..')"
+		alias trackpad-on="xinput enable $(xinput list | grep Synaptics | grep -oP 'id=\K..')"
+	fi
+fi

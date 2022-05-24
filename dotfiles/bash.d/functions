@@ -1,0 +1,344 @@
+battpop () {
+	if uname -a | grep -iq darwin
+	then
+		local battery_level="$(pmset -g batt | grep 'InternalBattery' | awk '{print $3 $4}' | sed 's/;/ /g')"
+		echo "Battery level: ${battery_level}"
+	elif uname -a | grep -iq linux
+	then
+		if [[ -z $battery_file ]]
+		then
+        		local battery_file="/sys/class/power_supply/BAT0/capacity"
+		fi
+		notify-send "$(cat ${battery_file})"
+	fi
+
+}
+
+blog () {
+	error='false'
+
+	[[ -z $1 ]] && echo 'usage: blog title-name-here' && error=true 
+	[[ $1 == '--help' ]] && echo 'usage: blog title-name-here' && error=true
+
+	if [[ ${error} != 'true' ]]
+	then
+		title="$1"
+		filename="${blog_date}-${title}.md"
+		blog_date=$(date "+%Y-%m-%d")
+		touch "${filename}" && printf '---\ntitle: ""\nlayout: post\npublished: true\npermalink: example-slug\ntags: all, linux\n---\n\n\n\n' >> "${filename}" && vim "${filename}"
+	fi
+}
+
+geoiplookup () {
+	curl -s ipinfo.io/$1
+}
+
+gist () {
+	local usage="usage: gist file.txt --public"
+	local arguments="$#"
+ 	local private="true"
+	
+	if [ ${arguments} -gt 0 ]
+	then
+		local file_name=$1
+		local file_exists="true"
+		if [ ! -e ${file_name} ]
+		then
+			local file_exists="false"
+			local file_name="/tmp/${file_name}"
+		fi
+		if [ ${arguments} -gt 1 ]
+		then
+			if echo $@ | grep -q '\-\-public'
+			then
+				local private="false"
+			else
+				local run_error="true"
+			fi
+		fi
+  	elif [ ${arguments} -gt 2 ]
+	then
+		local run_error="true"
+	fi
+
+	if [ -z ${EDITOR} ]
+	then
+		local run_error="true"
+		echo 'EDITOR variable not set, please set it.'
+	fi
+  
+  	if [[ ${run_error} != "true" ]]
+	then
+    		if [ ${file_exists} = "false" ]
+		then
+      			${EDITOR} ${file_name}
+    		fi
+		if [ ${private} != "true" ]
+		then
+			gh gist create --public ${file_name} -d ${file_name}
+		else
+			gh gist create ${file_name} -d ${file_name}
+		fi
+	else
+		echo ${usage}
+	fi
+}
+
+gist-editor () {
+	local selection=$(gh gist list --limit 10000 | fzf | awk '{print $1}')
+	if [ -n ${selection} ]
+	then
+		gh gist edit ${selection}
+	fi
+}
+
+jpass () {
+	PASSWORD_STORE_DIR=${journal_dir} pass $@
+}
+
+lpass () {
+	PASSWORD_STORE_DIR=${log_dir} pass $@
+}
+
+md2docx () {
+	local error='false'
+
+	format='docx'
+
+	[[ -z $1 ]] && error='true'
+	[[ -z $2 ]] && error='true'
+
+	if [[ ${error} == 'true' ]]
+	then
+		echo "usage: $0 infile.md outfile.${format}" 
+	else
+		infile="$1"
+		outfile="$2"
+		pandoc -f gfm -t "${format}" -s "${infile}" -o "${outfile}"
+	fi
+}
+
+md2html () {
+	local error='false'
+
+	[[ -z $1 ]] && error='true'
+	[[ -z $2 ]] && error='true'
+
+	format='html'
+	
+	if [[ ${error} == 'true' ]]
+	then
+		echo "usage: $0 infile.md outfile.${format}" 
+	else
+		infile="$1"
+		outfile="$2"
+		pandoc -f gfm -t ${format} -s "${infile}" -o "${outfile}"
+	fi
+}
+
+md2plain () {
+	local error='false'
+
+	[[ -z $1 ]] && error='true'
+	[[ -z $2 ]] && error='true'
+
+	format='plain'
+	
+	if [[ ${error} == 'true' ]]
+	then
+		echo "usage: $0 infile.md outfile.txt" 
+	else
+		infile="$1"
+		outfile="$2"
+		pandoc -f gfm -t ${format} -s "${infile}" -o "${outfile}"
+	fi
+}
+
+md2rtf () {
+	local error='false'
+
+	[[ -z $1 ]] && error='true'
+	[[ -z $2 ]] && error='true'
+
+	format='rtf'
+	
+	if [[ ${error} == 'true' ]]
+	then
+		echo "usage: $0 infile.md outfile.${format}" 
+	else
+		infile="$1"
+		outfile="$2"
+		pandoc -f gfm -t ${format} -s "${infile}" -o "${outfile}"
+	fi
+}
+
+mkgif () {
+	local error=false
+	command -v ffmpeg > /dev/null || echo 'Please install ffmpeg'
+	[[ -z $1 ]] && error=true
+	[[ -z $2 ]] && error=true
+
+	if [[ ${error} == 'true' ]]
+	then
+		echo "Usage: $0 input.mov output.gif"	
+	else
+		ffmpeg -i "$1" -vf "setpts=0.50*PTS" -loop 0 "$2"
+	fi
+}
+
+passwords () {
+	local selection=$(cd ~/.password-store && find -L . -name '*.gpg' | sed -e 's/.\///' -e 's/.gpg//' | fzf --layout=reverse)
+	pass ${selection} | grep -v 'otpauth://' | pbcopy
+}
+
+pass-insert-otp () {
+	if [ -z $1 ]
+	then
+		echo "Usage: pass-insert-otp example.com/testing"
+		error="True"
+	else
+		error="False"
+		entry="$1"
+	fi
+	
+	if [ "${error}" != "True" ]
+	then
+		echo "Enter otp code: "
+		read otp
+
+		otp_uri="otpauth://totp/${entry}?secret=${otp}&issuer=totp-secret"
+
+		echo "${otp_uri}" | pass otp append -e ${entry}
+	fi
+}
+
+pwncheck () {
+	if [ -e ~/.password-store/haveibeenpwned.com/api.gpg ]
+	then
+		docker run -it --rm -e HIBP_API_KEY=$(pass haveibeenpwned.com/api) heywoodlh/pwncheck $@
+	elif [ -n $HIBP_API_KEY ]
+	then
+		docker run -it --rm -e HIBP_API_KEY=${HIBP_API_KEY} heywoodlh/pwncheck $@
+	else
+		docker run -it --rm heywoodlh/pwncheck $@
+	fi
+}
+
+ssh-socks () {
+	if [ -z $1 ]
+	then
+		echo "usage: ssh-socks user@hostname"
+	else
+		ssh -D 1337 -qCN $1
+	fi
+}
+
+timepop () {
+	local cur_date=$(date "+%D %H:%M:%S")
+	if uname -a | grep -iq darwin
+	then
+		osascript -e "display notification \"${cur_date}\" with title \"Time\""
+	fi
+
+	if uname -a | grep -iq linux
+	then
+		notify-send "${cur_date}"
+	fi
+}
+
+totp () {
+	local selection=$(cd ~/.password-store && find -L . -name '*.gpg' | sed -e 's/.\///' -e 's/.gpg//' | fzf --layout=reverse)
+	pass otp ${selection} | pbcopy
+}
+
+# kill tmux sessions
+tk () {
+	session="$(tmux ls | tail -n+2 | fzf | cut -d':' -f1)"	
+	[[ -n ${session} ]] && tmux kill-session -t ${session}
+}
+
+# switch tmux sessions
+ts () {
+	session="$(tmux ls | fzf | cut -d':' -f1)"
+	[[ -n ${session} ]] && TMUX='' tmux detach -E "tmux attach -t ${session}"
+}
+
+# start new tmux session and detach from current
+tmx () {
+	if [[ -n ${TMUX} ]] 
+	then
+		current_session="$(tmux display-message -p '#S')"
+		TMUX='' tmux detach -E "tmux new -A -s \"$(basename $(pwd))-$RANDOM\""
+	else
+		tmux new -A -s "$(basename $(pwd))-$RANDOM"
+	fi
+}
+
+# vscode style tmux layout for vim
+vimux () {
+	session_id="$RANDOM"
+	[[ -n ${TMUX} ]] && tmux split-window -v -p 30
+	[[ -n ${TMUX} ]] && eval "vim_pane_id_${session_id}=$(tmux display-message -p "#{pane_id}")"
+	[[ -n ${TMUX} ]] && tmux select-pane -l
+	[[ -n ${TMUX} ]] && vim $@ && [[ -n ${TMUX} ]] && tmux kill-pane
+	[[ -n ${TMUX} ]] && tmux send-keys -t "${vim_pane_id}_${session_id}" "exit"
+	[[ -z ${TMUX} ]] && echo 'Please run vimux in tmux session'
+}
+
+vultr() {
+	vultr_bin=$(command which vultr)
+	vultr-unlock
+	${vultr_bin} $@
+}
+
+vultr-cli() {
+	vultr_cli_bin=$(command which vultr-cli)
+	vultr-unlock
+	${vultr_cli_bin} $@
+}
+
+vultr-mosh() {
+	instance_list=$(vultr-cli instance list | grep -vE '^ID' | sed -n '/^===/q;p')
+        instance_ip="$(printf "${instance_list}" | fzf --prompt="Instance to ssh into:" | awk '{print $2}')"
+	mosh --ssh='ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null"' heywoodlh@${instance_ip}	
+}
+
+vultr-ssh() {
+	instance_list=$(vultr-cli instance list | grep -vE '^ID' | sed -n '/^===/q;p')
+        instance_ip="$(printf "${instance_list}" | fzf --prompt="Instance to ssh into:" | awk '{print $2}')"
+	ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" heywoodlh@${instance_ip}	
+}
+
+vultr-port-forward() {
+	error='false'
+	[[ -z $1 ]] && error='true'
+	[[ -z $2 ]] && error='true'
+	instance_list=$(vultr-cli instance list | grep -vE '^ID' | sed -n '/^===/q;p')
+
+	error_message='false'
+	if [[ ${error} == 'true' ]]
+	then
+		echo "usage: $0 local_port remote_port"
+		error_message='true'
+	else
+		instance_ip="$(printf "${instance_list}" | fzf --prompt="Instance to ssh into:" | awk '{print $2}')"
+		[[ -z ${instance_ip} ]] && [[ ${error_message} == 'false' ]] && error='true'
+	fi
+
+	if [[ ${error} == 'true' ]]
+	then
+		echo "vultr instance address required"
+	fi
+
+	local_port=$1
+	remote_port=$2
+
+	if [[ ${error} == 'false' ]]
+	then
+		ssh -L ${local_port}:127.0.0.1:${remote_port} -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" heywoodlh@${instance_ip}	
+	fi
+}
+
+vultr-unlock() {
+	[[ -z ${VULTR_API_KEY} ]] && export VULTR_API_KEY=$(pass vultr.com/api)
+}

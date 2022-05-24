@@ -1,0 +1,174 @@
+version: 3
+profiles: []
+hotkeys:
+  toggle-window:
+    - - Ctrl-`
+  copy:
+    - Ctrl-Shift-C
+  paste:
+    - Ctrl-Shift-V
+    - Shift-Insert
+  home:
+    - Home
+  end:
+    - End
+  previous-word:
+    - Ctrl-Left
+  next-word:
+    - Ctrl-Right
+  delete-previous-word:
+    - Ctrl-Backspace
+  delete-next-word:
+    - Ctrl-Delete
+  clear: []
+  zoom-in:
+    - - Ctrl-=
+  zoom-out:
+    - - Ctrl--
+  reset-zoom:
+    - Ctrl-0
+  ctrl-c:
+    - Ctrl-C
+  copy-current-path: []
+  search:
+    - Ctrl-Shift-F
+  pane-focus-all:
+    - Ctrl-Shift-I
+  restart-telnet-session: []
+  restart-ssh-session: []
+  launch-winscp: []
+  settings:
+    - Ctrl-,
+  serial:
+    - Alt-K
+  restart-serial-session: []
+  new-window:
+    - Ctrl-Shift-N
+  new-tab:
+    - Ctrl-Shift-T
+  profile-selector:
+    - Ctrl-Shift-T
+  toggle-fullscreen:
+    - F11
+  rename-tab:
+    - Ctrl-Shift-R
+  close-tab:
+    - Ctrl-Shift-W
+  reopen-tab:
+    - Ctrl-Shift-T
+  toggle-last-tab: []
+  next-tab:
+    - Ctrl-Shift-Right
+    - Ctrl-Tab
+  previous-tab:
+    - Ctrl-Shift-Left
+    - Ctrl-Shift-Tab
+  move-tab-left:
+    - Ctrl-Shift-PageUp
+  move-tab-right:
+    - Ctrl-Shift-PageDown
+  rearrange-panes:
+    - Ctrl-Shift
+  duplicate-tab: []
+  tab-1:
+    - Alt-1
+  tab-2:
+    - Alt-2
+  tab-3:
+    - Alt-3
+  tab-4:
+    - Alt-4
+  tab-5:
+    - Alt-5
+  tab-6:
+    - Alt-6
+  tab-7:
+    - Alt-7
+  tab-8:
+    - Alt-8
+  tab-9:
+    - Alt-9
+  tab-10:
+    - Alt-0
+  tab-11: []
+  tab-12: []
+  tab-13: []
+  tab-14: []
+  tab-15: []
+  tab-16: []
+  tab-17: []
+  tab-18: []
+  tab-19: []
+  tab-20: []
+  split-right:
+    - - Ctrl-Shift-\
+  split-bottom:
+    - - Ctrl-Shift--
+  split-left: []
+  split-top: []
+  pane-maximize:
+    - Ctrl-Alt-Enter
+  pane-nav-up:
+    - Ctrl-Alt-Up
+  pane-nav-down:
+    - Ctrl-Alt-Down
+  pane-nav-left: []
+  pane-nav-right: []
+  pane-nav-previous:
+    - - Ctrl-Shift-[
+  pane-nav-next:
+    - - Ctrl-Shift-]
+  switch-profile:
+    - Ctrl-Alt-T
+  close-pane: []
+  profile: {}
+  profile-selectors: {}
+  select-all:
+    - Ctrl-Shift-A
+terminal:
+  searchOptions: {}
+  autoOpen: true
+  warnOnMultilinePaste: false
+  colorScheme:
+    name: Nord
+    foreground: '#d8dee9'
+    background: '#2e3440'
+    cursor: '#d8dee9'
+    colors:
+      - '#3b4252'
+      - '#bf616a'
+      - '#a3be8c'
+      - '#ebcb8b'
+      - '#81a1c1'
+      - '#b48ead'
+      - '#88c0d0'
+      - '#e5e9f0'
+      - '#373e4d'
+      - '#94545d'
+      - '#809575'
+      - '#b29e75'
+      - '#68809a'
+      - '#8c738c'
+      - '#6d96a5'
+      - '#aeb3bb'
+  customColorSchemes: []
+  font: Source Code Pro
+  cursor: beam
+  hideTabIndex: true
+ssh: {}
+configSync:
+  parts: {}
+clickableLinks: {}
+appearance:
+  vibrancy: true
+  opacity: 0.86
+  tabsLocation: bottom
+  theme: Compact
+pluginBlacklist: []
+enableAnalytics: false
+enableWelcomeTab: false
+recoverTabs: false
+profileDefaults: {}
+electronFlags:
+  - - force_discrete_gpu
+    - '0'

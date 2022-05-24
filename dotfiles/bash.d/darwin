@@ -1,0 +1,149 @@
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
+
+if ioreg -l | grep -q AppleANS
+then
+	if [ -d /Users/heywoodlh/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/ ]
+	then
+		export SSH_AUTH_SOCK=/Users/heywoodlh/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+	fi
+else
+	alias git="ssh-unlock && /usr/bin/git $@"
+	alias mosh="ssh-wrapper-mac mosh $@"
+	alias scp="ssh-wrapper-mac scp $@"
+	alias ssh="ssh-wrapper-mac ssh $@"
+fi
+
+if [ -d /opt/homebrew/opt/findutils/libexec/gnubin ]
+then
+	export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:${PATH}"
+fi
+
+alias darbuild='darwin-rebuild switch -I "darwin-config=$HOME/opt/nixos-builds/darwin/darwin-configuration.nix"'
+
+alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+alias hide-dock="defaults write com.apple.dock autohide -bool true && killall Dock && defaults write com.apple.dock autohide-delay -float 1000 && killall Dock && defaults write com.apple.dock no-bouncing -bool TRUE && killall Dock"
+
+alias show-dock="defaults write com.apple.dock autohide -bool false && killall Dock && defaults delete com.apple.dock autohide-delay && killall Dock && defaults write com.apple.dock no-bouncing -bool FALSE && killall Dock"
+
+alias selector="choose"
+
+alias ssh-unlock='pass ssh/tyranny/id_rsa | script -q /dev/null ssh-add -t 1h ~/.ssh/tyranny/id_rsa &>/dev/null'
+
+ssh-wrapper-mac () {
+	command=$1
+	ssh_identities=$(ssh-add -l)
+	if [[ ${ssh_identities} == 'The agent has no identities.' ]]
+	then
+		pass ssh/tyranny/id_rsa | script -q /dev/null ssh-add -t 1h ~/.ssh/tyranny/id_rsa &>/dev/null 
+	fi
+
+	if [[ ${command} == 'ssh' ]] || [[ ${command} == 'mosh' ]] || [[ ${command} == 'scp' ]] || [[ ${command} == 'git' ]]
+	then
+        	${command} ${*:2}
+	fi
+}
+
+## Create a symlink for Übersicht
+
+if [ ! -e ~/.config/ubersicht ]
+then
+	if [ -e "${HOME}/Library/Application Support/Übersicht" ]
+	then
+		ln -s "${HOME}/Library/Application Support/Übersicht" ~/.config/ubersicht
+	fi
+fi
+
+defaults write org.gpgtools.common UseKeychain NO >/dev/null 2>&1
+
+# Needed for Ansible to work with Windows
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+function choose-buku () {
+	local dependencies=("bash" "choose" "buku" "jq")
+	local missing_dependencies=()
+	
+	for package in ${dependencies[@]}
+	do
+		if ! command -v ${package} > /dev/null
+		then
+			missing_dependencies+="${package} "
+		fi
+	done
+	
+	if [[ -n ${missing_dependencies} ]]
+	then
+		echo "Missing dependencies: ${missing_dependencies[@]}" \
+			&& echo 'Exiting' 
+	fi
+
+	local selection=$(buku -p -j | jq -r '.[] | "\(.title) || (\(.index))"' | choose | cut -d'|' -f3 | tr -d '( )')
+
+	if [[ -n ${selection} ]]
+	then
+		buku -o ${selection}
+	fi
+}
+
+function choose-launcher () {
+
+	### Simple MacOS application launcher that relies on choose: https://github.com/chipsenkbeil/choose
+	### brew install choose-gui
+
+	if ! command -v choose > /dev/null
+	then
+		echo 'Please install choose. Exiting.'
+	fi
+
+	local selection=$(ls /Applications/ /System/Applications/ /System/Library/CoreServices/ /System/Applications/Utilities/ ${HOME}/Applications | /usr/bin/grep -v -E 'Applications/:|Applications:' | /usr/bin/grep '.app' | /usr/bin/sort -u | choose)
+
+	open -a "${selection}"
+}
+
+function pass-choose () {
+	local dependencies=("bash" "pass" "choose")
+	local missing_dependencies=()
+	
+	for package in ${dependencies[@]}
+	do
+		if ! command -v ${package} > /dev/null
+		then
+			missing_dependencies+="${package} "
+		fi
+	done
+	
+	if [[ -n ${missing_dependencies} ]]
+	then
+		echo "Missing dependencies: ${missing_dependencies[@]}" \
+			&& echo 'Exiting' 
+	fi
+	
+	local entries=$(cd ~/.password-store && find -L . -name '*.gpg' | sed -e 's/.\///' -e 's/.gpg//')
+	local selection=$(echo "${entries}" | choose)
+	
+	if [[ -n ${selection} ]]
+	then
+		local action=$(printf "totp\npassword" | choose)
+	fi
+	
+	if [[ ${action} == 'totp' ]]
+	then
+		entry=$(pass otp ${selection})
+		entry=$(pass otp ${selection})
+
+		#cliclick "t:${entry}" && success='true'
+		echo -n "${entry}" | pbcopy && success='true'
+	else
+		entry=$(pass ${selection} | head -1)
+		entry=$(pass ${selection} | head -1)
+		
+		#cliclick "t:${entry}" && success='true'
+		echo -n "${entry}" | pbcopy && success='true'
+	fi
+	
+}
+
+## Disable save to keychain in pinentry-mac
+defaults write org.gpgtools.common DisableKeychain -bool yes

@@ -1,0 +1,7 @@
+dotfiles/bash.d/custom
+.peru/*
+dotfiles/vim/*
+dotfiles/config/*
+dotfiles/oh-my-zsh/*
+dotfiles/bash.d/work
+home/bin/*

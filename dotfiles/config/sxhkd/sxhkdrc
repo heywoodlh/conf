@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+## WM independent hotkeys
+control + alt + t
+  st
+
+control + alt + s
+  source ~/.bash.d/linux && pass-choose
+
+ctrl + shift + k
+  snippets

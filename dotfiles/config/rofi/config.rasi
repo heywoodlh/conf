@@ -1,0 +1,6 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ font: "Iosevka 10";
+ combi-modi: "window,drun,ssh";
+}
+@theme "/home/heywoodlh/.config/rofi/themes/nord.rasi"

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if uname -a | grep -iq linux
+then
+	rofi -dmenu
+fi
+
+if uname -a | grep -iq darwin
+then
+	choose
+fi

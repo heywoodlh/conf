@@ -1,0 +1,138 @@
+export PS1="\W $ "
+if [[ -n ${SSH_TTY} ]]
+then
+    export PS1="[\u@\h \W] $ "
+fi
+
+export EDITOR="vim"
+export PAGER="less"
+
+## Start SSH agent
+if [[ -z ${SSH_AGENT_PID} ]]
+then
+	eval "$(ssh-agent -s)" > /dev/null
+fi
+
+## Bash aliases (loaded after functions so the functions can be referenced)
+if [ -f ~/.bash_aliases ]
+then
+	. ~/.bash_aliases
+fi
+
+## Set a configuration directory for all my BASH config files
+config_dir="$HOME/.bash.d"
+
+## Add Homebrew variables if they exist
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+## Docker
+if ! uname -a | grep -iq freebsd
+then
+	if which docker > /dev/null
+	then
+		if [ -f ${config_dir}/docker ]
+		then
+			. ${config_dir}/docker
+		fi
+	fi
+fi
+
+## Linux specific configuration
+if uname -a | grep -iq linux
+then
+	if [ -f ${config_dir}/linux ]
+	then
+		. ${config_dir}/linux
+	fi
+fi
+
+## Mac specific configuration
+if uname -a | grep -iq darwin
+then
+	if [ -f ${config_dir}/darwin ]
+	then
+    		. ${config_dir}/darwin
+	fi
+fi
+
+## WSL specific configuration
+if [ -f /proc/sys/kernel/osrelease ]
+then
+	if cat /proc/sys/kernel/osrelease | grep -i microsoft | grep -iq wsl
+	then
+		if [ -f ${config_dir}/wsl ]
+		then
+    			. ${config_dir}/wsl
+		fi
+	fi
+fi
+
+## iSH on iOS specific configuration
+if uname -a | grep -q iSH
+then
+	if [ -f ${config_dir}/ish ]
+	then
+		. ${config_dir}/ish
+	fi
+fi
+
+## FreeBSD specific configuration
+if uname -a | grep -iq freebsd
+then
+	if [ -f ${config_dir}/freebsd ]
+	then
+		. ${config_dir}/freebsd
+	fi
+fi
+
+## ChromeOS Crostini configuration
+if [ -f /dev/.cros_milestone ]
+then
+	if [ -f ${config_dir}/crostini ]
+	then
+		. ${config_dir}/crostini
+	fi
+fi
+
+## Work configuration
+if [ -f ${config_dir}/work ]
+then
+	. ${config_dir}/work
+fi
+
+## Custom configuration (per machine, won't be committed to git repo)
+if [ -f ${config_dir}/custom ]
+then
+	. ${config_dir}/custom
+fi
+
+## Add ~/.local/bin/ to $PATH
+if [ -d ~/.local/bin/ ]
+then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+## BASH functions
+if [ -f ${config_dir}/functions ]
+then
+	. ${config_dir}/functions
+fi
+
+## Password-store extensions
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+if [[ -d /usr/local/lib/password-store/extensions ]]
+then
+	export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions/
+fi
+
+if [[ -d $HOME/.password-store/.extensions ]]
+then
+	export PASSWORD_STORE_EXTENSIONS_DIR=$HOME/.password-store/.extensions/
+fi
+
+export journal_dir="$HOME/Documents/Notes/Journal"
+export log_dir="$HOME/opt/log"

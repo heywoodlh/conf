@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Polybar
+Exec=/home/heywoodlh/.config/polybar/launch.sh dark
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Productivity;Accessibility;

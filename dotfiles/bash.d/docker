@@ -1,0 +1,268 @@
+mkdir -p ~/tmp > /dev/null
+
+alias amap='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux amap $@'
+
+alias amass='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/amass $@'
+
+alias anon-mail='mkdir -p ~/.local/guerrillamail > /dev/null && docker run -it --rm -v ~/.local/guerrillamail:/root heywoodlh/guerrillamail $@'
+
+alias archlinux="docker run -it --rm archlinux bash"
+
+alias arpspoof='docker run -it --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux arpspoof -i eth0 $@'	
+
+alias assetfinder="docker run --rm -i heywoodlh/tomnomnom-tools:latest assetfinder $@"
+
+alias bettercap="docker run -it --privileged --net=host bettercap/bettercap $@"
+
+alias centos="docker run -it --rm centos bash"
+
+alias commix='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux commix $@'
+
+alias dev="docker run -it -v ~/.gnupg:/home/dev/.gnupg -v ~/.ssh:/home/dev/.ssh -v ~/.password-store:/home/dev/.password-store -v ~/opt:/home/dev/opt -v /etc/hosts:/etc/hosts --net=host --rm heywoodlh/dev"
+
+alias dirb='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux dirb $@'
+
+alias dnschef='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp --net host heywoodlh/kali-linux dnschef $@'
+
+alias dnsenum='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux dnsenum $@'
+
+alias dnsmap='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux dnsmap $@'
+
+alias dnsrecon='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux dnsrecon $@'
+
+alias dnswalk="docker run -it --rm heywoodlh/kali-linux dnswalk $@"
+
+alias draw.io='mkdir -p ~/Documents/draw.io && echo "attempting to run draw.io on port 8080 (graph data in ~/Documents/draw.io:/data)" && sleep 3 && docker run -it --rm -v $(pwd):/data -w /data --name="draw" -p 8080:8080 -p 8443:8443 heywoodlh/drawio'
+
+alias evilginx="docker run --name evilginx -it --rm -p 53:53 -p 80:80 -p 443:443 heywoodlh/evilginx2 $@"
+
+alias freyr='docker run -it --rm -v $(pwd):/data -w /data freyrcli/freyrjs $@'
+
+alias gf='docker run --rm -i heywoodlh/tomnomnom-tools:latest gf $@'
+
+alias gophish='mkdir -p ~/.local/gophish && docker run -it --rm -v ~/.local/gophish:/data -e ADMIN_CERT_PATH='/data/gophish.crt' -e ADMIN_KEY_PATH='/data/gophish.key' -e PHISH_LISTEN_URL='0.0.0.0:80' -e DB_FILE_PATH='/data/gophish.db' -p 3333:3333 -p 80:80 heywoodlh/gophish:latest'
+
+alias gron="docker run --rm -i heywoodlh/tomnomnom-tools:latest gron $@"
+
+alias gscript='docker run -it --rm -v ~/tmp:/tmp -v $(pwd):/root/gscript -w /root/gscript heywoodlh/gscript:latest $@'
+
+alias guerrillamail='mkdir -p ~/.local/guerrillamail > /dev/null && docker run -it --rm -v ~/.local/guerrillamail:/root heywoodlh/guerrillamail $@'
+
+alias hping3='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux hping3 $@'
+
+alias httping="docker run --rm bretfisher/httping $@"
+
+alias httprobe='docker run --rm -i heywoodlh/tomnomnom-tools:latest httprobe $@'
+
+alias httrack='docker run --rm -it --net host -v $(pwd):/app -w /app heywoodlh/httrack $@'
+
+alias hydra='docker run --rm --net host -v (pwd):/data -v ~/tmp:/tmp --privileged heywoodlh/kali-linux hydra $@'
+
+if uname -a | grep -iq linux
+then
+	alias jackit='docker run --rm -it --name jackit --privileged -v $(pwd):/tmp/jackit -w /tmp/jackit -v /dev/bus/usb:/dev/bus/usb heywoodlh/jackit jackit $@'
+fi
+
+alias jekyll='docker run --rm -it -p 4000:4000 -v $(pwd):/srv/jekyll jekyll/jekyll:3.8 jekyll $@'
+
+alias jekyll-build='docker run --rm -v $(pwd):/srv/jekyll -it jekyll/jekyll:3.8 jekyll build'
+
+alias jekyll-serve='docker run --rm -v $(pwd):/srv/jekyll -it -p 4000:4000 jekyll/jekyll:3.8 jekyll serve'
+
+alias jekyll-shell='docker run --rm -it -p 4000:4000 -v $(pwd):/srv/jekyll jekyll/jekyll:3.8 bash'
+
+alias jekyll-update='docker run --rm -v $(pwd):/srv/jekyll -it jekyll/jekyll:3.8 bundle update'
+
+alias kali="docker run -it --rm --net host --privileged heywoodlh/kali-linux /bin/bash $@"
+
+alias links="docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/links:latest $@"
+
+alias marp='docker run --rm --user $(id -u):$(id -g) -v $(pwd):/home/marp/app/ -e LANG=$LANG marpteam/marp-cli $@'
+
+alias masscan='docker run --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp --privileged heywoodlh/telnet masscan $@'
+
+alias medusa="docker run -i --rm heywoodlh/kali-linux medusa $@"
+
+alias meg='docker run -v $(pwd):/data -w /data --rm -it heywoodlh/tomnomnom-tools:latest meg $@'
+
+alias metasploitable='docker run -it --rm --name vulnerable --net=host heywoodlh/vulnerable'
+
+alias mitmproxy="docker run --rm -it -p 8080:8080 -p 127.0.0.1:8081:8081 mitmproxy/mitmproxy mitmweb --web-iface 0.0.0.0 $@"
+
+alias msfconsole='mkdir -p ~/.local/metasploit && docker run -it --rm --net host -v ~/.local/metasploit/:/root/.msf4 -w /root/session -v $(pwd):/root/session heywoodlh/metasploit msfconsole $@'
+
+alias msfvenom='mkdir -p ~/.local/metasploit && docker run -it --rm -v ~/.local/metasploit/:/root/.msf4 -w /root/session -v $(pwd):/root/session heywoodlh/metasploit msfvenom $@'
+
+alias msfvenom-payloads='mkdir -p ~/tmp/ && docker run -it --rm -v ~/tmp:/tmp heywoodlh/metasploit bash -c "msfvenom --list payloads > /tmp/msf-payloads.txt" && cat ~/tmp/msf-payloads.txt'
+
+alias nc="docker run --rm -i --net host heywoodlh/telnet nc $@"
+
+alias netcat="docker run --rm -i --net host heywoodlh/telnet nc $@"
+
+alias netscan='docker run -it --rm --net host heywoodlh/netscan $@'
+
+alias netdiscover='docker run -it --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux netdiscover'
+
+alias nikto='docker run -it --rm --net host -w /data -v (pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux nikto $@'
+
+alias nim='docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nim $@'
+
+alias nimble='docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nimble $@'
+
+alias nmap='docker run --rm -v $(pwd):/data -w /data --net host --privileged heywoodlh/telnet nmap $@'
+
+alias padbuster="docker run -it --rm heywoodlh/kali-linux padbuster $@"
+
+alias powershell="docker run -it --rm heywoodlh/powershell"
+
+alias pret="docker run -it --rm slothdotexe/pret-docker /home/user/PRET/pret.py $@"
+
+alias reaver='docker run -it --rm --net host --privileged -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux reaver $@'
+
+alias responder="docker run -it --rm --net host heywoodlh/kali-linux responder $@"
+
+alias searchsploit="docker run --rm heywoodlh/kali-linux searchsploit $@"
+
+alias setoolkit='docker run -it --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux setoolkit $@'
+
+alias sniper="docker run --rm -ti menzo/sn1per-docker sniper $@"
+
+alias sqlmap='docker run -it --rm --net host -w /data -v ~/.sqlmap:/root/.sqlmap -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux sqlmap $@'
+
+alias socat='docker run --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp --net host heywoodlh/kali-linux socat $@'
+
+alias sublist3r="docker run -it --rm heywoodlh/sublist3r:latest $@"
+
+alias telnet="docker run --rm -i heywoodlh/telnet telnet $@"
+
+alias theharvester='docker run --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux theHarvester $@'
+
+alias traceroute="docker run --rm -it --net host jess/traceroute $@"
+
+alias trivy='docker run -v $(pwd):/app -w /app -it --rm aquasec/trivy $@'
+
+alias tshark='docker run --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp --net host --privileged heywoodlh/kali-linux tshark $@'
+
+alias ubuntu="docker run -it --rm ubuntu bash"
+
+alias unfurl="docker run --rm -i heywoodlh/tomnomnom-tools:latest unfurl $@"
+
+alias vulnscan='docker run --rm --net host -v $(pwd):/data -w /data --privileged heywoodlh/telnet nmap -sV --script=vulners.nse $@'
+
+alias wash='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp --net host --privileged heywoodlh/kali-linux wash $@'
+
+alias wifite='docker run -it --rm --net host --privileged -w /tmp/wifite -v $(pwd):/tmp/wifite heywoodlh/wifite $@'
+
+alias wpscan='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux wpscan $@'
+
+alias yersinia='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux yersinia $@'
+
+
+## Functions
+
+beef () {
+        if [[ ! -d ~/.local/beef ]]
+	then
+		echo 'Default config not found at ~/.local/beef/config.yaml'
+		echo 'Downloading config'
+		git clone https://github.com/heywoodlh/beef-resources ~/.local/beef
+	fi 
+	docker run -it --rm -p 3000:3000 -p 6789:6789 -p 61985 -p 61986 -v ~/.local/beef/config.yaml:/beef/config.yaml -v ~/.local/beef/enabled-are-rules:/beef/arerules/enabled heywoodlh/beef $@
+}
+
+elastic () {
+        local elastic_version="7.12.1"
+        docker volume create elasticsearch
+        docker pull elasticsearch:${elastic_version}
+        docker pull kibana:${elastic_version}
+
+        docker run -d --name elasticsearch -p 9200:9200 -v elasticsearch:/usr/share/elasticsearch/data -e "discovery.type=single-node" elasticsearch:${elastic_version}
+        docker run -d --platform linux/amd64 --link elasticsearch:elasticsearch --name kibana -e "ELASTICSEARCH_URL=https://elasticsearch:9200" -p 5601:5601 kibana:${elastic_version}
+}
+
+flan-scan () {
+	
+	if [[ -z "$@" ]] || [[ $1 == '--help' ]]
+	then
+		printf 'flan-scan "192.168.0.0/24 192.168.1.0/24"\n'
+	else
+		mkdir -p ~/tmp/flan_scan/reports
+		mkdir -p ~/tmp/flan_scan/xml_files
+
+		if [ -e ~/tmp/flan_scan/flan-ips.txt ]
+		then
+			rm ~/tmp/flan_scan/flan-ips.txt
+		fi
+
+		for ip in "$@"
+		do
+			printf "${ip}\n" >> ~/tmp/flan_scan/flan-ips.txt
+		done
+		
+		printf "Reports and XML files will be saved to ~/tmp/flan_scan/\n" &&\
+		sleep 2
+		eval docker run --rm --network=host --name flan-scan -v ~/tmp/flan_scan/flan-ips.txt:/shared/ips.txt -v ~/tmp/flan_scan/reports:/shared/reports -v ~/tmp/flan_scan/xml_files:/shared/xml_files -e format=html heywoodlh/flan-scan
+	fi
+}
+
+github-leaks () {
+	mkdir -p ~/.local/gitleaks
+	mkdir -p ~/tmp
+	[[ ! -e ~/.local/gitleaks/gitconfig ]] && printf "[safe]\n  directory = /data" > ~/.local/gitleaks/gitconfig
+
+	docker run -v $(pwd):/data -w /data -v ${HOME}/.config/gh:/home/gitleaks/.config/gh -v ${HOME}/tmp:/tmp -v ~/.local/gitleaks/gitconfig:/home/gitleaks/.gitconfig --rm -it heywoodlh/github-leaks $@
+}
+
+gitleaks () {
+	mkdir -p ~/.local/gitleaks
+	mkdir -p ~/tmp
+	[[ ! -e ~/.local/gitleaks/gitconfig ]] && printf "[safe]\n  directory = /data" > ~/.local/gitleaks/gitconfig
+
+	docker run -v $(pwd):/data -w /data -v ${HOME}/tmp:/tmp -v ~/.local/gitleaks/gitconfig:/home/gitleaks/.gitconfig --rm -it heywoodlh/gitleaks $@
+}
+
+lokis-portal () {
+	mkdir -p ~/.local/lokis-portal
+	touch ~/.local/lokis-portal/creds.html
+	if [[ ! -d ~/.local/lokis-portal/html ]]
+	then
+		git clone https://github.com/heywoodlh/lokis-portal ~/.local/lokis-portal/html
+	fi
+	echo 'starting lokis-portal at http://0.0.0.0:8080' &&\
+    	sleep 2 &&\
+	docker run -it --rm --name lokis-portal -v ~/.local/lokis-portal/html:/var/www/html -v ~/.local/lokis-portal/creds.html:/var/www/html/creds.html -p 8080:80 --sysctl net.ipv4.ip_unprivileged_port_start=0 heywoodlh/lokis-portal
+}
+
+st-server () {
+	password="$1"
+	if [[ -z ${password} ]] || [[ ${password} == '--help' ]] || [[ ${password} == '-h' ]]
+	then
+		echo 'usage: st-server [password]'
+	else
+		mkdir -p ~/.local/silenttrinity
+		docker run -it --rm --name st-server -v ~/.local/silenttrinity:/root/.st -p 6000:5000 heywoodlh/silenttrinity teamserver 0.0.0.0 ${password}
+	fi
+}
+
+st-client () {
+	uri="$1"
+	if [[ -z ${uri} ]] || [[ ${uri} == '--help' ]] || [[ ${uri} == '-h' ]]
+	then
+		echo 'usage: st-client wss://<username>:<teamserver_password>@<teamserver_ip>:6000'
+	else
+		docker run --net host -it --rm heywoodlh/silenttrinity client ${uri}
+	fi
+}
+
+urlscan() {
+	args="$@"
+	if echo "$@" | grep -qE 'scan|retrieve'
+	then
+		if [ -e ~/.password-store/urlscan.io/api.gpg ]
+		then
+			local api=$(pass urlscan.io/api)
+			args="$@ --api ${api}"
+		fi
+	fi
+	eval docker run -it --rm -v $(pwd):/tmp -w /tmp -v ~/.urlscan:/root/.urlscan heywoodlh/urlscan-py:latest ${args}
+}

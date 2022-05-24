@@ -1,0 +1,111 @@
+execute pathogen#infect()
+syntax on
+
+filetype plugin indent on
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+map <C-n> :NERDTreeToggle<CR>
+
+set number
+
+" Start Nerdtree only if width is greater than or equal to 80 columns
+"if winwidth(0) >= 100
+"	let g:NERDTreeWinSize=winwidth(0)/6
+"	autocmd VimEnter * NERDTree | wincmd p	
+"endif
+
+" Start term only if height is greater than or equal to 35 rows
+"if winheight(0) >= 35
+"	set termwinsize=10x0
+"	set confirm
+"	set splitbelow
+"	term ++kill=term
+"end
+
+" Vim-indentline config
+let g:indentLine_char = '⦙'
+set shiftwidth=4
+let g:vim_json_syntax_conceal = 0
+
+" Syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+function! SyntasticCheckHook(errors)
+    if !empty(a:errors)
+        let g:syntastic_loc_list_height = min([len(a:errors), 10])
+    endif
+endfunction
+
+" Custom keybinds
+nnoremap zz :wa <bar> :qa!<CR>
+nnoremap zq <bar> :qa!<CR>
+map <silent> <C-y> :w !pbcopy<CR>
+map <silent> <C-t> :r! echo "[$(date +\%H:\%M:\%S)]"<CR>
+map <silent> <C-o> :FZF $HOME<CR>
+
+"" Vim-markdown-preview toggle
+nnoremap mdp :MarkdownPreviewToggle<CR>
+
+command NoComments %s/#.*\n//g
+command GitAdd :w! <bar> !git add -v %
+command GitCommit !echo "Commit message: " && read gitmessage && git commit -m ${gitmessage}
+command GitPush !git push
+
+nnoremap ga :GitAdd<CR>
+nnoremap gc :GitCommit<CR>
+nnoremap gp :GitPush<CR>
+nnoremap nc :NoComments<CR>
+
+
+" GPG encrypted file handling
+" Don't save backups of *.gpg files
+set backupskip+=*.gpg
+" To avoid that parts of the file is saved to .viminfo when yanking or
+" deleting, empty the 'viminfo' option.
+set viminfo=
+
+augroup encrypted
+  au!
+  " Disable swap files, and set binary file format before reading the file
+  autocmd BufReadPre,FileReadPre *.gpg
+    \ setlocal noswapfile bin
+  " Decrypt the contents after reading the file, reset binary file format
+  " and run any BufReadPost autocmds matching the file name without the .gpg
+  " extension
+  autocmd BufReadPost,FileReadPost *.gpg
+    \ execute "'[,']!gpg --quiet --decrypt --default-recipient-self" |
+    \ setlocal nobin |
+    \ execute "doautocmd BufReadPost " . expand("%:r")
+  " Set binary file format and encrypt the contents before writing the file
+  autocmd BufWritePre,FileWritePre *.gpg
+    \ setlocal bin |
+    \ '[,']!gpg --encrypt --default-recipient-self
+  " After writing the file, do an :undo to revert the encryption in the
+  " buffer, and reset binary file format
+  autocmd BufWritePost,FileWritePost *.gpg
+    \ silent u |
+    \ setlocal nobin
+augroup END
+
+" Folding
+set foldmethod=syntax
+set foldlevel=99
+
+" Show matching characters like paranthesis, brackets, etc.
+set showmatch
+
+" tell vim to keep a backup file
+set backup
+" tell vim where to put its backup files
+set backupdir=~/tmp
+" tell vim where to put swap files
+set dir=~/tmp

@@ -1,0 +1,177 @@
+imports:
+  base16-shell: dotfiles/config/base16-shell
+
+  choose-file-manager: home/bin/
+  choose-launcher: home/bin/
+  choose-buku: home/bin/
+  vultr-sh: home/bin
+
+  journal: home/bin
+  log: home/bin
+
+  ssh-askpass-tyranny: home/bin
+  ssh-unlock: home/bin
+  ssh-wrapper: home/bin
+
+  tmux-nord-theme: dotfiles/tmux/themes/nord-tmux
+
+  ubersicht-bottombar: dotfiles/config/ubersicht/widgets/bottombar
+
+  vim-airline: dotfiles/vim/bundle/airline
+  vim-airline-themes: dotfiles/vim/bundle/airline-themes
+  vim-auto-pairs: dotfiles/vim/bundle/auto-pairs
+  vim-base16: dotfiles/vim/bundle/base16
+  vim-colorizer: dotfiles/vim/bundle/colorizer
+  vim-fzf: dotfiles/vim/bundle/fzf
+  vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
+  vim-indentline: dotfiles/vim/bundle/indentline
+  vim-json: dotfiles/vim/bundle/json
+  vim-markdown-preview: dotfiles/vim/bundle/markdown-preview
+  vim-nerdtree: dotfiles/vim/bundle/nerdtree
+  vim-nord: dotfiles/vim/bundle/nord
+  vim-nim:  dotfiles/vim/bundle/nim.vim
+  vim-pathogen: dotfiles/vim/
+  vim-sensible: dotfiles/vim/bundle/sensible
+  vim-sneak: dotfiles/vim/bundle/sneak
+  vim-sudoedit: dotfiles/vim/bundle/sudoedit
+  vim-supertab: dotfiles/vim/bundle/supertab
+  vim-syntastic: dotfiles/vim/bundle/syntastic
+  vim-terraform: dotfiles/vim/bundle/terraform
+  vim-which-key: dotfiles/vim/bundle/which-key
+
+  zsh-autoupdate: dotfiles/oh-my-zsh/custom/plugins/autoupdate
+  zsh-autosuggestions: dotfiles/oh-my-zsh/custom/plugins/zsh-autosuggestions
+  zsh-completions: dotfiles/oh-my-zsh/custom/plugins/zsh-completions
+  zsh-powerlevel10k: dotfiles/oh-my-zsh/custom/themes/powerlevel10k
+
+git module base16-shell:
+    url: https://github.com/chriskempson/base16-shell
+
+curl module choose-file-manager:
+    url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/9c71f70a3094072e4527fa2e7ebd0ccfaad133c2/choose-file-manager.sh
+    executable: choose-file-manager.sh
+
+curl module choose-launcher:
+    url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/e95fb35c7ff6c3e02a5719d5baec722b8722a947/choose-launcher.sh
+    executable: choose-launcher.sh
+
+curl module choose-buku:
+    url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/4d181fe7b7da227399d1932494725a06b41f28ae/choose-buku.sh
+    executable: choose-buku.sh
+
+curl module vultr-sh:
+    url: https://gist.githubusercontent.com/heywoodlh/2785bddf76aa66376f15ad1c2b9bff27/raw/4c1e5c827a9e815c5903d0241c389aca387e3b67/vultr.sh 
+    filename: vultr
+    executable: vultr
+
+curl module journal:
+    url: https://gist.githubusercontent.com/heywoodlh/e7c00daa11251c9d90a61e50fd49b2cc/raw/e94661046da5423739c3863c3bdc5e6859956302/journal.sh 
+    filename: journal.sh
+    executable: journal.sh
+
+curl module log:
+    url: https://gist.githubusercontent.com/heywoodlh/ecf518b57db2b4d4f4627661d6e9fb1c/raw/478ddb7560bc6498df70efb0d6681be3e28bd08a/log.sh 
+    filename: log.sh
+    executable: log.sh
+
+git module tmux-nord-theme:
+    url: https://github.com/arcticicestudio/nord-tmux
+
+curl module ssh-askpass-tyranny:
+    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-askpass-tyranny.sh 
+    filename: ssh-askpass-tyranny
+    executable: ssh-askpass-tyranny
+
+curl module ssh-unlock:
+    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-unlock.sh 
+    filename: ssh-unlock
+    executable: ssh-unlock
+
+curl module ssh-wrapper:
+    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-wrapper.sh 
+    filename: ssh-wrapper
+    executable: ssh-wrapper
+
+git module ubersicht-bottombar:
+    url: https://github.com/heywoodlh/black-bottom-bar-ubersicht-widgets
+
+git module vim-airline:
+    url: https://github.com/vim-airline/vim-airline
+
+git module vim-airline-themes:
+    url: https://github.com/vim-airline/vim-airline-themes
+
+git module vim-auto-pairs:
+    url: https://github.com/jiangmiao/auto-pairs
+
+git module vim-base16:
+    url: https://github.com/chriskempson/base16-vim
+
+git module vim-colorizer:
+    url: https://github.com/lilydjwg/colorizer
+
+git module vim-fugitive:
+    url: https://github.com/tpope/vim-fugitive
+
+git module vim-fzf:
+    url: https://github.com/junegunn/fzf
+
+git module vim-fzf-vim:
+    url: https://github.com/junegunn/fzf.vim
+
+git module vim-indentline:
+    url: https://github.com/Yggdroot/indentLine
+
+git module vim-json:
+    url: https://github.com/elzr/vim-json 
+
+git module vim-markdown-preview:
+    url: https://github.com/iamcco/markdown-preview.nvim
+
+git module vim-nerdtree:
+    url: https://github.com/preservim/nerdtree
+
+git module vim-nord:
+    url: https://github.com/arcticicestudio/nord-vim
+
+git module vim-nim:
+    url: https://github.com/zah/nim.vim
+
+git module vim-pathogen:
+    url: https://github.com/tpope/vim-pathogen
+
+git module vim-sensible:
+    url: https://github.com/tpope/vim-sensible
+
+git module vim-sudoedit:
+    url: https://github.com/chrisbra/SudoEdit.vim
+
+git module vim-sneak:
+    url: https://github.com/justinmk/vim-sneak
+
+git module vim-supertab:
+    url: https://github.com/ervandew/supertab
+
+git module vim-syntastic:
+    url: https://github.com/vim-syntastic/syntastic
+
+git module vim-terraform:
+    url: https://github.com/hashivim/vim-terraform
+
+git module vim-which-key:
+    url: https://github.com/liuchengxu/vim-which-key
+  
+git module zsh-autoupdate:
+    url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+
+#git module zsh-fast-syntax-highlighting: 
+    #url: https://github.com/zdharma/fast-syntax-highlighting
+
+git module zsh-autosuggestions:
+    url: https://github.com/zsh-users/zsh-autosuggestions
+
+git module zsh-completions:
+    url: https://github.com/zsh-users/zsh-completions 
+
+git module zsh-powerlevel10k:
+    url: https://github.com/romkatv/powerlevel10k

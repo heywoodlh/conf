@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+snippets_dir="${HOME}/snippets"
+
+selection=$(ls ${snippets_dir} | selector)
+
+[[ -n ${selection} ]] && cat ${snippets_dir}/${selection} | pbcopy

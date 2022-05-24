@@ -1,0 +1,36 @@
+function pass-choose () {
+	local dependencies=("pass" "rofi")
+	local missing_dependencies=()
+	
+	for package in ${dependencies[@]}
+	do
+		if ! command -v ${package} > /dev/null
+		then
+			missing_dependencies+="${package} "
+		fi
+	done
+	
+	if [[ -n ${missing_dependencies} ]]
+	then
+		echo "Missing dependencies: ${missing_dependencies[@]}" \
+			&& echo 'Exiting' 
+	fi
+	
+	local entries=$(cd ~/.password-store && find -L . -name '*.gpg' | sed -e 's/.\///' -e 's/.gpg//')
+	local selection=$(echo "${entries}" | rofi -dmenu -window-title "pass")
+	
+	if [[ -n ${selection} ]]
+	then
+		local action=$(printf "totp\npassword" | rofi -dmenu -window-title "pass")
+	fi
+	
+	if [[ ${action} == 'totp' ]]
+	then
+		pass otp ${selection} | pbcopy && success='true'
+		pass otp ${selection} | pbcopy && success='true'
+	else
+		pass ${selection} | head -1 | pbcopy && success='true'
+		pass ${selection} | head -1 | pbcopy && success='true'
+	fi
+	
+}

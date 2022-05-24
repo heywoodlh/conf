@@ -44,6 +44,7 @@ clear-git-history () {
 		&& git push -f origin master 
 
 	rm -rf /tmp/git-history-clean 
+	cd ${working_dir}
 }
 
 geoiplookup () {

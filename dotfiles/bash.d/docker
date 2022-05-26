@@ -6,6 +6,8 @@ alias amass='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodl
 
 alias anon-mail='mkdir -p ~/.local/guerrillamail > /dev/null && docker run -it --rm -v ~/.local/guerrillamail:/root heywoodlh/guerrillamail $@'
 
+alias archinstall='docker run --rm -it --name archinstall --privileged /dev/bus/usb:/dev/bus/usb heywoodlh/archinstall $@'
+
 alias archlinux="docker run -it --rm archlinux bash"
 
 alias arpspoof='docker run -it --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux arpspoof -i eth0 $@'	

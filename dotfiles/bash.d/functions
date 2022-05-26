@@ -39,6 +39,7 @@ clear-git-history () {
 		&& cd /tmp/git-history-clean \
 		&& git checkout --orphan temp_branch \
 		&& git add -Af \
+		&& git commit -m 'cleared git history' \
 		&& git branch -D master \
 		&& git branch -m master \
 		&& git push -f origin master 

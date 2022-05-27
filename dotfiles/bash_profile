@@ -124,15 +124,9 @@ fi
 
 ## Password-store extensions
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-if [[ -d /usr/local/lib/password-store/extensions ]]
-then
-	export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions/
-fi
-
-if [[ -d $HOME/.password-store/.extensions ]]
-then
-	export PASSWORD_STORE_EXTENSIONS_DIR=$HOME/.password-store/.extensions/
-fi
+[[ -d /usr/local/lib/password-store/extensions ]] && export PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions/
+[[ -d $HOME/.password-store/.extensions ]] && export PASSWORD_STORE_EXTENSIONS_DIR=$HOME/.password-store/.extensions/
+[[ -d /run/current-system/sw/lib/password-store/extensions ]] && export PASSWORD_STORE_EXTENSIONS_DIR=/run/current-system/sw/lib/password-store/extensions
 
 export journal_dir="$HOME/Documents/Notes/Journal"
 export log_dir="$HOME/opt/log"

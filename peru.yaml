@@ -12,6 +12,7 @@ imports:
   ssh-askpass-tyranny: home/bin
   ssh-unlock: home/bin
   ssh-wrapper: home/bin
+  launcher: home/bin
 
   tmux-nord-theme: dotfiles/tmux/themes/nord-tmux
 
@@ -68,6 +69,10 @@ curl module journal:
     url: https://gist.githubusercontent.com/heywoodlh/e7c00daa11251c9d90a61e50fd49b2cc/raw/e94661046da5423739c3863c3bdc5e6859956302/journal.sh 
     filename: journal.sh
     executable: journal.sh
+
+curl module launcher:
+    url: https://gist.githubusercontent.com/heywoodlh/9f4eab95a8f70e40b07e29c44d40b290/raw/7d98aed9ebad3f07fde2d04980c099426a9a4d14/launcher.sh
+    executable: launcher.sh
 
 curl module log:
     url: https://gist.githubusercontent.com/heywoodlh/ecf518b57db2b4d4f4627661d6e9fb1c/raw/478ddb7560bc6498df70efb0d6681be3e28bd08a/log.sh 
@@ -133,6 +138,7 @@ git module vim-nerdtree:
 
 git module vim-nord:
     url: https://github.com/arcticicestudio/nord-vim
+    rev: d32b4dd6aa494c7e18aed11222fb8fed2034c515
 
 git module vim-nim:
     url: https://github.com/zah/nim.vim

@@ -182,6 +182,7 @@ bar {
 exec --no-startup-id nm-applet
 exec --no-startup-id pa-applet 
 exec --no-startup-id sleep 4 && feh --bg-scale /home/heywoodlh/Pictures/wallpapers/current-wallpaper.jpg 
+exec --no-startup-id picom
 
 # start a terminal
 bindsym $mod+Return exec kitty -e tmux 

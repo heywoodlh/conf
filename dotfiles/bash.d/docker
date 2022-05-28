@@ -40,7 +40,9 @@ alias evilginx="docker run --name evilginx -it --rm -p 53:53 -p 80:80 -p 443:443
 
 alias freyr='docker run -it --rm -v $(pwd):/data -w /data freyrcli/freyrjs $@'
 
-alias gf='docker run --rm -i heywoodlh/tomnomnom-tools:latest gf $@'
+alias gf='docker run --rm -it heywoodlh/tomnomnom-tools:latest gf $@'
+
+alias gomuks='mkdir -p ~/.config/gomuks ~/.local/share/gomuks ~/.cache/gomuks && docker run --rm -it -e TMUX='' -v ${HOME}/.cache/gomuks:/home/gomuks/.cache/gomuks -v ${HOME}/.local/share/gomuks:/home/gomuks/.local/share/gomuks -v ${HOME}/.config/gomuks:/home/gomuks/.config/gomuks heywoodlh/gomuks $@'
 
 alias gophish='mkdir -p ~/.local/gophish && docker run -it --rm -v ~/.local/gophish:/data -e ADMIN_CERT_PATH='/data/gophish.crt' -e ADMIN_KEY_PATH='/data/gophish.key' -e PHISH_LISTEN_URL='0.0.0.0:80' -e DB_FILE_PATH='/data/gophish.db' -p 3333:3333 -p 80:80 heywoodlh/gophish:latest'
 

@@ -190,9 +190,6 @@ bindsym Ctrl+$mod+t exec kitty -e tmux
 # rofi-pass
 bindsym Ctrl+$mod+s exec rofi-pass 
 
-# lock screen
-bindsym $mod+l exec --no-startup-id i3lock-fancy
-
 # start rofi for launching apps 
 bindsym $mod+space exec --no-startup-id ~/bin/launcher.sh
 bindsym $mod+d exec --no-startup-id ~/bin/launcher.sh

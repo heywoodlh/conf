@@ -1,6 +1,7 @@
 imports:
   base16-shell: dotfiles/config/base16-shell
 
+  caffeine: home/bin/
   choose-file-manager: home/bin/
   choose-launcher: home/bin/
   choose-buku: home/bin/
@@ -47,6 +48,10 @@ imports:
 
 git module base16-shell:
     url: https://github.com/chriskempson/base16-shell
+
+curl module caffeine:
+    url: https://gist.githubusercontent.com/heywoodlh/acff340879a19e2e13141e99dcb5dc94/raw/57632b00cafdf835cf424872223c17918540c148/caffeine.sh
+    executable: caffeine.sh
 
 curl module choose-file-manager:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/9c71f70a3094072e4527fa2e7ebd0ccfaad133c2/choose-file-manager.sh

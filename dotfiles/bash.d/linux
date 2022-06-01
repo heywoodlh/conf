@@ -79,6 +79,14 @@ then
 	gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
 fi
 
+## XFCE tweaks
+if echo ${DESKTOP_SESSION} | grep -qi xfce 
+then
+	# Map caps lock to super key
+	setxkbmap -option caps:super
+fi
+
+
 ## Add function for enabling/disabling trackpad
 if [[ -n ${DISPLAY} ]]
 then

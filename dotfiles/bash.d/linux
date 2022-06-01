@@ -88,3 +88,9 @@ then
 		alias trackpad-on="xinput enable $(xinput list | grep Synaptics | grep -oP 'id=\K..')"
 	fi
 fi
+
+## NixOS stuff
+if grep -iq 'name=nixos' /etc/os-release
+then
+	alias nix-search='nix search nixpkgs $@'
+fi

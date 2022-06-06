@@ -4,7 +4,8 @@ alias amap='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh
 
 alias amass='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/amass $@'
 
-alias anon-mail='mkdir -p ~/.local/guerrillamail > /dev/null && docker run -it --rm -v ~/.local/guerrillamail:/root/.guerrillamail heywoodlh/guerrillamail $@'
+# Reminder: ~/.guerrillamail within the container is a config _file_ not a directory
+alias anon-mail='mkdir -p ~/.local/guerrillamail/ > /dev/null && docker run -it --rm -v ~/.local/guerrillamail:/root/ heywoodlh/guerrillamail $@'
 
 alias archinstall='docker run --rm -it --name archinstall --privileged -v /dev/bus/usb:/dev/bus/usb heywoodlh/archinstall $@'
 
@@ -50,7 +51,7 @@ alias gron="docker run --rm -i heywoodlh/tomnomnom-tools:latest gron $@"
 
 alias gscript='docker run -it --rm -v ~/tmp:/tmp -v $(pwd):/root/gscript -w /root/gscript heywoodlh/gscript:latest $@'
 
-alias guerrillamail='mkdir -p ~/.local/guerrillamail > /dev/null && docker run -it --rm -v ~/.local/guerrillamail:/root/.guerrillamail heywoodlh/guerrillamail $@'
+alias guerrillamail='anon-mail $@'
 
 alias hping3='docker run -it --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux hping3 $@'
 

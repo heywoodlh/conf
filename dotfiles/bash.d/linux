@@ -76,7 +76,7 @@ then
 	fi
 
 	## Disable super+p shortcut (switch display)
-	gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
+	#gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
 fi
 
 ## XFCE tweaks

@@ -14,6 +14,7 @@ imports:
   ssh-unlock: home/bin
   ssh-wrapper: home/bin
   launcher: home/bin
+  watch-lima: home/bin
 
   tmux-nord-theme: dotfiles/tmux/themes/nord-tmux
 
@@ -60,6 +61,10 @@ curl module choose-file-manager:
 curl module choose-launcher:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/e95fb35c7ff6c3e02a5719d5baec722b8722a947/choose-launcher.sh
     executable: choose-launcher.sh
+
+curl module watch-lima:
+    url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/affd716e3a933a3398306fcefbcb89644443cc40/watch-lima.sh
+    executable: watch-lima.sh
 
 curl module choose-buku:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/4d181fe7b7da227399d1932494725a06b41f28ae/choose-buku.sh

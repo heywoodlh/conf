@@ -63,7 +63,7 @@ curl module choose-launcher:
     executable: choose-launcher.sh
 
 curl module watch-lima:
-    url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/affd716e3a933a3398306fcefbcb89644443cc40/watch-lima.sh
+    url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/3d053104e966cf3a162a1ed19ee9fecbfe5d4129/watch-lima.sh 
     executable: watch-lima.sh
 
 curl module choose-buku:

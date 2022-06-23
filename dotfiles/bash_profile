@@ -6,6 +6,7 @@ fi
 
 export EDITOR="vim"
 export PAGER="less"
+export GH_PAGER="cat"
 
 ## Start SSH agent
 if [[ -z ${SSH_AGENT_PID} ]]

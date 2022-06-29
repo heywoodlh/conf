@@ -2,7 +2,7 @@ alias git="ssh-unlock && git $@"
 alias mosh="ssh-wrapper mosh $@"
 alias pbcopy="xclip -selection clipboard"
 alias scp="ssh-wrapper scp $@"
-alias screenshot="maim -s -c "0.56,0.63,0.70,0.4" | pbcopy"
+alias screenshot="maim -s | xclip -selection clipboard -t image/png"
 alias selector="rofi -dmenu"
 alias ssh="ssh-wrapper ssh $@"
 alias sudo='sudo '
@@ -66,8 +66,14 @@ then
         }
 fi
 
+## Ansible workstation stuff
+if [[ -e ${HOME}/opt/ansible ]]
+then
+	alias ansibuild="cd ${HOME}/opt/ansible && sudo ansible-playbook playbooks/workstation/workstation.yml"
+fi
+
 ## Gnome tweaks
-if [[ ${DESKTOP_SESSION} == 'gnome' ]]
+if [[ ${DESKTOP_SESSION} == 'gnome' ]] || [[ ${DESKTOP_SESSION} == 'gnome-xorg' ]]
 then
 	## Map caps lock to super key
 	if ! gsettings get org.gnome.desktop.input-sources xkb-options | grep caps | grep -q super

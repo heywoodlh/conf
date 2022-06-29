@@ -130,6 +130,8 @@ alias searchsploit="docker run --rm heywoodlh/kali-linux searchsploit $@"
 
 alias setoolkit='docker run -it --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux setoolkit $@'
 
+alias shodan='mkdir -p ~/.local/shodan && docker run -v $(pwd):/data -w /data --rm -it -v ~/.local/shodan:/root/.shodan heywoodlh/shodan-cli $argv'
+
 alias sniper="docker run --rm -ti menzo/sn1per-docker sniper $@"
 
 alias sqlmap='docker run -it --rm --net host -w /data -v ~/.sqlmap:/root/.sqlmap -v $(pwd):/data -v ~/tmp:/tmp heywoodlh/kali-linux sqlmap $@'

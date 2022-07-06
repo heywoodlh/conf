@@ -49,6 +49,8 @@ alias gophish='mkdir -p ~/.local/gophish && docker run -it --rm -v ~/.local/goph
 
 alias gron="docker run --rm -i heywoodlh/tomnomnom-tools:latest gron $@"
 
+alias grype='docker run -v $(pwd):/data -w /data -it --rm anchore/grype $@'
+
 alias gscript='docker run -it --rm -v ~/tmp:/tmp -v $(pwd):/root/gscript -w /root/gscript heywoodlh/gscript:latest $@'
 
 alias guerrillamail='anon-mail $@'

@@ -17,12 +17,12 @@ set number
 "endif
 
 " Start term only if height is greater than or equal to 35 rows
-"if winheight(0) >= 35
-"	set termwinsize=10x0
-"	set confirm
-"	set splitbelow
+if winheight(0) >= 35
+	set termwinsize=10x0
+	set confirm
+	set splitbelow
 "	term ++kill=term
-"end
+end
 
 " Vim-indentline config
 let g:indentLine_char = '⦙'
@@ -49,7 +49,7 @@ endfunction
 nnoremap zz :wa <bar> :qa!<CR>
 nnoremap zq <bar> :qa!<CR>
 map <silent> <C-y> :w !pbcopy<CR>
-map <silent> <C-t> :r! echo "[$(date +\%H:\%M:\%S)]"<CR>
+map <silent> <C-t> :term ++kill=term<CR>
 map <silent> <C-o> :FZF $HOME<CR>
 map <silent> <C-l> :set invnumber<CR>
 

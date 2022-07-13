@@ -22,7 +22,6 @@ imports:
 
   vim-airline: dotfiles/vim/bundle/airline
   vim-airline-themes: dotfiles/vim/bundle/airline-themes
-  vim-auto-pairs: dotfiles/vim/bundle/auto-pairs
   vim-base16: dotfiles/vim/bundle/base16
   vim-colorizer: dotfiles/vim/bundle/colorizer
   vim-fzf: dotfiles/vim/bundle/fzf
@@ -115,9 +114,6 @@ git module vim-airline:
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
-
-git module vim-auto-pairs:
-    url: https://github.com/jiangmiao/auto-pairs
 
 git module vim-base16:
     url: https://github.com/chriskempson/base16-vim

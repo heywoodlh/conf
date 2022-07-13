@@ -1,6 +1,8 @@
 execute pathogen#infect()
 syntax on
 
+colorscheme nord
+
 filetype plugin indent on
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','

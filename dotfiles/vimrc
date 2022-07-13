@@ -51,6 +51,7 @@ nnoremap zq <bar> :qa!<CR>
 map <silent> <C-y> :w !pbcopy<CR>
 map <silent> <C-t> :r! echo "[$(date +\%H:\%M:\%S)]"<CR>
 map <silent> <C-o> :FZF $HOME<CR>
+map <silent> <C-l> :set invnumber<CR>
 
 "" Vim-markdown-preview toggle
 nnoremap mdp :MarkdownPreviewToggle<CR>

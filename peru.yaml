@@ -29,6 +29,7 @@ imports:
   vim-indentline: dotfiles/vim/bundle/indentline
   vim-json: dotfiles/vim/bundle/json
   vim-markdown-preview: dotfiles/vim/bundle/markdown-preview
+  vim-marp: dotfiles/vim/bundle/marp
   vim-nerdtree: dotfiles/vim/bundle/nerdtree
   vim-nord: dotfiles/vim/bundle/nord
   vim-nim:  dotfiles/vim/bundle/nim.vim
@@ -138,6 +139,9 @@ git module vim-json:
 
 git module vim-markdown-preview:
     url: https://github.com/iamcco/markdown-preview.nvim
+
+git module vim-marp:
+    url: https://github.com/dhruvasagar/vim-marp
 
 git module vim-nerdtree:
     url: https://github.com/preservim/nerdtree

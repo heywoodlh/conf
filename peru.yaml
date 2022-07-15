@@ -5,6 +5,7 @@ imports:
   choose-file-manager: home/bin/
   choose-launcher: home/bin/
   choose-buku: home/bin/
+  kind-sh: home/bin
   vultr-sh: home/bin
 
   journal: home/bin
@@ -69,6 +70,10 @@ curl module watch-lima:
 curl module choose-buku:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/4d181fe7b7da227399d1932494725a06b41f28ae/choose-buku.sh
     executable: choose-buku.sh
+
+curl module kind-sh:
+    url: https://raw.githubusercontent.com/heywoodlh/argo-apps/master/kind.sh
+    executable: kind.sh
 
 curl module vultr-sh:
     url: https://gist.githubusercontent.com/heywoodlh/2785bddf76aa66376f15ad1c2b9bff27/raw/4c1e5c827a9e815c5903d0241c389aca387e3b67/vultr.sh 

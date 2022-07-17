@@ -81,7 +81,7 @@ curl module vultr-sh:
     executable: vultr
 
 curl module journal:
-    url: https://gist.githubusercontent.com/heywoodlh/e7c00daa11251c9d90a61e50fd49b2cc/raw/e94661046da5423739c3863c3bdc5e6859956302/journal.sh 
+    url: https://gist.githubusercontent.com/heywoodlh/e7c00daa11251c9d90a61e50fd49b2cc/raw/1676fdbdbce9886ad0d2a575c942b04aa0de48da/journal.sh 
     filename: journal.sh
     executable: journal.sh
 

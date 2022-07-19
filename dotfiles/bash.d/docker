@@ -37,7 +37,7 @@ alias dnswalk="docker run -it --rm heywoodlh/kali-linux dnswalk $@"
 
 alias draw.io='mkdir -p ~/Documents/draw.io && echo "attempting to run draw.io on port 8080 (graph data in ~/Documents/draw.io:/data)" && sleep 3 && docker run -it --rm -v $(pwd):/data -w /data --name="draw" -p 8080:8080 -p 8443:8443 heywoodlh/drawio'
 
-alias elinks="docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/elinks:latest $@"
+alias elinks="mkdir -p ~/.local/elinks && docker run -v ${HOME}/Downloads:/home/links/Downloads -v ~/.local/elinks:/home/elinks/.elinks -it --rm heywoodlh/elinks:latest $@"
 
 alias evilginx="docker run --name evilginx -it --rm -p 53:53 -p 80:80 -p 443:443 heywoodlh/evilginx2 $@"
 
@@ -244,6 +244,12 @@ lokis-portal () {
 	echo 'starting lokis-portal at http://0.0.0.0:8080' &&\
     	sleep 2 &&\
 	docker run -it --rm --name lokis-portal -v ~/.local/lokis-portal/html:/var/www/html -v ~/.local/lokis-portal/creds.html:/var/www/html/creds.html -p 8080:80 --sysctl net.ipv4.ip_unprivileged_port_start=0 heywoodlh/lokis-portal
+}
+
+openvas () {
+	mkdir -p ~/.local/openvas
+	[[ ! -e ~/.local/openvas/docker-compose.yml ]] && curl -L 'https://gist.githubusercontent.com/heywoodlh/38b82a5953f64e8a68b75b0309a5d133/raw/5dc2c3ee5b31a743a029379f5457e6700bb0529f/openvas-docker-compose.yml' -o ~/.local/openvas/docker-compose.yml
+	docker-compose -f ~/.local/openvas/docker-compose.yml -p greenbone-community-edition up 
 }
 
 st-server () {

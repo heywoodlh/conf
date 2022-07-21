@@ -88,7 +88,7 @@ then
         
         # Install oh-my-zsh
         rm -rf ~/.oh-my-zsh
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
         rm ~/.zshrc && ln -s ${dotfiles}/zshrc ~/.zshrc
         rm -rf ~/.oh-my-zsh/custom && ln -s ${dotfiles}/oh-my-zsh/custom ~/.oh-my-zsh/custom
         

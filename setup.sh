@@ -35,8 +35,6 @@ do
 	ln -sv ${file} ${filename}
 done
 
-## Install Peru
-
 # If MacOS
 if uname | grep -q 'Darwin'
 then
@@ -53,17 +51,22 @@ fi
 # If Arch Linux
 if grep -q 'Arch Linux' /etc/os-release
 then
-        pacman -Syu --noconfirm python-pip 
+        sudo pacman -Syu --noconfirm python-pip 
 fi
 
 # If Debian-based
 if [[ -e /etc/debian_version ]]
 then
-        apt-get update && apt-get dist-upgrade -y
-        apt-get install -y python3-pip 
+        sudo apt-get update 
+        sudo apt-get install -y python3-pip --no-install-recommends
 fi
 
-pip3 install --user peru
+# If Alpine
+if grep -q 'Alpine' /etc/os-release
+then
+	sudo apk --no-cache add py3-pip
+fi
+
 
 if [[ ${target} == 'workstation' ]]
 then
@@ -98,8 +101,6 @@ fi
 
 source ~/.bash_profile
 
-
-
 ## Sync peru modules
-python3 -m pip install --user peru
+python3 -m pip freeze | grep -q peru || python3 -m pip install --user peru
 cd ${directory} && python3 -m peru sync

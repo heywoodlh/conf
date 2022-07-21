@@ -37,7 +37,7 @@ alias dnswalk="docker run -it --rm heywoodlh/kali-linux dnswalk $@"
 
 alias draw.io='mkdir -p ~/Documents/draw.io && echo "attempting to run draw.io on port 8080 (graph data in ~/Documents/draw.io:/data)" && sleep 3 && docker run -it --rm -v $(pwd):/data -w /data --name="draw" -p 8080:8080 -p 8443:8443 heywoodlh/drawio'
 
-alias elinks="mkdir -p ~/.local/elinks && docker run -v ${HOME}/Downloads:/home/links/Downloads -v ~/.local/elinks:/home/elinks/.elinks -it --rm heywoodlh/elinks:latest $@"
+alias elinks="mkdir -p ~/.config/elinks && docker run -v ${HOME}/Downloads:/home/links/Downloads -v ~/.config/elinks:/home/elinks/.elinks -it --rm heywoodlh/elinks:latest $@"
 
 alias evilginx="docker run --name evilginx -it --rm -p 53:53 -p 80:80 -p 443:443 heywoodlh/evilginx2 $@"
 

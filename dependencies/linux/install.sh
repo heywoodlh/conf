@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-packages="curl git bash"
+packages="curl git bash fzf vim tmux pass rofi"
 brew_packages="coreutils fzf curl gnupg pass pass-otp ripgrep vim tmux python mosh jailkit lima"
 
 supported="false"
@@ -9,8 +9,8 @@ if [ -f /etc/debian_version ]
 then
 	debian='true'
 	supported='true'
-	packages="${packages} rofi"
-	install_command="apt-get update && apt-get install -y ${packages}"
+	packages="${packages} "
+	install_command="apt-get update && apt-get install --no-install-recommends -y ${packages}"
 fi
 
 ## Check if Arch-based OS
@@ -18,7 +18,7 @@ if grep -iq 'Arch Linux' /etc/os-release
 then
 	arch_linux='true'
 	supported='true'
-	packages="${packages} rofi pass-otp"
+	packages="${packages} pass-otp"
 	install_command="pacman -Sy --noconfirm ${packages}"
 fi
 
@@ -27,7 +27,7 @@ if grep -iq 'Alpine Linux' /etc/os-release
 then
 	alpine='true'
 	supported='true'
-	#packages="${packages} python3 py3-pip bash mosh-client"
+	packages="${packages} pass-otp"
 	install_command="apk --no-cache add ${packages}"
 fi
 
@@ -36,7 +36,7 @@ if grep -iq 'redhat' /etc/os-release || grep -iq 'fedora' /etc/os-release
 then
 	rhel='true'
 	supported='true'
-	packages="${packages} rofi"
+	packages="${packages} pass-otp"
 	install_command="dnf install -y ${packages}"
 fi
 
@@ -50,10 +50,14 @@ then
 	        ## Standard installed packages
 		sudo -- bash -c "${install_command}"
 		## Homebrew installed packages
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-		test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-		brew install ${brew_packages}
+		if [[ -z ${SKIP_HOMEBREW_INSTALL} ]]
+		then
+			test -d ~/.linuxbrew || git clone https://github.com/Homebrew/brew ~/.linuxbrew
+			test -d ~/.linuxbrew/Library/Taps/homebrew/homebrew-core || git clone --depth=1 https://github.com/homebrew/homebrew-core ~/.linuxbrew/Library/Taps/homebrew/homebrew-core
+			test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+			test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+			HOMEBREW_NO_AUTO_UPDATE=1 brew install ${brew_packages}
+		fi
 	else
 		echo "Unable to elevate to root. Please install ${packages}."
 	fi

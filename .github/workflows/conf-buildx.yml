@@ -30,7 +30,7 @@ jobs:
       - 
         name: Get conf version
         id: version
-        run: echo "::set-output name=version::$(git rev-parse HEAD)"
+        run: echo "::set-output name=version::$(git -C ./conf rev-parse HEAD)"
       -
         name: Build and push heywoodlh/conf
         uses: docker/build-push-action@v2

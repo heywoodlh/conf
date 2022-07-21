@@ -10,13 +10,15 @@ RUN useradd -m -s /bin/zsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh
 
 USER heywoodlh 
-COPY . /home/heywoodlh/opt/conf
-RUN sudo chown -R heywoodlh /home/heywoodlh/opt/conf
+RUN mkdir -p /home/heywoodlh/opt \
+    && git clone --depth=1 https://github.com/heywoodlh/conf /home/heywoodlh/opt/conf 
 
 WORKDIR /home/heywoodlh/opt/conf
-RUN ./setup.sh workstation \
-    && sudo rm -rf /var/lib/apt/lists/*
+RUN git remote remove origin && git remote add origin git@github.com:heywoodlh/conf 
 
+RUN ./setup.sh workstation 
+
+## Setup gitstatusd
 RUN /home/heywoodlh/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 
 
 ## Clear cache

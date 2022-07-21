@@ -4,6 +4,7 @@ LABEL MAINTAINER=heywoodlh
 ENV SKIP_HOMEBREW_INSTALL='true'
 
 RUN apk --no-cache add sudo zsh bash py3-pip git openssh-client shadow docker-cli
+RUN apk --no-cache add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing ansible kubectl helm kind
 
 ## Create heywoodlh
 RUN useradd -m -s /bin/zsh heywoodlh \

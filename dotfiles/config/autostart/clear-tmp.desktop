@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Clear user tmp directory
+Exec=rm -rf /home/heywoodlh/tmp/*
+Icon=org.gnome.Terminal
+StartupNotify=false

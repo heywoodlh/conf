@@ -84,7 +84,7 @@ alias jekyll-update='docker run --rm -v $(pwd):/srv/jekyll -it jekyll/jekyll:3.8
 
 alias kali="docker run -it --rm --net host --privileged heywoodlh/kali-linux /bin/bash $@"
 
-alias lw-scanner='docker run -it --rm -v $(pwd):/data -w /data lacework/lacework-inline-scanner:latest $@'
+alias lw-scanner='mkdir -p ~/.local/lacework && docker run -it --rm -v ~/.local/lacework:/config -v $(pwd):/data -w /data lacework/lacework-inline-scanner:latest -d /config $@'
 
 alias links="docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/links:latest $@"
 

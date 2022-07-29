@@ -84,6 +84,8 @@ alias jekyll-update='docker run --rm -v $(pwd):/srv/jekyll -it jekyll/jekyll:3.8
 
 alias kali="docker run -it --rm --net host --privileged heywoodlh/kali-linux /bin/bash $@"
 
+alias lw-scanner='docker run -it --rm -v $(pwd):/data -w /data lacework/lacework-inline-scanner:latest $@'
+
 alias links="docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/links:latest $@"
 
 alias marp='docker run --rm --user $(id -u):$(id -g) -v $(pwd):/home/marp/app/ -e LANG=$LANG marpteam/marp-cli $@'

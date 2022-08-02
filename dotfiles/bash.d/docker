@@ -146,7 +146,7 @@ alias sqlmap='docker run -it --rm --net host -w /data -v ~/.sqlmap:/root/.sqlmap
 
 alias socat='docker run --rm -w /data -v $(pwd):/data -v ~/tmp:/tmp --net host heywoodlh/kali-linux socat $@'
 
-alias speedtest='docker run -rm -it heywoodlh/speedtest-cli $@'
+alias speedtest='docker run --rm -it heywoodlh/speedtest-cli $@'
 
 alias speedtest-cli='speedtest $@'
 

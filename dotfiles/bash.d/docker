@@ -90,7 +90,7 @@ alias links="docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heyw
 
 alias lw-scanner='mkdir -p ~/.local/lacework && docker run -it --rm -v ~/.local/lacework:/config -v $(pwd):/data -w /data lacework/lacework-inline-scanner:latest -d /config $@'
 
-alias marp='docker run --rm --user $(id -u):$(id -g) -v $(pwd):/home/marp/app/ -e LANG=$LANG marpteam/marp-cli $@'
+alias marp='docker run --rm -v $(pwd):/home/marp/app/ -e LANG=$LANG marpteam/marp-cli $@'
 
 alias masscan='docker run --rm --net host -w /data -v $(pwd):/data -v ~/tmp:/tmp --privileged heywoodlh/telnet masscan $@'
 

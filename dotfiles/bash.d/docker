@@ -124,6 +124,8 @@ alias nimble='docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nimble $@
 
 alias nmap='docker run --rm -v $(pwd):/data -w /data --net host --privileged heywoodlh/telnet nmap $@'
 
+alias nuclei='docker run --rm -v $(pwd):/data -w /data --net host -it projectdiscovery/nuclei $@'
+
 alias padbuster="docker run -it --rm heywoodlh/kali-linux padbuster $@"
 
 alias powershell="docker run -it --rm heywoodlh/powershell"

@@ -45,7 +45,7 @@ alias freyr='docker run -it --rm -v $(pwd):/data -w /data freyrcli/freyrjs $@'
 
 alias gf='docker run --rm -it heywoodlh/tomnomnom-tools:latest gf $@'
 
-alias gomuks='mkdir -p ~/tmp ~/Downloads ~/.local/gomuks/config ~/.local/gomuks/cache ~/.local/gomuks/share && docker run --rm -it -e TMUX='' -v ${HOME}/.local/gomuks/cache:/home/gomuks/.cache/gomuks -v ${HOME}/.local/gomuks/share:/home/gomuks/.local/share/gomuks -v ${HOME}/.local/gomuks/config:/home/gomuks/.config/gomuks -v ${HOME}/Downloads:/home/gomuks/Downloads -v ~/tmp:/tmp heywoodlh/gomuks $@'
+alias gomuks='mkdir -p ~/tmp ~/Downloads ~/.local/gomuks/config ~/.local/gomuks/cache ~/.local/gomuks/share && docker run --rm -it -e TZ=America/Denver -e TMUX='' -v ${HOME}/.local/gomuks/cache:/home/gomuks/.cache/gomuks -v ${HOME}/.local/gomuks/share:/home/gomuks/.local/share/gomuks -v ${HOME}/.local/gomuks/config:/home/gomuks/.config/gomuks -v ${HOME}/Downloads:/home/gomuks/Downloads -v ~/tmp:/tmp heywoodlh/gomuks $@'
 
 alias gophish='mkdir -p ~/.local/gophish && docker run -it --rm -v ~/.local/gophish:/data -e ADMIN_CERT_PATH='/data/gophish.crt' -e ADMIN_KEY_PATH='/data/gophish.key' -e PHISH_LISTEN_URL='0.0.0.0:80' -e DB_FILE_PATH='/data/gophish.db' -p 3333:3333 -p 80:80 heywoodlh/gophish:latest'
 
@@ -124,7 +124,7 @@ alias nimble='docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nimble $@
 
 alias nmap='docker run --rm -v $(pwd):/data -w /data --net host --privileged heywoodlh/telnet nmap $@'
 
-alias nuclei='docker run --rm -v $(pwd):/data -w /data --net host -it projectdiscovery/nuclei $@'
+alias nuclei='mkdir -p ~/.local/nuclei/templates ~/.local/nuclei/config && docker run --rm -v ~/.local/nuclei/templates:/root/nuclei-templates -v ~/.local/nuclei/config:/root/.config/nuclei -v $(pwd):/data -w /data --net host -it projectdiscovery/nuclei $@'
 
 alias padbuster="docker run -it --rm heywoodlh/kali-linux padbuster $@"
 

@@ -108,3 +108,8 @@ if grep -iq 'name=nixos' /etc/os-release
 then
 	alias nix-search='nix search nixpkgs $@'
 fi
+
+if command -v xdg-open > /dev/null
+then
+	alias open="xdg-open $@"
+fi

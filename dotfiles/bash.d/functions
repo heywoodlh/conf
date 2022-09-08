@@ -364,13 +364,13 @@ vultr-cli() {
 vultr-mosh() {
 	instance_list=$(vultr-cli instance list | grep -vE '^ID' | sed -n '/^===/q;p')
         instance_ip="$(printf "${instance_list}" | fzf --prompt="Instance to ssh into:" | awk '{print $2}')"
-	mosh --ssh='ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null"' heywoodlh@${instance_ip}	
+	mosh --ssh='ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null"' heywoodlh@${instance_ip}	
 }
 
 vultr-ssh() {
 	instance_list=$(vultr-cli instance list | grep -vE '^ID' | sed -n '/^===/q;p')
         instance_ip="$(printf "${instance_list}" | fzf --prompt="Instance to ssh into:" | awk '{print $2}')"
-	ssh -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" heywoodlh@${instance_ip}	
+	ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" heywoodlh@${instance_ip}	
 }
 
 vultr-port-forward() {

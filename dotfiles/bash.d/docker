@@ -67,6 +67,8 @@ alias httrack='docker run --rm -it --net host -v $(pwd):/app -w /app heywoodlh/h
 
 alias hydra='docker run --rm --net host -v (pwd):/data -v ~/tmp:/tmp --privileged heywoodlh/kali-linux hydra $@'
 
+alias inim='docker run -it --rm -v $(pwd):/app -w /app heywoodlh/inim $@'
+
 if uname -a | grep -iq linux
 then
 	alias jackit='docker run --rm -it --name jackit --privileged -v $(pwd):/tmp/jackit -w /tmp/jackit -v /dev/bus/usb:/dev/bus/usb heywoodlh/jackit jackit $@'

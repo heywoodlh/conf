@@ -131,3 +131,6 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 export journal_dir="$HOME/Documents/Notes/Journal"
 export log_dir="$HOME/opt/log"
+
+## Disable paging in AWS cli
+export AWS_PAGER=""

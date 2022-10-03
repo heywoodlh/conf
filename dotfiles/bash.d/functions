@@ -250,6 +250,19 @@ mkgif () {
 	fi
 }
 
+mkvirtualenv () {
+	[[ -z $1 ]] && error='true'
+
+	if [[ ${error} == 'true' ]]
+	then
+		echo 'Usage: mkvirtualenv [name]'
+	else
+		env_name="$1"
+		virtualenv -p python3 "${env_name}" &&\
+			workon "${env_name}"
+	fi
+}
+
 passwords () {
 	local selection=$(cd ~/.password-store && find -L . -name '*.gpg' | sed -e 's/.\///' -e 's/.gpg//' | fzf --layout=reverse)
 	pass ${selection} | grep -v 'otpauth://' | pbcopy
@@ -405,4 +418,27 @@ vultr-port-forward() {
 
 vultr-unlock() {
 	[[ -z ${VULTR_API_KEY} ]] && export VULTR_API_KEY=$(pass vultr.com/api)
+}
+
+workon () {
+	[[ -z $1 ]] && error='true'
+
+	if [[ "${error}" == 'true' ]]
+	then
+		echo 'Usage: workon [name]'
+	else
+		env_name="$1"
+		cur_dir="$(pwd)"
+		target_dir="${cur_dir}/${env_name}"
+
+		if [[ ! -d "${target_dir}" ]]
+		then
+			virtualenv -p python3 "${target_dir}"
+		fi
+
+		cd "${target_dir}" &&\
+			source bin/activate
+
+		cd "${cur_dir}"
+	fi
 }

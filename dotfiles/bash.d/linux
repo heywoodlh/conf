@@ -1,6 +1,6 @@
 alias git="ssh-unlock && git $@"
 alias mosh="ssh-wrapper mosh $@"
-alias pbcopy="xclip -r -selection clipboard"
+alias pbcopy="~/bin/pbcopy"
 alias scp="ssh-wrapper scp $@"
 alias screenshot="maim -s | xclip -selection clipboard -t image/png"
 alias selector="rofi -dmenu"

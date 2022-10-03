@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-packages="curl git bash fzf vim tmux pass rofi gnupg"
+packages="curl git bash fzf vim tmux pass rofi gnupg xclip"
 brew_packages="coreutils fzf curl gnupg pass pass-otp ripgrep vim tmux python mosh jailkit lima"
 
 supported="false"

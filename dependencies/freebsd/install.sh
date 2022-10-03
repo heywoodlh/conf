@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-packages="coreutils fzf bash curl mosh gnupg pass ripgrep vim zsh tmux"
+packages="coreutils fzf bash curl mosh gnupg pass ripgrep vim xclip zsh tmux"
 
 install_command="env ASSUME_ALWAYS_YES=YES pkg install $packages"
 

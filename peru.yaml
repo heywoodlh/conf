@@ -11,6 +11,7 @@ imports:
   journal: home/bin
   log: home/bin
 
+  pbcopy: home/bin
   ssh-askpass-tyranny: home/bin
   ssh-unlock: home/bin
   ssh-wrapper: home/bin
@@ -96,6 +97,11 @@ curl module log:
 
 git module tmux-nord-theme:
     url: https://github.com/arcticicestudio/nord-tmux
+
+curl module pbcopy:
+    url: https://gist.githubusercontent.com/heywoodlh/d3ccf4723d260d7300e6bfa648cdc74c/raw/ed99396c447c84f61720b248f861e43e8c2b2d9b/pbcopy
+    filename: pbcopy
+    executable: pbcopy
 
 curl module ssh-askpass-tyranny:
     url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-askpass-tyranny.sh 

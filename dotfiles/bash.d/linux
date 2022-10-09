@@ -104,7 +104,7 @@ then
 fi
 
 ## NixOS stuff
-if grep -iq 'name=nixos' /etc/os-release
+if grep -iq 'name=nixos' /etc/os-release &> /dev/null
 then
 	alias nix-search='nix search nixpkgs $@'
 fi

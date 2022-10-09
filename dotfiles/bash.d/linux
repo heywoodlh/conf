@@ -12,17 +12,6 @@ exit() {
 	builtin exit
 }
 
-pixel-usb() {
-        local interface="enp0s20f0u1"
-        local pixel_ip="$(ip route | grep ${interface} | grep via | awk '{print $3}')"
-
-        ssh -p 9854 -o "StrictHostKeyChecking=no" u0_a193@${pixel_ip}
-}
-
-pixel-wireguard() {
-        ssh -p 9854 -o "StrictHostKeyChecking=no" u0_a193@10.50.50.7
-}
-
 alias pass-choose="rofi-pass"
 
 if [ -f /dev/.cros_milestone ]
@@ -112,4 +101,10 @@ fi
 if command -v xdg-open > /dev/null
 then
 	alias open="xdg-open $@"
+fi
+
+## Termux stuff
+if [[ -n ${TERMUX_VERSION} ]]
+then
+	alias pbcopy='termux-clipboard-set'
 fi

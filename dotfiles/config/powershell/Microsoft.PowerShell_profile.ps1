@@ -3,6 +3,7 @@ clear-host
 $env:POWERSHELL_UPDATECHECK_OPTOUT = true
 $env:POWERSHELL_TELEMETRY_OPTOUT = true
 
+## Create pure-looking prompt
 function prompt {
     $exit_code = $LASTEXITCODE
 
@@ -16,10 +17,10 @@ function prompt {
 
     ## If last command succeeded, show white prompt, otherwise show red
     if ( $exit_code -eq 0 ) {
-	"$([char]27)[34m./${working_dir} ${git_branch}`r`n$([char]27)[37m❯ "
+	"$([char]27)[34m./${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[37m❯ "
     } else
     {
-	"$([char]27)[34m./${working_dir} ${git_branch}`r`n$([char]27)[31m❯ "
+	"$([char]27)[34m./${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[31m❯ "
     }
 }
 
@@ -84,4 +85,7 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 function ssh-unlock { ssh-add -t 1h ~/.ssh/id_rsa }
 function pbcopy { 
     set-clipboard -Value $input
+}
+function gpsup {
+    git push --set-upstream origin $(git branch --show-current)
 }

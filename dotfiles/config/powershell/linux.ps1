@@ -15,3 +15,6 @@ if ( [Environment]::GetEnvironmentVariable('GNOME_SHELL_SESSION_MODE') )
 	}
     } 
 }
+
+## Add Homebrew to $PATH
+$env:PATH = "/home/linuxbrew/.linuxbrew/bin:${HOME}/.linuxbrew/bin:" + $env:PATH

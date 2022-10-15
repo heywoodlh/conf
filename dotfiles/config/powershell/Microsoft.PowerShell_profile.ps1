@@ -1,5 +1,27 @@
+clear-host
+
 $env:POWERSHELL_UPDATECHECK_OPTOUT = true
 $env:POWERSHELL_TELEMETRY_OPTOUT = true
+
+function prompt {
+    $exit_code = $LASTEXITCODE
+
+    if (git branch --show-current) {
+	$git_branch = $(git branch --show-current)
+    } else {
+	$git_branch = ''
+    }
+
+    $working_dir = Split-Path -leaf -path (Get-Location)
+
+    ## If last command succeeded, show white prompt, otherwise show red
+    if ( $exit_code -eq 0 ) {
+	"$([char]27)[34m./${working_dir} ${git_branch}`r`n$([char]27)[37m❯ "
+    } else
+    {
+	"$([char]27)[34m./${working_dir} ${git_branch}`r`n$([char]27)[31m❯ "
+    }
+}
 
 ## Function for installing/loading modules
 function load_module ($module_name) {
@@ -21,10 +43,10 @@ function load_module ($module_name) {
 }
 
 ## Install/load modules
-load_module pure-pwsh
-load_module posh-git 
-load_module awspowershell 
-load_module psfzf
+#load_module pure-pwsh
+#load_module posh-git 
+#load_module awspowershell 
+#load_module psfzf
 
 # Configure PSFzf - set to 'Ctrl+r' like in Unix version
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
@@ -43,9 +65,9 @@ if (${isLinux}) {
 #}
 
 # Windows config setup
-#if (${isWindows}) {
-#    . ~/.config/powershell/windows.ps1
-#}
+if (${isWindows}) {
+    . ~/.config/powershell/windows.ps1
+}
 
 # Docker setup
 if (get-command docker) {
@@ -60,3 +82,6 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 # Cross-platform functions
 function ssh-unlock { ssh-add -t 1h ~/.ssh/id_rsa }
+function pbcopy { 
+    set-clipboard -Value $input
+}

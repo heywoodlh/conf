@@ -50,7 +50,7 @@ endfunction
 " Custom keybinds
 nnoremap zz :wa <bar> :qa!<CR>
 nnoremap zq <bar> :qa!<CR>
-map <silent> <C-y> :w !pbcopy<CR>
+map <silent> <C-y> :w !Set-Clipboard<CR>
 map <silent> <C-t> :term ++kill=term<CR>
 map <silent> <C-o> :FZF $HOME<CR>
 map <silent> <C-l> :set invnumber<CR>
@@ -112,3 +112,6 @@ set backup
 set backupdir=~/tmp
 " tell vim where to put swap files
 set dir=~/tmp
+
+" copy to clipboard
+nnoremap <C-y> w !pwsh -c 'get-clipboard'

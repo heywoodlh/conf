@@ -107,7 +107,9 @@ function nim() { docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nim $a
 
 function nimble() { docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nimble $args }
 
-function nmap() { docker run --rm -v $(pwd):/data -w /data --net host --privileged heywoodlh/telnet nmap $args }
+function nmap() { 
+    docker run --rm -v $(Get-Location).Path:/data -w /data --net host --privileged heywoodlh/telnet nmap $args 
+}
 
 function nuclei() { New-Item -ItemType Directory -Path ${HOME}/.local/nuclei/templates ${HOME}/.local/nuclei/config && docker run --rm -v ${HOME}/.local/nuclei/templates:/root/nuclei-templates -v ${HOME}/.local/nuclei/config:/root/.config/nuclei -v $(pwd):/data -w /data --net host -it projectdiscovery/nuclei $args }
 

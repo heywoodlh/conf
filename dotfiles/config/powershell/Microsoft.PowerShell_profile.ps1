@@ -44,13 +44,7 @@ function load_module ($module_name) {
 }
 
 ## Install/load modules
-#load_module pure-pwsh
-#load_module posh-git 
 #load_module awspowershell 
-#load_module psfzf
-
-# Configure PSFzf - set to 'Ctrl+r' like in Unix version
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 # Predictive Intellisense
 Set-PSReadLineOption -PredictionSource History
@@ -71,7 +65,7 @@ if (${isWindows}) {
 }
 
 # Docker setup
-if (get-command docker) {
+if (get-command docker -erroraction 'silentlycontinue') {
     . ~/.config/powershell/docker.ps1
 }
 

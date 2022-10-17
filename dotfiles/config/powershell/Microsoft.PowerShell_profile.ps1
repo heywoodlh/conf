@@ -55,9 +55,9 @@ if (${isLinux}) {
 }
 
 # MacOS config setup
-#if (${isMacOS}) {
-#    . ~/.config/powershell/macos.ps1
-#}
+if (${isMacOS}) {
+    . ~/.config/powershell/macos.ps1
+}
 
 # Windows config setup
 if (${isWindows}) {
@@ -70,16 +70,26 @@ if (get-command docker -erroraction 'silentlycontinue') {
 }
 
 # Create tmp directory
-New-Item -Path "~/tmp" -ItemType Directory 2> $null
+New-Item -Path "~/tmp" -ItemType Directory 2>&1>$null
 
 # Bash-like tab completion
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 # Cross-platform functions
 function ssh-unlock { ssh-add -t 1h ~/.ssh/id_rsa }
+
 function pbcopy { 
     set-clipboard -Value $input
 }
+
 function gpsup {
     git push --set-upstream origin $(git branch --show-current)
+}
+
+function asp {
+    $aws_profiles = get-content ~/.aws/config | Select-String '\[profile'
+    $aws_profiles = "$aws_profiles".replace('[profile ','').replace(']','')
+
+    $selection = $aws_profiles -split ' ' | fzf
+    $env:AWS_PROFILE = ${selection}
 }

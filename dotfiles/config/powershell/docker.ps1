@@ -3,7 +3,7 @@ function amap() { docker run -it --rm -w /data -v $(pwd):/data -v ${HOME}/tmp:/t
 function amass() { docker run -it --rm -w /data -v $(pwd):/data -v ${HOME}/tmp:/tmp heywoodlh/amass $args }
 
 # Reminder: ${HOME}/.guerrillamail within the container is a config _file_ not a directory
-function anon-mail() { New-Item -ItemType Directory -Path ${HOME}/.local/guerrillamail/ 2> /dev/null && docker run -it --rm -v ${HOME}/.local/guerrillamail:/root/ heywoodlh/guerrillamail $args }
+function anon-mail() { New-Item -ItemType Directory -Path ${HOME}/.local/guerrillamail/ 2> $null && docker run -it --rm -v ${HOME}/.local/guerrillamail:/root/ heywoodlh/guerrillamail $args }
 
 function archinstall() { docker run --rm -it --name archinstall --privileged -v /dev/bus/usb:/dev/bus/usb heywoodlh/archinstall $args }
 
@@ -107,8 +107,9 @@ function nim() { docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nim $a
 
 function nimble() { docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nimble $args }
 
-function nmap() { 
-    docker run --rm -v $(Get-Location).Path:/data -w /data --net host --privileged heywoodlh/telnet nmap $args 
+function nmap() {
+    $cur_dir = $(Get-Location).Path
+    docker run --rm -v ${cur_dir}:/data -w /data --net host --privileged heywoodlh/telnet nmap $args 
 }
 
 function nuclei() { New-Item -ItemType Directory -Path ${HOME}/.local/nuclei/templates ${HOME}/.local/nuclei/config && docker run --rm -v ${HOME}/.local/nuclei/templates:/root/nuclei-templates -v ${HOME}/.local/nuclei/config:/root/.config/nuclei -v $(pwd):/data -w /data --net host -it projectdiscovery/nuclei $args }

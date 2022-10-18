@@ -9,7 +9,8 @@ function ls {
 if ( $env:DESKTOP_SESSION -eq 'gnome' )
 {
     ## Map caps lock to super key
-    if (get-command gsettings)
+    get-command gsettings > $null
+    if ($?)
     {
 	$caps_super=gsettings get org.gnome.desktop.input-sources xkb-options | grep caps | grep super
 	if ($caps_super -eq $null)

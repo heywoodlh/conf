@@ -1,7 +1,8 @@
-clear-host
+## NixOS Path
 
-$env:POWERSHELL_UPDATECHECK_OPTOUT = true
-$env:POWERSHELL_TELEMETRY_OPTOUT = true
+$env:PATH = $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+
+clear-host
 
 ## Create pure-looking prompt
 function prompt {
@@ -69,6 +70,8 @@ if (get-command docker -erroraction 'silentlycontinue') {
     . ~/.config/powershell/docker.ps1
 }
 
+# Custom powershell config to workstation
+
 # Create tmp directory
 New-Item -Path "~/tmp" -ItemType Directory 2>&1>$null
 
@@ -90,6 +93,19 @@ function asp {
     $aws_profiles = get-content ~/.aws/config | Select-String '\[profile'
     $aws_profiles = "$aws_profiles".replace('[profile ','').replace(']','')
 
-    $selection = $aws_profiles -split ' ' | fzf
+    if ( $args[0] ) {
+	$profile = $args[0]
+	${aws_profiles} | select-string ${profile} 2>&1>$null 
+	if ( $? )
+	{
+		$selection = $profile	
+	} else 
+	{
+		write-output "No profile named '${profile}'"
+	}
+    } else
+    {
+	$selection = $aws_profiles -split ' ' | fzf
+    }
     $env:AWS_PROFILE = ${selection}
 }

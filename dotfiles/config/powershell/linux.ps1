@@ -1,9 +1,12 @@
 function ansibuild { cd ${HOME}/opt/ansible && sudo ansible-playbook playbooks/workstation/workstation.yml }
 
-function ls { /bin/ls --color=tty $args }
+function ls {
+    $ls_bin = which ls; 
+    invoke-expression "$ls_bin --color=tty $args"
+}
 
 ## Gnome stuff
-if ( [Environment]::GetEnvironmentVariable('GNOME_SHELL_SESSION_MODE') )
+if ( $env:DESKTOP_SESSION -eq 'gnome' )
 {
     ## Map caps lock to super key
     if (get-command gsettings)

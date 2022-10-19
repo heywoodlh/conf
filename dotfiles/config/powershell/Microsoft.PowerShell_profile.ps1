@@ -1,6 +1,6 @@
 ## NixOS Path
 
-$env:PATH = $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+$env:PATH = "$env:HOME/bin:" + $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
 
 clear-host
 

@@ -5,6 +5,10 @@ function ls {
     invoke-expression "$ls_bin --color=tty $args"
 }
 
+function open {
+    xdg-open $args
+}
+
 ## Gnome stuff
 if ( $env:DESKTOP_SESSION -eq 'gnome' )
 {
@@ -22,3 +26,9 @@ if ( $env:DESKTOP_SESSION -eq 'gnome' )
 
 ## Add Homebrew to $PATH
 $env:PATH = "/home/linuxbrew/.linuxbrew/bin:${HOME}/.linuxbrew/bin:" + $env:PATH
+
+## NixOS stuff
+if ($isNixOS)
+{
+    function sudo { /run/wrappers/bin/sudo $args }
+}

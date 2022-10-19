@@ -1,6 +1,14 @@
-## NixOS Path
+## NixOS stuff must be loaded first so $PATH is setup right
+if (get-content -erroraction silentlycontinue /etc/os-release | select-string 'ID=nixos')
+{
+    $isNixOS = 'true'
+}
 
-$env:PATH = "$env:HOME/bin:" + $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+## NixOS Path
+if ($isNixOS) 
+{
+    $env:PATH = "$env:HOME/bin:" + $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+}
 
 clear-host
 
@@ -77,6 +85,21 @@ New-Item -Path "~/tmp" -ItemType Directory 2>&1>$null
 
 # Bash-like tab completion
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+
+# Prompt colors
+Set-PSReadlineOption -Colors @{
+    Type = "DarkCyan"
+    Member = "Gray"
+    String = "DarkGray"
+    Number = "Yellow"
+    Comment = "DarkGreen"
+    Command = "Cyan"
+    Keyword = "Cyan"
+    Operator = "Gray"
+    Variable = "Magenta"
+    Parameter = "Gray"
+}
+
 
 # Cross-platform functions
 function ssh-unlock { ssh-add -t 1h ~/.ssh/id_rsa }

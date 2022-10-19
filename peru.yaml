@@ -22,6 +22,8 @@ imports:
 
   ubersicht-bottombar: dotfiles/config/ubersicht/widgets/bottombar
 
+  nix-generations-trimmer: home/bin
+
   vim-airline: dotfiles/vim/bundle/airline
   vim-airline-themes: dotfiles/vim/bundle/airline-themes
   vim-base16: dotfiles/vim/bundle/base16
@@ -120,6 +122,11 @@ curl module ssh-wrapper:
 
 git module ubersicht-bottombar:
     url: https://github.com/heywoodlh/black-bottom-bar-ubersicht-widgets
+
+curl module nix-generations-trimmer:
+    url: https://gist.githubusercontent.com/Bondrake/27555c9d02c2882fd5e32f8ab3ed620b/raw/e1e5dd68761a7f7e6a253fcb64905466104b9df9/trim-generations.sh
+    filename: trim-generations.sh
+    executable: trim-generations.sh
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline

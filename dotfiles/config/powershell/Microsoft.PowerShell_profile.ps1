@@ -102,7 +102,7 @@ Set-PSReadlineOption -Colors @{
 
 
 # Cross-platform functions
-function ssh-unlock { ssh-add -t 1h ~/.ssh/id_rsa }
+function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/id_rsa }
 
 function pbcopy { 
     set-clipboard -Value $input

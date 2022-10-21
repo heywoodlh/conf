@@ -132,3 +132,16 @@ function asp {
     }
     $env:AWS_PROFILE = ${selection}
 }
+
+function which {
+    $command_name = $args[0]
+    $command_type = get-command ${command_name} | select-object -expandproperty commandtype 
+    if (${command_type} -eq 'Application')
+    {
+	get-command ${command_name} | select-object -expandproperty source
+    } else
+    {
+	${command_type}
+    }
+    true
+}

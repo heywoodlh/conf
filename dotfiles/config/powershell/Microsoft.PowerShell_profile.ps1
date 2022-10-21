@@ -143,5 +143,4 @@ function which {
     {
 	${command_type}
     }
-    true
 }

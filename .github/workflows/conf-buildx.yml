@@ -37,6 +37,6 @@ jobs:
         with:
           context: ./conf
           file: ./conf/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/armhf
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: heywoodlh/conf:latest,heywoodlh/conf:${{ steps.version.outputs.version }}

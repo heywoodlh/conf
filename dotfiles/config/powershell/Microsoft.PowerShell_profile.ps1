@@ -78,6 +78,11 @@ if (get-command docker -erroraction 'silentlycontinue') {
     . ~/.config/powershell/docker.ps1
 }
 
+# Lima docker stuff
+if (test-path ~/.lima/docker/sock/docker.sock) {
+    . ~/.config/powershell/lima.ps1
+}
+
 # Custom powershell config to workstation
 
 # Create tmp directory

@@ -1,13 +1,22 @@
-FROM alpine
+## Multistage build for bulkier stuff
+FROM heywoodlh/trizen AS kind-build
+
+RUN trizen -Sy --noconfirm gcc kind
+
+FROM heywoodlh/trizen
 LABEL MAINTAINER=heywoodlh
 
-ENV SKIP_HOMEBREW_INSTALL='true'
+RUN trizen -Sy --noconfirm docker git openssh vim kubectl helm ansible peru powershell-bin sudo \
+    && trizen -Scc
 
-RUN apk --no-cache add sudo zsh bash py3-pip git openssh-client shadow docker-cli
-RUN apk --no-cache add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing ansible kubectl helm kind
+USER root
+
+COPY --from=kind-build /usr/bin/kind /usr/bin/kind
+
+RUN userdel -r trizen
 
 ## Create heywoodlh
-RUN useradd -m -s /bin/zsh heywoodlh \
+RUN useradd -m -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh
 
 USER heywoodlh 
@@ -17,12 +26,6 @@ RUN mkdir -p /home/heywoodlh/opt \
 WORKDIR /home/heywoodlh/opt/conf
 RUN git remote remove origin && git remote add origin git@github.com:heywoodlh/conf 
 
-RUN ./setup.sh workstation 
+RUN pwsh -C '. /home/heywoodlh/opt/conf/setup.ps1' 
 
-## Setup gitstatusd
-RUN /home/heywoodlh/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install 
-
-## Clear cache
-RUN pip3 cache purge && sudo pip3 cache purge
-
-ENTRYPOINT ["zsh"]
+ENTRYPOINT ["pwsh"]

@@ -50,7 +50,7 @@ endfunction
 " Custom keybinds
 nnoremap zz :wa <bar> :qa!<CR>
 nnoremap zq <bar> :qa!<CR>
-map <silent> <C-y> :w! ~/tmp/vimbuf <CR>:silent! get-content ~/tmp/vimbuf <Bar> set-clipboard<CR>
+map <silent> <C-y> :w! ~/tmp/vimbuf <CR>:silent !get-content ~/tmp/vimbuf <Bar> set-clipboard<CR>:redraw!<CR>
 map <silent> <C-t> :term ++kill=term<CR>
 map <silent> <C-o> :FZF $HOME<CR>
 map <silent> <C-l> :set invnumber<CR>
@@ -60,14 +60,13 @@ nnoremap mdp :MarkdownPreviewToggle<CR>
 
 command NoComments %s/#.*\n//g
 command GitAdd :w! <bar> !git add -v %
-command GitCommit !echo "Commit message: " && read gitmessage && git commit -m ${gitmessage}
-command GitPush !git push
+command GitCommit !$gitmessage = ($gitmessage = read-host -prompt "commit message") && git commit -s -m ${gitmessage}
+command GitPush !gpsup
 
 nnoremap ga :GitAdd<CR>
 nnoremap gc :GitCommit<CR>
 nnoremap gp :GitPush<CR>
 nnoremap nc :NoComments<CR>
-
 
 " GPG encrypted file handling
 " Don't save backups of *.gpg files

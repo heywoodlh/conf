@@ -50,7 +50,7 @@ endfunction
 " Custom keybinds
 nnoremap zz :wa <bar> :qa!<CR>
 nnoremap zq <bar> :qa!<CR>
-map <silent> <C-y> :w ~/tmp/vimbuf <CR>:! get-content ~/tmp/vimbuf <Bar> set-clipboard<CR>
+map <silent> <C-y> :w! ~/tmp/vimbuf <CR>:silent! get-content ~/tmp/vimbuf <Bar> set-clipboard<CR>
 map <silent> <C-t> :term ++kill=term<CR>
 map <silent> <C-o> :FZF $HOME<CR>
 map <silent> <C-l> :set invnumber<CR>

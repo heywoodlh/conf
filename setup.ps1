@@ -17,3 +17,8 @@ Get-ChildItem -Path "${working_dir}/home" | Foreach-Object {
 
     New-Item -ItemType SymbolicLink -Path "$env:HOME/${file_name}" -Target "${file_path}" -ErrorAction silentlycontinue
 }
+
+## Windows specific symlink
+if ($isWindows) {
+    New-Item -ItemType SymbolicLink -Path "$env:HOME/vimfiles" -Target "${working_dir}/dotfiles/vim" -ErrorAction silentlycontinue
+}

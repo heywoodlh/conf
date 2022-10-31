@@ -12,6 +12,12 @@ if ($isNixOS)
 
 clear-host
 
+## Add ~/bin to PATH
+
+if (test-path ~/bin) {
+    $env:PATH = "${HOME}/bin:" + $env:PATH
+}
+
 ## Create pure-looking prompt
 function prompt {
     $exit_code = $LASTEXITCODE
@@ -76,6 +82,11 @@ if (${isWindows}) {
 # Docker setup
 if (get-command docker -erroraction 'silentlycontinue') {
     . ~/.config/powershell/docker.ps1
+}
+
+# Stuff not to save in dotfiles repo
+if (test-path ~/.config/powershell/custom.ps1) {
+    . ~/.config/powershell/custom.ps1
 }
 
 # Lima docker stuff

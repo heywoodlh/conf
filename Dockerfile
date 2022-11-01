@@ -13,15 +13,17 @@ USER root
 
 COPY --from=kind-build /usr/bin/kind /usr/bin/kind
 
-RUN userdel -r trizen
+## Delete Trizen user
+RUN userdel -r trizen \
+    && rm -rf /home/trizen
 
 ## Create heywoodlh
 RUN useradd -m -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh
 
 USER heywoodlh 
-RUN mkdir -p /home/heywoodlh/opt \
-    && git clone --depth=1 https://github.com/heywoodlh/conf /home/heywoodlh/opt/conf 
+RUN mkdir -p /home/heywoodlh/opt
+COPY . /home/heywoodlh/opt/conf 
 
 WORKDIR /home/heywoodlh/opt/conf
 RUN git remote remove origin && git remote add origin git@github.com:heywoodlh/conf 

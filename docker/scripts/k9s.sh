@@ -3,6 +3,6 @@
 git clone --depth=1 https://github.com/derailed/k9s /opt/k9s
 cd /opt/k9s
 make build
-cp ./execs/k9s /usr/local/bin/k9s
+cp ./execs/k9s /go/bin/k9s
 cd
 rm -rf /opt/k9s

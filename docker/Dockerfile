@@ -23,16 +23,16 @@ RUN apt-get update && apt-get install -y \
 COPY ./scripts /scripts
 
 ## peru install
-/scripts/peru.sh
+RUN /scripts/peru.sh
 
 ## ansible install
-/scripts/ansible.sh
+RUN /scripts/ansible.sh
 
 ## aws cli install
-/scripts/aws.sh
+RUN /scripts/aws.sh
    
 ## kubectl install
-/scripts/kubectl.sh
+RUN /scripts/kubectl.sh
 
 ## kind install
 COPY --from=go-build /go/bin/kind /usr/local/bin/kind
@@ -41,7 +41,7 @@ COPY --from=go-build /go/bin/kind /usr/local/bin/kind
 COPY --from=go-build /go/bin/k9s /usr/local/bin/k9s
 
 ## helm install
-/scripts/helm.sh
+RUN /scripts/helm.sh
 
 ## Clean up caches
 RUN pip3 cache purge \
@@ -53,7 +53,7 @@ RUN useradd -m -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /home/heywoodlh/opt
 
 ## Copy repo to target directory
-COPY . /home/heywoodlh/opt/conf 
+COPY ../ /home/heywoodlh/opt/conf 
 RUN chown -R heywoodlh /home/heywoodlh/opt
 
 USER heywoodlh 

@@ -59,8 +59,6 @@ RUN chown -R heywoodlh /home/heywoodlh/opt
 USER heywoodlh 
 
 WORKDIR /home/heywoodlh/opt/conf
-RUN git remote remove origin \
-    && git remote add origin git@github.com:heywoodlh/conf 
 
 RUN pwsh -C '. /home/heywoodlh/opt/conf/setup.ps1' 
 

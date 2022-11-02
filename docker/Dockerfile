@@ -60,6 +60,6 @@ USER heywoodlh
 
 WORKDIR /home/heywoodlh/opt/conf
 
-RUN pwsh -C '. /home/heywoodlh/opt/conf/setup.ps1' 
+RUN pwsh -executionpolicy bypass -file ./setup.ps1 
 
 ENTRYPOINT ["pwsh"]

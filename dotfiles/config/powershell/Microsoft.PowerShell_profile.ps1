@@ -20,9 +20,9 @@ if (test-path ~/bin) {
 
 ## Create pure-looking prompt
 function prompt {
-    $exit_code = $LASTEXITCODE
+    $exit_code = $global:LASTEXITCODE
 
-    if (git branch --show-current) {
+    if (git rev-parse --is-inside-work-tree) {
 	$git_branch = $(git branch --show-current)
     } else {
 	$git_branch = ''
@@ -30,6 +30,7 @@ function prompt {
 
     $working_dir = Split-Path -leaf -path (Get-Location)
 
+    $global:LASTEXITCODE = $exit_code
     ## If last command succeeded, show white prompt, otherwise show red
     if ( $exit_code -eq 0 ) {
 	"$([char]27)[34m./${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[37m❯ "

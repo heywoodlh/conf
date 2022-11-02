@@ -52,11 +52,11 @@ RUN useradd -m -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh \
     && mkdir -p /home/heywoodlh/opt
 
-## Copy repo to target directory
-COPY ../ /home/heywoodlh/opt/conf 
 RUN chown -R heywoodlh /home/heywoodlh/opt
 
 USER heywoodlh 
+## Copy repo to target directory
+RUN git clone --depth=1 https://github.com/heywoodlh/conf /home/heywoodlh/opt/conf
 
 RUN pwsh -executionpolicy bypass -file /home/heywoodlh/opt/conf/setup.ps1 
 

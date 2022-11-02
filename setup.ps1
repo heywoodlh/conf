@@ -1,4 +1,8 @@
-$working_dir = Get-Location | Select-Object -ExpandProperty Path
+## Get file path/name
+$script_path = $MyInvocation.MyCommand.Path
+
+## Get parent of file
+$working_dir = Split-Path ${script_path} -Parent
 
 ## For items in dotfiles
 Get-ChildItem -Path "${working_dir}/dotfiles" | Foreach-Object {

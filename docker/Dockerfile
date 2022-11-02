@@ -58,8 +58,6 @@ RUN chown -R heywoodlh /home/heywoodlh/opt
 
 USER heywoodlh 
 
-WORKDIR /home/heywoodlh/opt/conf
-
-RUN pwsh -executionpolicy bypass -file ./setup.ps1 
+RUN pwsh -executionpolicy bypass -file /home/heywoodlh/opt/conf/setup.ps1 
 
 ENTRYPOINT ["pwsh"]

@@ -8,3 +8,7 @@ if ($?)
 	$env:SSH_AUTH_SOCK = "${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
     }	
 }
+
+function darbuild {
+    darwin-rebuild switch -I "darwin-config=$HOME/opt/nixos-builds/darwin/darwin-configuration.nix"
+}

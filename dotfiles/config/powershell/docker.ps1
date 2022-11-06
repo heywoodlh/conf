@@ -105,7 +105,7 @@ function nikto() { docker run -it --rm --net host -w /data -v $(pwd):/data -v ${
 
 function nim() { docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nim $args }
 
-function nimble() { docker run -it --rm -v $(pwd):/app -w /app heywoodlh/nim nimble $args }
+function nimble() { docker run -it --rm -v $((get-location).path):/app -w /app heywoodlh/nim nimble $args }
 
 function nmap() {
     $cur_dir = $(Get-Location).Path

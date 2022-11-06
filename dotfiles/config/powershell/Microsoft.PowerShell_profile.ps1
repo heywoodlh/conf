@@ -150,6 +150,24 @@ function asp {
     $env:AWS_PROFILE = ${selection}
 }
 
+function vultr {
+    $vultr_bin = (get-command vultr.ps1 -type externalscript).Source 
+    vultr-unlock
+    pwsh -executionpolicy bypass -file "${vultr_bin}" -argumentlist "${args}"
+}
+
+function vultr-unlock {
+    if (!$env:VULTR_API_KEY) {
+	$env:VULTR_API_KEY = bw get password 2eb34e09-f5b4-4fc2-9c65-ace7013dd1b4 
+    }
+}
+
+function vultr-cli {
+    $vultr_cli_bin = (get-command vultr-cli -type application).path
+    vultr-unlock
+    start-process -filepath "${vultr_cli_bin}" -argumentlist "${args}"
+}
+
 function which {
     $command_name = $args[0]
     $command_type = get-command -erroraction silentlycontinue ${command_name} | select-object -expandproperty commandtype 
@@ -161,3 +179,4 @@ function which {
 	${command_type}
     }
 }
+

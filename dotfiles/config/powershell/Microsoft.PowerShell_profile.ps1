@@ -119,16 +119,6 @@ Set-PSReadlineOption -Colors @{
 
 
 # Cross-platform functions
-function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/id_rsa }
-
-function pbcopy { 
-    set-clipboard -Value $input
-}
-
-function gpsup {
-    git push --set-upstream origin $(git branch --show-current)
-}
-
 function asp {
     $aws_profiles = get-content ~/.aws/config | Select-String '\[profile'
     $aws_profiles = "$aws_profiles".replace('[profile ','').replace(']','')
@@ -150,23 +140,19 @@ function asp {
     $env:AWS_PROFILE = ${selection}
 }
 
-function vultr {
-    $vultr_bin = (get-command vultr.ps1 -type externalscript).Source 
-    vultr-unlock
-    pwsh -executionpolicy bypass -file "${vultr_bin}" -argumentlist "${args}"
+function gpsup {
+    git push --set-upstream origin $(git branch --show-current)
 }
 
-function vultr-unlock {
-    if (!$env:VULTR_API_KEY) {
-	$env:VULTR_API_KEY = bw get password 2eb34e09-f5b4-4fc2-9c65-ace7013dd1b4 
-    }
+function pbcopy { 
+    set-clipboard -Value $input
 }
 
-function vultr-cli {
-    $vultr_cli_bin = (get-command vultr-cli -type application).path
-    vultr-unlock
-    start-process -filepath "${vultr_cli_bin}" -argumentlist "${args}"
+function source {
+    . $args[0]
 }
+
+function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/id_rsa }
 
 function which {
     $command_name = $args[0]
@@ -180,3 +166,5 @@ function which {
     }
 }
 
+## Larger, specific functions will be placed in ./functions folder
+. ~/.config/powershell/functions/*.ps1

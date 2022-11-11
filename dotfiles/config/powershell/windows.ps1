@@ -14,6 +14,9 @@ if (${vim_dir}) {
 	$env:PATH = "${vim_dir};" + $env:PATH
 }
 
+## Add GNUWin32 executables to $PATH
+$env:PATH = "C:\Program Files (x86)\GnuWin32\bin;" + $env:PATH
+
 ## Functions
 Remove-Alias -Name ls -ErrorAction silentlycontinue
 function ls { get-childitem -path $args[0] | format-wide -property name }

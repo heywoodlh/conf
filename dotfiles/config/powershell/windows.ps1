@@ -15,4 +15,6 @@ if (${vim_dir}) {
 ## Functions
 Remove-Alias -Name ls -ErrorAction silentlycontinue
 function ls { get-childitem -path $args[0] | format-wide -property name }
+
+Remove-Item -Path Function:\ssh-unlock -ErrorAction silentlycontinue
 function ssh-unlock { ssh-add ${HOME}\.ssh\id_rsa }

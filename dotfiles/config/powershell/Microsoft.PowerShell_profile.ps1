@@ -10,8 +10,6 @@ if ($isNixOS)
     $env:PATH = "$env:HOME/bin:" + $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
 }
 
-clear-host
-
 ## Add ~/bin to PATH
 
 if (test-path ~/bin) {
@@ -64,6 +62,9 @@ function load_module ($module_name) {
 
 # Predictive Intellisense
 Set-PSReadLineOption -PredictionSource History
+
+# Vi edit mode
+Set-PSReadLineOption -EditMode vi -ViModeIndicator cursor
 
 # Linux config setup
 if (${isLinux}) {

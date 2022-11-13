@@ -112,7 +112,7 @@ set backupdir=~/tmp
 " tell vim where to put swap files
 set dir=~/tmp
 
-"Cursor settings:
+" Cursor settings:
 
 "  1 -> blinking block
 "  2 -> solid block 
@@ -125,3 +125,14 @@ set dir=~/tmp
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[5 q" "SR = REPLACE mode
 let &t_EI.="\e[5 q" "EI = NORMAL mode (ELSE)
+
+" If pwsh executable is in $PATH
+if executable('pwsh')
+    if has("win64") || has("win32") || has("win16")
+        set shell=cmd.exe
+        set shellcmdflag=/c\ pwsh.exe\ -NoLogo
+        set shellpipe=|
+        set shellredir=>
+    endif
+endif
+

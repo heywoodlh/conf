@@ -169,3 +169,8 @@ function which {
 
 ## Larger, specific functions will be placed in ./functions folder
 . ~/.config/powershell/functions/*.ps1
+
+## Import stuff specific to work last
+if test-path ~/.config/powershell/work.ps1 {
+    . ~/.config/powershell/work.ps1
+}

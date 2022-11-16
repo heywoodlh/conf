@@ -171,6 +171,6 @@ function which {
 . ~/.config/powershell/functions/*.ps1
 
 ## Import stuff specific to work last
-if test-path ~/.config/powershell/work.ps1 {
+if (test-path ~/.config/powershell/work.ps1) {
     . ~/.config/powershell/work.ps1
 }

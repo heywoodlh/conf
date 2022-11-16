@@ -116,7 +116,15 @@ function nmap() {
 
 function nuclei() { New-Item -ItemType Directory -Path ${HOME}/.local/nuclei/templates ${HOME}/.local/nuclei/config && docker run --rm -v ${HOME}/.local/nuclei/templates:/root/nuclei-templates -v ${HOME}/.local/nuclei/config:/root/.config/nuclei -v "$((get-location).path):/data" -w /data --net host -it projectdiscovery/nuclei $args }
 
+function pacu() { docker run -it --rm heywoodlh/pacu $args}
+
 function padbuster() { docker run -it --rm heywoodlh/kali-linux padbuster $args }
+
+function poezio() { 
+    new-item -itemtype directory -path $HOME/.config/poezio -erroraction silentlycontinue
+    new-item -itemtype directory -path $HOME/.local/share/poezio -erroraction silentlycontinue
+    docker run -it --rm -v $HOME/.config/poezio:/home/poezio-user/.config/poezio -v $HOME/.local/share/poezio:/home/poezio-user/.local/share/poezio poezio/poezio
+}
 
 function powershell() { docker run -v ${HOME}/.config/powershell:/root/.config/powershell -it --rm heywoodlh/powershell }
 

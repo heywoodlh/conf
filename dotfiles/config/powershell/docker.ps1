@@ -17,9 +17,14 @@ Set-Alias -Name centos -Value "docker run -it --rm centos bash"
 
 function cloud_enum() { docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/cloud_enum $args }
 
+function cme() { crackmapexec $args }
+
 function commix() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux commix $args }
 
-Set-Alias -Name dev -Value "docker run -it -v ${HOME}/.gnupg:/home/dev/.gnupg -v ${HOME}/.ssh:/home/dev/.ssh -v ${HOME}/.password-store:/home/dev/.password-store -v ${HOME}/opt:/home/dev/opt -v /etc/hosts:/etc/hosts --net=host --rm heywoodlh/dev"
+function crackmapexec() { 
+    new-item -itemtype directory -path ${HOME}/.local/share/cme -erroraction silentlycontinue
+    docker run -v ${HOME}/.local/share/cme:/root/.cme -it --rm heywoodlh/crackmapexec $args 
+}
 
 function dirb() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux dirb $args }
 
@@ -111,16 +116,19 @@ function netdiscover() { docker run -it --rm --net host -w /data -v "$((get-loca
 
 function nikto() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/nikto $args }
 
-function nim() { docker run -it --rm -v "$((get-location).path)":/app -w /app heywoodlh/nim nim $args }
+function nim() { docker run -it --rm -v "$((get-location).path):/app" -w /app heywoodlh/nim nim $args }
 
-function nimble() { docker run -it --rm -v "$((get-location).path)":/app -w /app heywoodlh/nim nimble $args }
+function nimble() { docker run -it --rm -v "$((get-location).path):/app" -w /app heywoodlh/nim nimble $args }
 
 function nmap() {
-    $cur_dir = $(Get-Location).Path
-    docker run --rm -v ${cur_dir}:/data -w /data --net host --privileged heywoodlh/telnet nmap $args 
+    docker run --rm -v "$((get-location).path):/data" -w /data --net host --privileged heywoodlh/telnet nmap $args 
 }
 
-function nuclei() { New-Item -ItemType Directory -Path ${HOME}/.local/nuclei/templates ${HOME}/.local/nuclei/config && docker run --rm -v ${HOME}/.local/nuclei/templates:/root/nuclei-templates -v ${HOME}/.local/nuclei/config:/root/.config/nuclei -v "$((get-location).path):/data" -w /data --net host -it projectdiscovery/nuclei $args }
+function nuclei() { 
+    New-Item -ItemType Directory -Path ${HOME}/.local/nuclei/templates -erroraction silentlycontinue
+    New-Item -ItemType Directory -Path ${HOME}/.local/nuclei/config -erroraction silentlycontinue
+    docker run --rm -v ${HOME}/.local/nuclei/templates:/root/nuclei-templates -v ${HOME}/.local/nuclei/config:/root/.config/nuclei -v "$((get-location).path):/data" -w /data --net host -it projectdiscovery/nuclei $args 
+}
 
 function pacu() { docker run -it --rm heywoodlh/pacu $args}
 
@@ -162,6 +170,8 @@ function speedtest() { docker run --rm -it heywoodlh/speedtest-cli $args }
 function sublist3r() { docker run -it --rm heywoodlh/sublist3r:latest $args }
 
 function syft() { docker run -v "$((get-location).path):/data" -w /data -it --rm anchore/syft $args }
+
+function takeover() { docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/takeover }
 
 function telnet() { docker run --rm -i heywoodlh/telnet telnet $args }
 

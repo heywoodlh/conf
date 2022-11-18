@@ -171,7 +171,7 @@ function sublist3r() { docker run -it --rm heywoodlh/sublist3r:latest $args }
 
 function syft() { docker run -v "$((get-location).path):/data" -w /data -it --rm anchore/syft $args }
 
-function takeover() { docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/takeover }
+function takeover() { docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/takeover $args}
 
 function telnet() { docker run --rm -i heywoodlh/telnet telnet $args }
 

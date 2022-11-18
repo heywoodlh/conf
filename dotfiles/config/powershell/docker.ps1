@@ -91,9 +91,15 @@ Set-Alias -Name metasploitable -Value 'docker run -it --rm --name vulnerable --n
 
 function mitmproxy() { docker run --rm -it -p 8080:8080 -p 127.0.0.1:8081:8081 mitmproxy/mitmproxy mitmweb --web-iface 0.0.0.0 $args }
 
-function msfconsole() { New-Item -ItemType Directory -Path ${HOME}/.local/metasploit && docker run -it --rm --net host -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path)":/root/session heywoodlh/metasploit msfconsole $args }
+function msfconsole() { 
+    New-Item -ItemType Directory -Path ${HOME}/.local/metasploit -erroraction silentlycontinue
+    docker run -it --rm --net host -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path):/root/session" heywoodlh/metasploit msfconsole $args 
+}
 
-function msfvenom() { New-Item -ItemType Directory -Path ${HOME}/.local/metasploit && docker run -it --rm -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path)":/root/session heywoodlh/metasploit msfvenom $args }
+function msfvenom() { 
+    New-Item -ItemType Directory -Path ${HOME}/.local/metasploit -erroraction silentlycontinue 
+    docker run -it --rm -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path):/root/session" heywoodlh/metasploit msfvenom $args
+}
 
 function nc() { docker run --rm -i --net host heywoodlh/telnet nc $args }
 
@@ -140,7 +146,10 @@ function searchsploit() { docker run --rm heywoodlh/kali-linux searchsploit $arg
 
 function setoolkit() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux setoolkit $args }
 
-function shodan() { New-Item -ItemType Directory -Path ${HOME}/.local/shodan && docker run -v "$((get-location).path):/data" -w /data --rm -it -v ${HOME}/.local/shodan:/root/.shodan heywoodlh/shodan-cli $argv }
+function shodan() { 
+    New-Item -ItemType Directory -Path ${HOME}/.local/shodan -erroraction silentlycontinue
+    docker run -v "$((get-location).path):/data" -w /data --rm -it -v ${HOME}/.local/shodan:/root/.shodan heywoodlh/shodan-cli $args
+}
 
 function sniper() { docker run --rm -ti menzo/sn1per-docker sniper $args }
 

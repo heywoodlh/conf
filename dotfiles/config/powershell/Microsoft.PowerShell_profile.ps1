@@ -174,3 +174,9 @@ function which {
 if (test-path ~/.config/powershell/work.ps1) {
     . ~/.config/powershell/work.ps1
 }
+
+## Set vim as EDITOR
+$env:EDITOR = "vim"
+
+## Disable paging in AWS
+$env:AWS_PAGER = ""

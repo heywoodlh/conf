@@ -36,7 +36,6 @@ imports:
   vim-marp: dotfiles/vim/bundle/marp
   vim-nerdtree: dotfiles/vim/bundle/nerdtree
   vim-nord: dotfiles/vim/bundle/nord
-  vim-nim:  dotfiles/vim/bundle/nim.vim
   vim-pathogen: dotfiles/vim/
   vim-sensible: dotfiles/vim/bundle/sensible
   vim-sneak: dotfiles/vim/bundle/sneak
@@ -167,9 +166,6 @@ git module vim-nerdtree:
 git module vim-nord:
     url: https://github.com/arcticicestudio/nord-vim
     rev: d32b4dd6aa494c7e18aed11222fb8fed2034c515
-
-git module vim-nim:
-    url: https://github.com/zah/nim.vim
 
 git module vim-pathogen:
     url: https://github.com/tpope/vim-pathogen

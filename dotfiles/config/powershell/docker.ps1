@@ -1,6 +1,6 @@
 function amap() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux amap $args }
 
-function amass() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/amass $args }
+function amass() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp caffix/amass $args }
 
 # Reminder: ${HOME}/.guerrillamail within the container is a config _file_ not a directory
 function anon-mail() { New-Item -ItemType Directory -Path ${HOME}/.local/guerrillamail/ 2> $null && docker run -it --rm -v ${HOME}/.local/guerrillamail:/root/ heywoodlh/guerrillamail $args }

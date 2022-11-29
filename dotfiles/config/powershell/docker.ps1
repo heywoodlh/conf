@@ -67,7 +67,10 @@ function gomuks {
 
 function gron() { docker run --rm -i heywoodlh/tomnomnom-tools:latest gron $args }
 
-function grype() { New-Item -ItemType Directory -Path ${HOME}/.docker && docker run -v ${HOME}/.docker:/root/.docker -v "$((get-location).path):/data" -w /data -it --rm anchore/grype $args }
+function grype() { 
+    new-item -itemtype Directory -path ${HOME}/.docker -erroraction silentlycontinue
+    docker run -v ${HOME}/.docker:/root/.docker -v "$((get-location).path):/data" -w /data -it --rm anchore/grype $args 
+}
 
 function gscript() { docker run -it --rm -v ${HOME}/tmp:/tmp -v "$((get-location).path):/root/gscript" -w /root/gscript gen0cide/gscript:v1 /root/go/bin/gscript $args }
 

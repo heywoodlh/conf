@@ -11,6 +11,15 @@ function arpspoof() { docker run -it --rm --net host -w /data -v "$((get-locatio
 
 function assetfinder() { docker run --rm -i heywoodlh/tomnomnom-tools:latest assetfinder $args }
 
+function beef() {
+    new-item -erroraction silentlycontinue -itemtype directory -path ${HOME}/.local/beef
+    if (! (test-path ~/.local/beef/config.yaml)) {
+	write-output "downloading generic beef config"
+        curl --silent https://gist.github.com/heywoodlh/5d503e14f91ff9e5d6d4794aeffda652/raw/c64c4a2cec92d7af36bdb908ebe98fd42926b98c/config.yaml -o ${HOME}/.local/beef/config.yaml
+    }
+    docker run -it --rm -p 3000:3000 -p 6789:6789 -p 61985 -p 61986 -v ~/.local/beef/config.yaml:/beef/config.yaml -v ~/.local/beef/enabled-are-rules:/beef/arerules/enabled heywoodlh/beef $@
+}
+
 function bettercap() { docker run -it --privileged --net=host bettercap/bettercap $args }
 
 Set-Alias -Name centos -Value "docker run -it --rm centos bash"

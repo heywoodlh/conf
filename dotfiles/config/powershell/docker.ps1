@@ -1,6 +1,6 @@
 function amap() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux amap $args }
 
-function amass() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/amass $args }
+function amass() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp caffix/amass $args }
 
 # Reminder: ${HOME}/.guerrillamail within the container is a config _file_ not a directory
 function anon-mail() { New-Item -ItemType Directory -Path ${HOME}/.local/guerrillamail/ 2> $null && docker run -it --rm -v ${HOME}/.local/guerrillamail:/root/ heywoodlh/guerrillamail $args }
@@ -10,6 +10,15 @@ function archinstall() { docker run --rm -it --name archinstall --privileged -v 
 function arpspoof() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux arpspoof -i eth0 $args }	
 
 function assetfinder() { docker run --rm -i heywoodlh/tomnomnom-tools:latest assetfinder $args }
+
+function beef() {
+    new-item -erroraction silentlycontinue -itemtype directory -path ${HOME}/.local/beef
+    if (! (test-path ~/.local/beef/config.yaml)) {
+	write-output "downloading generic beef config"
+        curl --silent https://gist.github.com/heywoodlh/5d503e14f91ff9e5d6d4794aeffda652/raw/c64c4a2cec92d7af36bdb908ebe98fd42926b98c/config.yaml -o ${HOME}/.local/beef/config.yaml
+    }
+    docker run -it --rm -p 3000:3000 -p 6789:6789 -p 61985 -p 61986 -v "${HOME}/.local/beef/config.yaml:/beef/config.yaml" heywoodlh/beef $@
+}
 
 function bettercap() { docker run -it --privileged --net=host bettercap/bettercap $args }
 
@@ -58,7 +67,10 @@ function gomuks {
 
 function gron() { docker run --rm -i heywoodlh/tomnomnom-tools:latest gron $args }
 
-function grype() { New-Item -ItemType Directory -Path ${HOME}/.docker && docker run -v ${HOME}/.docker:/root/.docker -v "$((get-location).path):/data" -w /data -it --rm anchore/grype $args }
+function grype() { 
+    new-item -itemtype Directory -path ${HOME}/.docker -erroraction silentlycontinue
+    docker run -v ${HOME}/.docker:/root/.docker -v "$((get-location).path):/data" -w /data -it --rm anchore/grype $args 
+}
 
 function gscript() { docker run -it --rm -v ${HOME}/tmp:/tmp -v "$((get-location).path):/root/gscript" -w /root/gscript gen0cide/gscript:v1 /root/go/bin/gscript $args }
 
@@ -169,7 +181,7 @@ function speedtest() { docker run --rm -it heywoodlh/speedtest-cli $args }
 
 function sublist3r() { docker run -it --rm heywoodlh/sublist3r:latest $args }
 
-function syft() { docker run -v "$((get-location).path):/data" -w /data -it --rm anchore/syft $args }
+function syft() { docker run -v ${HOME}/.docker/config.json:/config/config.json -e "DOCKER_CONFIG=/config" -v "$((get-location).path):/data" -w /data -i --rm anchore/syft $args }
 
 function takeover() { docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/takeover $args}
 

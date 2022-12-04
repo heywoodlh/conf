@@ -128,9 +128,15 @@ function netdiscover() { docker run -it --rm --net host -w /data -v "$((get-loca
 
 function nikto() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/nikto $args }
 
-function nim() { docker run -it --rm -v "$((get-location).path):/app" -w /app heywoodlh/nim nim $args }
+function nim() {
+    new-item -type directory ${HOME}/.nimble -erroraction silentlycontinue
+    docker run -it --rm -e "NIMBLE_DIRECTORY=/root/.nimble" --rm -v "${HOME}/.nimble:/root/.nimble" -v "$((get-location).path):/app" -w /app heywoodlh/nim nim $args
+}
 
-function nimble() { docker run -it --rm -v "$((get-location).path):/app" -w /app heywoodlh/nim nimble $args }
+function nimble() {
+    new-item -type directory ${HOME}/.nimble -erroraction silentlycontinue
+    docker run -it -e "NIMBLE_DIRECTORY=/root/.nimble" --rm -v "${HOME}/.nimble:/root/.nimble" -v "$((get-location).path):/app" -w /app heywoodlh/nim nimble $args 
+}
 
 function nmap() {
     docker run --rm -v "$((get-location).path):/data" -w /data --net host --privileged heywoodlh/telnet nmap $args 

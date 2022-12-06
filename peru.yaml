@@ -28,6 +28,7 @@ imports:
   vim-airline-themes: dotfiles/vim/bundle/airline-themes
   vim-base16: dotfiles/vim/bundle/base16
   vim-colorizer: dotfiles/vim/bundle/colorizer
+  vim-copilot: dotfiles/vim/bundle/copilot
   vim-fzf: dotfiles/vim/bundle/fzf
   vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
   vim-indentline: dotfiles/vim/bundle/indentline
@@ -98,7 +99,8 @@ curl module log:
     executable: log.sh
 
 git module tmux-nord-theme:
-    url: https://github.com/arcticicestudio/nord-tmux
+    url: https://github.com/heywoodlh/nord-tmux
+    rev: develop
 
 curl module pbcopy:
     url: https://gist.githubusercontent.com/heywoodlh/d3ccf4723d260d7300e6bfa648cdc74c/raw/ed99396c447c84f61720b248f861e43e8c2b2d9b/pbcopy
@@ -139,6 +141,10 @@ git module vim-base16:
 
 git module vim-colorizer:
     url: https://github.com/lilydjwg/colorizer
+
+git module vim-copilot:
+    url: https://github.com/github/copilot.vim
+    rev: release
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive

@@ -155,11 +155,11 @@ curl module ime-vim:
     url: https://raw.githubusercontent.com/heywoodlh/vim-input-editor/master/vim-ime.py
     filename: vim-ime.py
     executable: vim-ime.py
-    sha1: c5c30d8a622687e7e2c52b57d966466db5cb15ad
+    sha1: 66f6523b298297d96115250009e445df0e058907
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: 25d53a80f4d68932de4b10fc31aa9a393e19b41e
+    rev: 5f5e00faad728f12f9ca9d9200208d8a39fd60f4
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -249,7 +249,7 @@ git module vim-w3m:
 
 git module vim-which-key:
     url: https://github.com/liuchengxu/vim-which-key
-    rev: 398adc5bf2918ee84e78bd974a9f9d64ddfc0801
+    rev: c0eb7a63e80ed0dc2c91eb8c879b7396a795f775
   
 git module zsh-autoupdate:
     url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins

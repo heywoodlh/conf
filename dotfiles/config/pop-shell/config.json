@@ -1,0 +1,10 @@
+{
+  "float": [
+    {
+      "class": "Alacritty",
+      "title": "Alacritty"
+    }
+  ],
+  "skiptaskbarhidden": [],
+  "log_on_focus": false
+}

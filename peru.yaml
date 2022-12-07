@@ -54,164 +54,209 @@ imports:
 
 git module base16-shell:
     url: https://github.com/chriskempson/base16-shell
+    rev: 588691ba71b47e75793ed9edfcfaa058326a6f41
 
 curl module caffeine:
     url: https://gist.githubusercontent.com/heywoodlh/acff340879a19e2e13141e99dcb5dc94/raw/57632b00cafdf835cf424872223c17918540c148/caffeine.sh
     executable: caffeine.sh
+    sha1: b3ee564650f9a67b025485f1bda265360e43d2e6
 
 curl module choose-file-manager:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/9c71f70a3094072e4527fa2e7ebd0ccfaad133c2/choose-file-manager.sh
     executable: choose-file-manager.sh
+    sha1: c025e5ea4f8574bb2af560b525921cbd6348576a
 
 curl module choose-launcher:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/e95fb35c7ff6c3e02a5719d5baec722b8722a947/choose-launcher.sh
     executable: choose-launcher.sh
+    sha1: 58858d211ca1e3eb0f974cc6834e5b24841331f3
 
 curl module watch-lima:
     url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/3d053104e966cf3a162a1ed19ee9fecbfe5d4129/watch-lima.sh 
     executable: watch-lima.sh
+    sha1: 9e220301e67044f3b2f0d7911637e6d1d8f38233
 
 curl module choose-buku:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/4d181fe7b7da227399d1932494725a06b41f28ae/choose-buku.sh
     executable: choose-buku.sh
+    sha1: 88534affb98cf34cf679c4d3c791ef1f18cd0413
 
 curl module kind-sh:
     url: https://raw.githubusercontent.com/heywoodlh/argo-apps/master/kind.sh
     executable: kind.sh
+    sha1: c6e309b56fa75ad548e3ed76f10620f03b002c32
 
 curl module vultr-sh:
     url: https://gist.githubusercontent.com/heywoodlh/2785bddf76aa66376f15ad1c2b9bff27/raw/4c1e5c827a9e815c5903d0241c389aca387e3b67/vultr.sh 
     filename: vultr
     executable: vultr
+    sha1: e842b486c30dc8bb37cb5fd35c0ca3104ca5b5e4
 
 curl module journal:
     url: https://gist.githubusercontent.com/heywoodlh/e7c00daa11251c9d90a61e50fd49b2cc/raw/1676fdbdbce9886ad0d2a575c942b04aa0de48da/journal.sh 
     filename: journal.sh
     executable: journal.sh
+    sha1: bc565f353d7cd824e772fa5807e705c016099b79
 
 curl module launcher:
     url: https://gist.githubusercontent.com/heywoodlh/9f4eab95a8f70e40b07e29c44d40b290/raw/7d98aed9ebad3f07fde2d04980c099426a9a4d14/launcher.sh
     executable: launcher.sh
+    sha1: 4703c6b0523c913b376dc64de302ae3b7c5fad2e
 
 curl module log:
     url: https://gist.githubusercontent.com/heywoodlh/ecf518b57db2b4d4f4627661d6e9fb1c/raw/478ddb7560bc6498df70efb0d6681be3e28bd08a/log.sh 
     filename: log.sh
     executable: log.sh
+    sha1: 30749e30dfbd52d697dd95c352bc9395d5932bdf
 
 git module tmux-nord-theme:
     url: https://github.com/heywoodlh/nord-tmux
-    rev: develop
+    reup: develop
+    rev: 59bcdc356a481074173c82ec37748abd2c646be0
 
 curl module pbcopy:
     url: https://gist.githubusercontent.com/heywoodlh/d3ccf4723d260d7300e6bfa648cdc74c/raw/ed99396c447c84f61720b248f861e43e8c2b2d9b/pbcopy
     filename: pbcopy
     executable: pbcopy
+    sha1: e277b6d53cdcaebc8b983f7f61092ed42dbcfebc
 
 curl module ssh-askpass-tyranny:
     url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-askpass-tyranny.sh 
     filename: ssh-askpass-tyranny
     executable: ssh-askpass-tyranny
+    sha1: 3ec1ecd590c07cab36366c12f79aad3c4f30739e
 
 curl module ssh-unlock:
     url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-unlock.sh 
     filename: ssh-unlock
     executable: ssh-unlock
+    sha1: c0afe9f6af990a4b6adc8e8301676ae3f87d3aae
 
 curl module ssh-wrapper:
     url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-wrapper.sh 
     filename: ssh-wrapper
     executable: ssh-wrapper
+    sha1: 0bd64a4224d0343d8e5ae981e2dfd31cf66a8180
 
 git module ubersicht-bottombar:
     url: https://github.com/heywoodlh/black-bottom-bar-ubersicht-widgets
+    rev: 4e3e065ef38efb7e2d2e546186a24a210d02b5e6
 
 curl module nix-generations-trimmer:
     url: https://gist.githubusercontent.com/Bondrake/27555c9d02c2882fd5e32f8ab3ed620b/raw/e1e5dd68761a7f7e6a253fcb64905466104b9df9/trim-generations.sh
     filename: trim-generations.sh
     executable: trim-generations.sh
+    sha1: 298dc4cf11cc1054117b8afa19c00e77e21a412a
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
+    rev: 25d53a80f4d68932de4b10fc31aa9a393e19b41e
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
+    rev: dd81554c2231e438f6d0e8056ea38fd0e80ac02a
 
 git module vim-base16:
     url: https://github.com/chriskempson/base16-vim
+    rev: 3be3cd82cd31acfcab9a41bad853d9c68d30478d
 
 git module vim-colorizer:
     url: https://github.com/lilydjwg/colorizer
+    rev: 72790a003d5a706c287486a1a81e3a6b32158b54
 
 git module vim-copilot:
     url: https://github.com/github/copilot.vim
-    rev: release
+    reup: release
+    rev: 2f4f9259a5c0f927b31c4256cd3e4d7c6df87662
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
+    rev: 5b0b138483de17a8fd8dfcec0b491782c8fbf102
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
+    rev: 6b207bbf2bd916d06586cdbbf980ae507c01f2b2
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
+    rev: 9ceac718026fd39498d95ff04fa04d3e40c465d7
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
+    rev: d15d63bf9c4a74a02470d4bc8ecce53df13e3a75
 
 git module vim-json:
     url: https://github.com/elzr/vim-json 
+    rev: 3727f089410e23ae113be6222e8a08dd2613ecf2
 
 git module vim-markdown-preview:
     url: https://github.com/iamcco/markdown-preview.nvim
+    rev: 02cc3874738bc0f86e4b91f09b8a0ac88aef8e96
 
 git module vim-marp:
     url: https://github.com/dhruvasagar/vim-marp
+    rev: 560dacfcf69ad23313a80e2ddfafd8d3bc5e96f4
 
 git module vim-nerdtree:
     url: https://github.com/preservim/nerdtree
+    rev: fc85a6f07c2cd694be93496ffad75be126240068
 
 git module vim-nord:
     url: https://github.com/arcticicestudio/nord-vim
-    rev: d32b4dd6aa494c7e18aed11222fb8fed2034c515
+    reup: main
+    rev: 0748955e9e8d9770b44f2bec8456189430b37d9d
 
 git module vim-pathogen:
     url: https://github.com/tpope/vim-pathogen
+    rev: ac4dd9494fa9008754e49dff85bff1b5746c89b4
 
 git module vim-sensible:
     url: https://github.com/tpope/vim-sensible
+    rev: 1be4e4e5409caccddf5c2f1bbfa16519f4c93de0
 
 git module vim-sudoedit:
     url: https://github.com/chrisbra/SudoEdit.vim
+    rev: e0ffcda0c2f98bec80cb52d1af5f3af26bd38821
 
 git module vim-sneak:
     url: https://github.com/justinmk/vim-sneak
+    rev: 93395f5b56eb203e4c8346766f258ac94ea81702
 
 git module vim-supertab:
     url: https://github.com/ervandew/supertab
+    rev: f0093ae12a9115498f887199809a6114659fc858
 
 git module vim-syntastic:
     url: https://github.com/vim-syntastic/syntastic
+    rev: 8d5e37c29cf5952fbf300b9230bffe424c61a488
 
 git module vim-terraform:
     url: https://github.com/hashivim/vim-terraform
+    rev: f0b17ac9f1bbdf3a29dba8b17ab429b1eed5d443
 
 git module vim-w3m:
     url: https://github.com/yuratomo/w3m.vim
+    rev: 228a852b188f1a62ecea55fa48b0ec892fa6bad7
 
 git module vim-which-key:
     url: https://github.com/liuchengxu/vim-which-key
+    rev: 398adc5bf2918ee84e78bd974a9f9d64ddfc0801
   
 git module zsh-autoupdate:
     url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
+    rev: 8c4f63db6a7a989f4eb8f8a3211bf96243e15bb9
 
 #git module zsh-fast-syntax-highlighting: 
     #url: https://github.com/zdharma/fast-syntax-highlighting
 
 git module zsh-autosuggestions:
     url: https://github.com/zsh-users/zsh-autosuggestions
+    rev: a411ef3e0992d4839f0732ebeb9823024afaaaa8
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
+    rev: f9373c96c727e1c8ef7fb48fe49524c1a786fa80
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
+    rev: a7bf4c83dee601f91aaabf3956c93f5ebe26699d

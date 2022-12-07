@@ -145,6 +145,21 @@ function gpsup {
     git push --set-upstream origin $(git branch --show-current)
 }
 
+function mkvirtualenv {
+    if (-not ($args[0])) {
+        echo 'Usage: mkvirtualenv [name]'
+    } else {
+        $env_path = $args[0]
+	$env_name = split-path ${env_path} -leafbase
+	# Create virtualenv
+	python3 -m venv ${env_path}
+	# Activate virtualenv
+	cd ${env_name}
+	. ./bin/Activate.ps1
+    }
+}
+
+
 function pbcopy { 
     set-clipboard -Value $input
 }

@@ -24,6 +24,9 @@ imports:
 
   nix-generations-trimmer: home/bin
 
+  ## Not a Vim plugin
+  ime-vim: home/bin
+
   vim-airline: dotfiles/vim/bundle/airline
   vim-airline-themes: dotfiles/vim/bundle/airline-themes
   vim-base16: dotfiles/vim/bundle/base16
@@ -147,6 +150,12 @@ curl module nix-generations-trimmer:
     filename: trim-generations.sh
     executable: trim-generations.sh
     sha1: 298dc4cf11cc1054117b8afa19c00e77e21a412a
+
+curl module ime-vim:
+    url: https://raw.githubusercontent.com/heywoodlh/vim-input-editor/master/vim-ime.py
+    filename: vim-ime.py
+    executable: vim-ime.py
+    sha1: c5c30d8a622687e7e2c52b57d966466db5cb15ad
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline

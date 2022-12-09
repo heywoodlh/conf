@@ -217,3 +217,5 @@ function wpscan() { docker run -it --rm -w /data -v "$((get-location).path):/dat
 
 function yersinia() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux yersinia $args }
 
+function youtube-dl() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/youtube-dl $args }
+

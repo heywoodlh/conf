@@ -57,9 +57,6 @@ function load_module ($module_name) {
     }
 }
 
-## Install/load modules
-#load_module awspowershell 
-
 # Predictive Intellisense
 Set-PSReadLineOption -PredictionSource History
 
@@ -183,7 +180,8 @@ function which {
 }
 
 ## Larger, specific functions will be placed in ./functions folder
-. ~/.config/powershell/functions/*.ps1
+## For each .ps1 file in ~/.config/powershell/functions dot source it
+Get-ChildItem -Path ~/.config/powershell/functions -Filter *.ps1 | ForEach-Object { . $_.FullName }
 
 ## Import stuff specific to work last
 if (test-path ~/.config/powershell/work.ps1) {

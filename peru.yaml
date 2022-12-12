@@ -34,7 +34,7 @@ imports:
   vim-copilot: dotfiles/vim/bundle/copilot
   vim-fzf: dotfiles/vim/bundle/fzf
   vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
-  vim-glow: dotfiles/vim/bundle/glow.nvim
+  vim-glow: dotfiles/vim/bundle/glow
   vim-indentline: dotfiles/vim/bundle/indentline
   vim-json: dotfiles/vim/bundle/json
   vim-marp: dotfiles/vim/bundle/marp
@@ -191,9 +191,8 @@ git module vim-fzf-vim:
     rev: 9ceac718026fd39498d95ff04fa04d3e40c465d7
 
 git module vim-glow:
-    url: https://github.com/ellisonleao/glow.nvim
-    reup: main
-    rev: 20d1cd087f8728f21a048a3b6259f6177237b39e
+    url: https://github.com/jclsn/glow.vim 
+    rev: 3d2600519a6ed1048a75c195bcad951d9de022f0
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine

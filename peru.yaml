@@ -34,9 +34,9 @@ imports:
   vim-copilot: dotfiles/vim/bundle/copilot
   vim-fzf: dotfiles/vim/bundle/fzf
   vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
+  vim-glow: dotfiles/vim/bundle/glow.nvim
   vim-indentline: dotfiles/vim/bundle/indentline
   vim-json: dotfiles/vim/bundle/json
-  vim-markdown-preview: dotfiles/vim/bundle/markdown-preview
   vim-marp: dotfiles/vim/bundle/marp
   vim-nerdtree: dotfiles/vim/bundle/nerdtree
   vim-nord: dotfiles/vim/bundle/nord
@@ -184,11 +184,16 @@ git module vim-fugitive:
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 6b207bbf2bd916d06586cdbbf980ae507c01f2b2
+    rev: 18e3b38c69da2828efac6adc2ea3a5e85f70e571
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
     rev: 9ceac718026fd39498d95ff04fa04d3e40c465d7
+
+git module vim-glow:
+    url: https://github.com/ellisonleao/glow.nvim
+    reup: main
+    rev: 20d1cd087f8728f21a048a3b6259f6177237b39e
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
@@ -197,10 +202,6 @@ git module vim-indentline:
 git module vim-json:
     url: https://github.com/elzr/vim-json 
     rev: 3727f089410e23ae113be6222e8a08dd2613ecf2
-
-git module vim-markdown-preview:
-    url: https://github.com/iamcco/markdown-preview.nvim
-    rev: 02cc3874738bc0f86e4b91f09b8a0ac88aef8e96
 
 git module vim-marp:
     url: https://github.com/dhruvasagar/vim-marp
@@ -268,4 +269,4 @@ git module zsh-completions:
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: a7bf4c83dee601f91aaabf3956c93f5ebe26699d
+    rev: 7f2950f9cc6d7ae805b4e9f365cc3340afc955a6

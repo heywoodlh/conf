@@ -56,7 +56,7 @@ map <silent> <C-o> :FZF $HOME<CR>
 map <silent> <C-l> :set invnumber<CR>
 
 "" Vim-markdown-preview toggle
-nnoremap mdp :MarkdownPreviewToggle<CR>
+nnoremap mdp :Glow<CR>
 
 command NoComments %s/#.*\n//g
 command GitAdd :w! <bar> !git add -v %

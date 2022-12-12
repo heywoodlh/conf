@@ -142,6 +142,10 @@ function gpsup {
     git push --set-upstream origin $(git branch --show-current)
 }
 
+function maintains {
+    vim ~/opt
+}
+
 function mkvirtualenv {
     if (-not ($args[0])) {
         echo 'Usage: mkvirtualenv [name]'
@@ -155,7 +159,6 @@ function mkvirtualenv {
 	. ./bin/Activate.ps1
     }
 }
-
 
 function pbcopy { 
     set-clipboard -Value $input

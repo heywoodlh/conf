@@ -9,6 +9,9 @@ if ($?)
     }	
 }
 
+## Add tfenv to $PATH
+$env:PATH = "${HOME}/bin/tfenv/bin:" + $env:PATH
+
 ## Nix on Darwin stuff
 $env:PATH = "/run/current-system/sw/bin:" + $env:PATH
 

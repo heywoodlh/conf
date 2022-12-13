@@ -24,6 +24,8 @@ imports:
 
   nix-generations-trimmer: home/bin
 
+  tfenv: home/bin/tfenv
+
   ## Not a Vim plugin
   ime-vim: home/bin
 
@@ -151,6 +153,10 @@ curl module nix-generations-trimmer:
     executable: trim-generations.sh
     sha1: 298dc4cf11cc1054117b8afa19c00e77e21a412a
 
+git module tfenv:
+    url: https://github.com/tfutils/tfenv
+    rev: 1ccfddb22005b34eacaf06a9c33f58f14e816ec9
+
 curl module ime-vim:
     url: https://raw.githubusercontent.com/heywoodlh/vim-input-editor/master/vim-ime.py
     filename: vim-ime.py
@@ -264,7 +270,7 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: f9373c96c727e1c8ef7fb48fe49524c1a786fa80
+    rev: 7b8bb64cbb2014de66204b800bdac9ea149b6932
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k

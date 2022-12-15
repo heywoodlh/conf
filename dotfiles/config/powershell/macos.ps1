@@ -9,6 +9,9 @@ if ($?)
     }	
 }
 
+## Add /usr/local/bin to $PATH
+$env:PATH = "/opt/homebrew/bin:/usr/local/bin:" + $env:PATH
+
 ## Add tfenv to $PATH
 $env:PATH = "${HOME}/bin/tfenv/bin:" + $env:PATH
 

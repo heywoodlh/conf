@@ -3,16 +3,11 @@
 ```
 git clone --depth=1 https://github.com/heywoodlh/conf ~/opt/conf
 cd ~/opt/conf
+pwsh -executionpolicy bypass -file $HOME/opt/conf/setup.ps1 
 ```
 
-For a workstation setup (with ZSH stuff setup):
+Or if you just want to test out the environment, run [the container](https://hub.docker.com/r/heywoodlh/conf):
 
 ```
-./setup.sh workstation
-```
-
-For a minimal dotfiles setup:
-
-```
-./setup.sh
+docker run -it --rm heywoodlh/conf
 ```

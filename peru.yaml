@@ -37,6 +37,7 @@ imports:
   vim-fzf: dotfiles/vim/bundle/fzf
   vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
   vim-glow: dotfiles/vim/bundle/glow
+  vim-gitgutter: dotfiles/vim/bundle/gitgutter
   vim-indentline: dotfiles/vim/bundle/indentline
   vim-json: dotfiles/vim/bundle/json
   vim-marp: dotfiles/vim/bundle/marp
@@ -186,11 +187,11 @@ git module vim-copilot:
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 5b0b138483de17a8fd8dfcec0b491782c8fbf102
+    rev: 99cdb88bc64063dc4656ae53496f06fb2a394cd4
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 44b63363729adfc6f477bedcfb4c7b6a379b948b
+    rev: e97176b1d77823bb4efb36bf230319375b6ad2ad
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
@@ -199,6 +200,10 @@ git module vim-fzf-vim:
 git module vim-glow:
     url: https://github.com/jclsn/glow.vim 
     rev: 3d2600519a6ed1048a75c195bcad951d9de022f0
+
+git module vim-gitgutter:
+    url: https://github.com/airblade/vim-gitgutter
+    rev: 00df1089b6267f47c7c0f13536789feb9db1e65b
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
@@ -227,7 +232,7 @@ git module vim-pathogen:
 
 git module vim-sensible:
     url: https://github.com/tpope/vim-sensible
-    rev: 0b53989c023e739d656832b990b7b1a30fbb8a8b
+    rev: dad453eb1b1dfb5d682b0834341239eb647768f9
 
 git module vim-sudoedit:
     url: https://github.com/chrisbra/SudoEdit.vim

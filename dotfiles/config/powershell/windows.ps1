@@ -23,3 +23,8 @@ function ls { get-childitem -path $args[0] | format-wide -property name }
 
 Remove-Item -Path Function:\ssh-unlock -ErrorAction silentlycontinue
 function ssh-unlock { ssh-add "${env:HOME}\.ssh\id_rsa" }
+
+function conf { 
+    docker pull heywoodlh/conf
+    docker run -it --rm -v ${HOME}/opt:/home/heywoodlh/host-opt heywoodlh/conf "-c tmux"
+}

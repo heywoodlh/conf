@@ -50,7 +50,6 @@ imports:
   vim-supertab: dotfiles/vim/bundle/supertab
   vim-syntastic: dotfiles/vim/bundle/syntastic
   vim-terraform: dotfiles/vim/bundle/terraform
-  vim-w3m: dotfiles/vim/bundle/w3m.vim
   vim-which-key: dotfiles/vim/bundle/which-key
 
   zsh-autoupdate: dotfiles/oh-my-zsh/custom/plugins/autoupdate
@@ -253,10 +252,6 @@ git module vim-syntastic:
 git module vim-terraform:
     url: https://github.com/hashivim/vim-terraform
     rev: f0b17ac9f1bbdf3a29dba8b17ab429b1eed5d443
-
-git module vim-w3m:
-    url: https://github.com/yuratomo/w3m.vim
-    rev: 228a852b188f1a62ecea55fa48b0ec892fa6bad7
 
 git module vim-which-key:
     url: https://github.com/liuchengxu/vim-which-key

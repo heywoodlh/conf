@@ -26,5 +26,5 @@ function ssh-unlock { ssh-add "${env:HOME}\.ssh\id_rsa" }
 
 function conf { 
     docker pull heywoodlh/conf
-    docker run -it --rm -v ${HOME}/opt:/home/heywoodlh/host-opt heywoodlh/conf "-c tmux"
+    docker run -it --rm -v "//var/run/docker.sock://var/run/docker.sock" -v ${HOME}:/home/heywoodlh -v ${HOME}:/mnt/host/c/Users/$env:USER -w /home/heywoodlh -e LANG=en_US.UTF-8 heywoodlh/conf -NoLogo -c tmux
 }

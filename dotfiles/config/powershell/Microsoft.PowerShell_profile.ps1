@@ -168,7 +168,7 @@ function source {
     . $args[0]
 }
 
-function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/id_rsa }
+function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/tyranny/id_rsa }
 
 function which {
     $command_name = $args[0]

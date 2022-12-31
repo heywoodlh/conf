@@ -24,6 +24,9 @@ if ( $env:DESKTOP_SESSION -eq 'gnome' )
     } 
 }
 
+## Add tfenv to $PATH
+$env:PATH = "${HOME}/bin/tfenv/bin:" + $env:PATH
+
 ## Add Homebrew to $PATH
 $env:PATH = "/home/linuxbrew/.linuxbrew/bin:${HOME}/.linuxbrew/bin:" + $env:PATH
 

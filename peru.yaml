@@ -24,6 +24,8 @@ imports:
 
   nix-generations-trimmer: home/bin
 
+  tfenv: home/bin/tfenv
+
   ## Not a Vim plugin
   ime-vim: home/bin
 
@@ -35,6 +37,7 @@ imports:
   vim-fzf: dotfiles/vim/bundle/fzf
   vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
   vim-glow: dotfiles/vim/bundle/glow
+  vim-gitgutter: dotfiles/vim/bundle/gitgutter
   vim-indentline: dotfiles/vim/bundle/indentline
   vim-json: dotfiles/vim/bundle/json
   vim-marp: dotfiles/vim/bundle/marp
@@ -85,9 +88,9 @@ curl module choose-buku:
     sha1: 88534affb98cf34cf679c4d3c791ef1f18cd0413
 
 curl module kind-sh:
-    url: https://raw.githubusercontent.com/heywoodlh/argo-apps/master/kind.sh
+    url: https://raw.githubusercontent.com/heywoodlh/kind-argo-apps/722a3b22e925ec632ba9a2f4cc097c11ed5bd222/kind.sh
     executable: kind.sh
-    sha1: c6e309b56fa75ad548e3ed76f10620f03b002c32
+    sha1: 23a14f34aa52593a33747eb9cc5c6e23b2371df6 
 
 curl module vultr-sh:
     url: https://gist.githubusercontent.com/heywoodlh/2785bddf76aa66376f15ad1c2b9bff27/raw/4c1e5c827a9e815c5903d0241c389aca387e3b67/vultr.sh 
@@ -151,6 +154,10 @@ curl module nix-generations-trimmer:
     executable: trim-generations.sh
     sha1: 298dc4cf11cc1054117b8afa19c00e77e21a412a
 
+git module tfenv:
+    url: https://github.com/tfutils/tfenv
+    rev: 1ccfddb22005b34eacaf06a9c33f58f14e816ec9
+
 curl module ime-vim:
     url: https://raw.githubusercontent.com/heywoodlh/vim-input-editor/master/vim-ime.py
     filename: vim-ime.py
@@ -159,7 +166,7 @@ curl module ime-vim:
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: 5f5e00faad728f12f9ca9d9200208d8a39fd60f4
+    rev: 9e2d021fc6088a2027315d7e7ae8bafa94f16a7d
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -176,23 +183,27 @@ git module vim-colorizer:
 git module vim-copilot:
     url: https://github.com/github/copilot.vim
     reup: release
-    rev: 2f4f9259a5c0f927b31c4256cd3e4d7c6df87662
+    rev: 324ec9eb69e20971b58340d0096c3caac7bc2089
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 5b0b138483de17a8fd8dfcec0b491782c8fbf102
+    rev: 99cdb88bc64063dc4656ae53496f06fb2a394cd4
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 18e3b38c69da2828efac6adc2ea3a5e85f70e571
+    rev: e97176b1d77823bb4efb36bf230319375b6ad2ad
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
-    rev: 9ceac718026fd39498d95ff04fa04d3e40c465d7
+    rev: fd7fab77b20fdf09180cabdd660d8c3b7fe7ca1a
 
 git module vim-glow:
     url: https://github.com/jclsn/glow.vim 
     rev: 3d2600519a6ed1048a75c195bcad951d9de022f0
+
+git module vim-gitgutter:
+    url: https://github.com/airblade/vim-gitgutter
+    rev: 00df1089b6267f47c7c0f13536789feb9db1e65b
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
@@ -221,7 +232,7 @@ git module vim-pathogen:
 
 git module vim-sensible:
     url: https://github.com/tpope/vim-sensible
-    rev: 1be4e4e5409caccddf5c2f1bbfa16519f4c93de0
+    rev: dad453eb1b1dfb5d682b0834341239eb647768f9
 
 git module vim-sudoedit:
     url: https://github.com/chrisbra/SudoEdit.vim
@@ -264,8 +275,8 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: f9373c96c727e1c8ef7fb48fe49524c1a786fa80
+    rev: b46602db397bf1af6bb6906e1a749da09fdda27d
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: 7f2950f9cc6d7ae805b4e9f365cc3340afc955a6
+    rev: 33916e91a743a73472a15f3fc27dd0aa9f7abbdf

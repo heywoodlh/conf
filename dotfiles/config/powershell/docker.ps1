@@ -13,9 +13,9 @@ function assetfinder() { docker run --rm -i heywoodlh/tomnomnom-tools:latest ass
 
 function beef() {
     new-item -erroraction silentlycontinue -itemtype directory -path ${HOME}/.local/beef
-    if (! (test-path ~/.local/beef/config.yaml)) {
+    if (-not (test-path ~/.local/beef/config.yaml)) {
 	write-output "downloading generic beef config"
-        curl --silent https://gist.github.com/heywoodlh/5d503e14f91ff9e5d6d4794aeffda652/raw/c64c4a2cec92d7af36bdb908ebe98fd42926b98c/config.yaml -o ${HOME}/.local/beef/config.yaml
+        curl --silent -L https://gist.github.com/heywoodlh/5d503e14f91ff9e5d6d4794aeffda652/raw/c64c4a2cec92d7af36bdb908ebe98fd42926b98c/config.yaml -o ~/.local/beef/config.yaml
     }
     docker run -it --rm -p 3000:3000 -p 6789:6789 -p 61985 -p 61986 -v "${HOME}/.local/beef/config.yaml:/beef/config.yaml" heywoodlh/beef $@
 }

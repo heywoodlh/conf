@@ -170,6 +170,10 @@ function source {
 
 function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/tyranny/id_rsa }
 
+function tf {
+    terraform $args
+}
+
 function which {
     $command_name = $args[0]
     $command_type = get-command -erroraction silentlycontinue ${command_name} | select-object -expandproperty commandtype 

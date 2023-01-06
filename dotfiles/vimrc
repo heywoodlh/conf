@@ -7,9 +7,9 @@ else
 endif
 
 execute pathogen#infect()
+" Nvim vs vim config changes *after* Pathogen plugins has been loaded
 if has("nvim")
   " Neovim specific config goes here
-  let g:pathogen_blacklist = [ '' ]
 else
   " Vim specific config goes here
     " Start term only if height is greater than or equal to 35 rows

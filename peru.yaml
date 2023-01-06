@@ -34,6 +34,7 @@ imports:
   vim-base16: dotfiles/vim/bundle/base16
   vim-colorizer: dotfiles/vim/bundle/colorizer
   vim-copilot: dotfiles/vim/bundle/copilot
+  vim-firenvim: dotfiles/vim/bundle/firenvim
   vim-fzf: dotfiles/vim/bundle/fzf
   vim-fzf-vim: dotfiles/vim/bundle/fzf.vim
   vim-glow: dotfiles/vim/bundle/glow
@@ -165,7 +166,7 @@ curl module ime-vim:
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: 9e2d021fc6088a2027315d7e7ae8bafa94f16a7d
+    rev: 0913c0a3b6fc256e6de8dff00dfd1c9388cad9a6
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -184,17 +185,21 @@ git module vim-copilot:
     reup: release
     rev: 324ec9eb69e20971b58340d0096c3caac7bc2089
 
+git module vim-firenvim:
+    url: https://github.com/glacambre/firenvim
+    rev: d1909c7abbc1857cc8b67e0234d7932ad7825644
+
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
     rev: 99cdb88bc64063dc4656ae53496f06fb2a394cd4
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: e97176b1d77823bb4efb36bf230319375b6ad2ad
+    rev: 3b2244077d3e7d299943077b33e0564ffcd1f384
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
-    rev: fd7fab77b20fdf09180cabdd660d8c3b7fe7ca1a
+    rev: 0f03107bc94b31a9c7adcee6da8e5de7492e4b0b
 
 git module vim-glow:
     url: https://github.com/jclsn/glow.vim 
@@ -231,7 +236,7 @@ git module vim-pathogen:
 
 git module vim-sensible:
     url: https://github.com/tpope/vim-sensible
-    rev: dad453eb1b1dfb5d682b0834341239eb647768f9
+    rev: 16283468becaa6985839f96fea212f8634fbd7d2
 
 git module vim-sudoedit:
     url: https://github.com/chrisbra/SudoEdit.vim
@@ -270,8 +275,8 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: b46602db397bf1af6bb6906e1a749da09fdda27d
+    rev: 61e6ab29bacf887d8ae6179e0512c3cd435970fd
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: 33916e91a743a73472a15f3fc27dd0aa9f7abbdf
+    rev: 35165798a83e2e4f2f0aa6c820e2f7fba23e0179

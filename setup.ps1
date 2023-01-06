@@ -40,6 +40,10 @@ function create-symlink-in-dir($src_dir, $target_dir, $dot) {
     }
 }
 
+function create-symlink($src, $target) {
+        New-Item -ItemType SymbolicLink -Path "${target}" -Target "${src}" -ErrorAction silentlycontinue && write-output "Created symbolic link at ${target}"
+}
+
 ## For items in dotfiles
 create-symlink-in-dir "${working_dir}/dotfiles" "${HOME}" "."
 ## For items in home 
@@ -49,3 +53,7 @@ create-symlink-in-dir "${working_dir}/home" "${HOME}"
 if ($isWindows) {
     New-Item -ItemType SymbolicLink -Path "$env:HOME/vimfiles" -Target "${working_dir}/dotfiles/vim" -ErrorAction silentlycontinue
 }
+
+# Symlink vim stuff to nvim:
+create-symlink "${HOME}/.vim" "${HOME}/.config/nvim"
+create-symlink "${HOME}/.vimrc" "${HOME}/.config/nvim/init.vim"

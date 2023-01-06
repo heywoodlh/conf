@@ -1,3 +1,10 @@
+if has("nvim")
+  " Neovim specific settings go here
+else
+  " Vim specific settings go here
+  let g:pathogen_blacklist = [ 'firenvim' ]
+endif
+
 execute pathogen#infect()
 syntax on
 

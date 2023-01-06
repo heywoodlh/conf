@@ -1,11 +1,27 @@
 if has("nvim")
-  " Neovim specific settings go here
+  " Neovim specific blacklist go here
+  let g:pathogen_blacklist = [ 'glow' ]
 else
-  " Vim specific settings go here
+  " Vim specific blacklist go here
   let g:pathogen_blacklist = [ 'firenvim' ]
 endif
 
 execute pathogen#infect()
+if has("nvim")
+  " Neovim specific config goes here
+  let g:pathogen_blacklist = [ '' ]
+else
+  " Vim specific config goes here
+    " Start term only if height is greater than or equal to 35 rows
+  if winheight(0) >= 35
+  	set termwinsize=10x0
+  	set confirm
+  	set splitbelow
+  "	term ++kill=term
+  end
+endif
+
+
 syntax on
 
 colorscheme nord
@@ -25,13 +41,6 @@ set number
 "	autocmd VimEnter * NERDTree | wincmd p	
 "endif
 
-" Start term only if height is greater than or equal to 35 rows
-if winheight(0) >= 35
-	set termwinsize=10x0
-	set confirm
-	set splitbelow
-"	term ++kill=term
-end
 
 " Vim-indentline config
 let g:indentLine_char = '⦙'

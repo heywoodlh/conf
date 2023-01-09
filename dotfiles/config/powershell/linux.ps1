@@ -34,4 +34,12 @@ $env:PATH = "/home/linuxbrew/.linuxbrew/bin:${HOME}/.linuxbrew/bin:" + $env:PATH
 if ($isNixOS)
 {
     function sudo { /run/wrappers/bin/sudo $args }
+    # Stuff specific to GNOME on NixOS
+    if ( $env:DESKTOP_SESSION -eq 'gnome' )
+    {
+	# Disable Super+P keyboard shortcut
+        Start-Job -ScriptBlock {
+	    nix-shell -p glib gnome.mutter --command 'env XDG_DATA_DIRS=$GSETTINGS_SCHEMAS_PATH gsettings set org.gnome.mutter.keybindings switch-monitor "[]"'
+        } > $null
+    }
 }

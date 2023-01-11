@@ -57,3 +57,21 @@ if ($isWindows) {
 # Symlink vim stuff to nvim:
 create-symlink "${HOME}/.vim" "${HOME}/.config/nvim"
 create-symlink "${HOME}/.vimrc" "${HOME}/.config/nvim/init.vim"
+
+# Various configs
+New-Item -ErrorAction silentlycontinue -ItemType Directory -Path ${HOME}/Videos
+New-Item -ErrorAction silentlycontinue -ItemType Directory -Path ${HOME}/Downloads
+New-Item -ErrorAction silentlycontinue -ItemType Directory -Path ${HOME}/Pictures
+New-Item -ErrorAction silentlycontinue -ItemType Directory -Path ${HOME}/Documents/screenshots/screen_recordings
+
+# Rename Videos/Screencasts directory if it is not a symlink
+if (test-path "${HOME}/Videos/Screencasts") {
+    test-symlink "${HOME}/Videos/Screencasts"
+    if(!${symcheck_code}) {
+    	write-output "${HOME}/Videos/Screencasts is not a symlink, renaming"
+    	move-item -verbose "${HOME}/Videos/Screencasts" "${HOME}/Videos/Screencasts.old"
+    } 
+}
+
+# Create symlink to Videos/Screencasts
+create-symlink "${HOME}/Documents/screenshots/screen_recordings" "${HOME}/Videos/Screencasts"

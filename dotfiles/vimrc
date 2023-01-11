@@ -1,6 +1,10 @@
 if has("nvim")
   " Neovim specific blacklist go here
   let g:pathogen_blacklist = [ 'glow' ]
+  if exists('g:started_by_firenvim')
+    " Append to the blacklist when starting firenvim
+    let g:pathogen_blacklist += [ 'airline', 'airline-themes' ]
+  endif 
 else
   " Vim specific blacklist go here
   let g:pathogen_blacklist = [ 'firenvim' ]
@@ -10,38 +14,42 @@ execute pathogen#infect()
 " Nvim vs vim config changes *after* Pathogen plugins has been loaded
 if has("nvim")
   " Neovim specific config goes here
-  " Ctrl+Shift+v to paste from system clipboard
-  nnoremap <C-S-v> "+p 
-
-  " Settings that are always applied for a minimal UI.
-  set showtabline=1
-  set shortmess+=F
-  set colorcolumn=0
-  set textwidth=200
-  set noruler
-  let g:ale_enabled = 0
-  " Settings that are used by default for a minimal UI, but get overridden if
-  " the window size is sufficient (see below).
-  set cmdheight=1
-  set laststatus=0
-  set showmode
-  set nocursorline
-  set nonumber
-  
-  function! s:OnFirenvimIframeLoad() abort
-    if &lines >= 10
-      set laststatus=2
-      set cmdheight=2
-      set noshowmode
-      set cursorline
-      if &columns >= 10
-        set number
+  " Firenvim specific config
+  if exists('g:started_by_firenvim')
+    " Ctrl+Shift+v to paste from system clipboard
+    nnoremap <C-S-v> "+p
+    " Disable airline
+    let g:airline#extensions#tabline#enabled = 0
+    " Settings that are always applied for a minimal UI.
+    set showtabline=1
+    set shortmess+=F
+    set colorcolumn=0
+    set textwidth=200
+    set noruler
+    let g:ale_enabled = 0
+    " Settings that are used by default for a minimal UI, but get overridden if
+    " the window size is sufficient (see below).
+    set cmdheight=1
+    set laststatus=0
+    set showmode
+    set nocursorline
+    set nonumber
+    
+    function! s:OnFirenvimIframeLoad() abort
+      if &lines >= 10
+        set laststatus=2
+        set cmdheight=2
+        set noshowmode
+        set cursorline
+        if &columns >= 10
+          set number
+        endif
       endif
-    endif
-    " Get rid of the annoying message at the bottom about the new file being
-    " written, and then start insert mode.
-    call feedkeys("\<C-L>", 'n')
-  endfunction
+      " Get rid of the annoying message at the bottom about the new file being
+      " written, and then start insert mode.
+      call feedkeys("\<C-L>", 'n')
+    endfunction
+  endif
 else
   " Vim specific config goes here
     " Start term only if height is greater than or equal to 35 rows

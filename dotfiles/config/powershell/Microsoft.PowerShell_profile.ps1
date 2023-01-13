@@ -146,6 +146,47 @@ function maintains {
     vim ~/opt
 }
 
+function marp-template {
+    if (-not ($args[0])) {
+        echo 'Usage: marp-template filename.md'
+    } else {
+        $file_path = $args[0]
+	if (-not (test-path ${file_path})) {
+            new-item -itemtype file -path ${file_path} > $null 
+            add-content -path ${file_path} -value "---"
+            add-content -path ${file_path} -value "marp: true"
+            add-content -path ${file_path} -value "title: Slide Title"
+            add-content -path ${file_path} -value "description: Slide description"
+            add-content -path ${file_path} -value "paginate: true"
+            add-content -path ${file_path} -value "_paginate: false"
+            add-content -path ${file_path} -value "---"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "# <!--fit--> Title of my presentation!"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "#### \*Description of presentation\*"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "<footer>"
+            add-content -path ${file_path} -value "https://github.com/heywoodlh/repo-name"
+            add-content -path ${file_path} -value "</footer>"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "-------------------------------------------------"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "### Spencer Heywood"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "Blog: __https://the-empire.systems__"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "Github: __https://github.com/heywoodlh/__"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "<footer>"
+            add-content -path ${file_path} -value "https://github.com/heywoodlh/repo-name/"
+            add-content -path ${file_path} -value "</footer>"
+            add-content -path ${file_path} -value ""
+            add-content -path ${file_path} -value "-------------------------------------------------"
+	}
+        vim "${file_path}"
+    }
+}
+
 function mkvirtualenv {
     if (-not ($args[0])) {
         echo 'Usage: mkvirtualenv [name]'

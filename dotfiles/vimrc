@@ -16,6 +16,8 @@ if has("nvim")
   " Neovim specific config goes here
   " Firenvim specific config
   if exists('g:started_by_firenvim')
+    " Disable firenvim by default
+    let fc['.*'] = { 'takeover': 'never' }
     " Ctrl+Shift+v to paste from system clipboard
     nnoremap <C-S-v> "+p
     " Disable airline

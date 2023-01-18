@@ -92,7 +92,10 @@ function jekyll() { docker run --rm -it -p 4000:4000 -v "$((get-location).path)"
 
 function kali() { docker run -it --rm --net host --privileged heywoodlh/kali-linux /bin/bash $args }
 
-function lacework() { docker run -i --rm lacework/lacework-cli:latest $args }
+function lacework() { 
+    new-item -type file -path ~/.lacework.toml -erroraction silentlycontinue
+    docker run -i -v ~/.lacework.toml:/root/.lacework.toml --rm lacework/lacework-cli:latest $args 
+}
 
 function links() { docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/links:latest $args }
 

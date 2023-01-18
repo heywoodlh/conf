@@ -17,7 +17,19 @@ if has("nvim")
   " Firenvim specific config
   if exists('g:started_by_firenvim')
     " Disable firenvim by default
-    let fc['.*'] = { 'takeover': 'never' }
+    let g:firenvim_config = {
+        \ 'globalSettings': {
+            \ 'alt': 'all',
+        \  },
+        \ 'localSettings': {
+            \ '.*': {
+                \ 'cmdline': 'neovim',
+                \ 'content': 'html',
+                \ 'selector': '#tinymce',
+                \ 'takeover': 'never',
+            \ },
+        \ }
+    \ }
     " Ctrl+Shift+v to paste from system clipboard
     nnoremap <C-S-v> "+p
     " Disable airline

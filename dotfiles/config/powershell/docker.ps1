@@ -92,7 +92,7 @@ function jekyll() { docker run --rm -it -p 4000:4000 -v "$((get-location).path)"
 
 function kali() { docker run -it --rm --net host --privileged heywoodlh/kali-linux /bin/bash $args }
 
-function lacework() { docker run -i --rm heywoodlh/lacework-cli:latest $args }
+function lacework() { docker run -i --rm lacework/lacework-cli:latest $args }
 
 function links() { docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/links:latest $args }
 
@@ -116,6 +116,15 @@ function msfconsole() {
 function msfvenom() { 
     New-Item -ItemType Directory -Path ${HOME}/.local/metasploit -erroraction silentlycontinue 
     docker run -it --rm -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path):/root/session" heywoodlh/metasploit msfvenom $args
+}
+
+function nativefier() {
+    # If $args[1] is not set, then echo message
+    if (!$args) {
+        echo "Usage: nativefier <url> <flags>"
+    } else {
+        docker run --rm -v "$((get-location).path):/target" -w /data nativefier/nativefier $args /target
+    }
 }
 
 function nc() { docker run --rm -i --net host heywoodlh/telnet nc $args }

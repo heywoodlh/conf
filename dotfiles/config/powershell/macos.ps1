@@ -9,6 +9,10 @@ if ($?)
     }	
 }
 
+function pbcopy () {
+    /usr/bin/pbcopy $args
+}
+
 ## Add /usr/local/bin to $PATH
 $env:PATH = "/opt/homebrew/bin:/usr/local/bin:" + $env:PATH
 

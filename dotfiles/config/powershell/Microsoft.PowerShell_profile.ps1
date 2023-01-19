@@ -201,15 +201,13 @@ function mkvirtualenv {
     }
 }
 
-function pbcopy { 
-    set-clipboard -Value $input
-}
-
 function source {
     . $args[0]
 }
 
-function ssh-unlock { ssh-add -t 1h $env:HOME/.ssh/tyranny/id_rsa }
+function ssh-unlock {
+    bw get item ssh/id_rsa | jq -r .notes | ssh-add -t 4h -
+}
 
 function tf {
     terraform $args
@@ -218,11 +216,9 @@ function tf {
 function which {
     $command_name = $args[0]
     $command_type = get-command -erroraction silentlycontinue ${command_name} | select-object -expandproperty commandtype 
-    if (${command_type} -eq 'Application')
-    {
+    if (${command_type} -eq 'Application') {
 	get-command ${command_name} | select-object -expandproperty source
-    } else
-    {
+    } else {
 	${command_type}
     }
 }

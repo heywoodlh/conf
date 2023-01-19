@@ -9,6 +9,10 @@ function open {
     xdg-open $args
 }
 
+function pbcopy {
+    xclip -selection clipboard
+}
+
 ## Gnome stuff
 if ( $env:DESKTOP_SESSION -eq 'gnome' )
 {

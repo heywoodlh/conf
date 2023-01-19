@@ -12,9 +12,8 @@ imports:
   log: home/bin
 
   pbcopy: home/bin
-  ssh-askpass-tyranny: home/bin
+  ssh-askpass: home/bin
   ssh-unlock: home/bin
-  ssh-wrapper: home/bin
   launcher: home/bin
   watch-lima: home/bin
 
@@ -126,23 +125,17 @@ curl module pbcopy:
     executable: pbcopy
     sha1: e277b6d53cdcaebc8b983f7f61092ed42dbcfebc
 
-curl module ssh-askpass-tyranny:
-    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-askpass-tyranny.sh 
-    filename: ssh-askpass-tyranny
-    executable: ssh-askpass-tyranny
-    sha1: 3ec1ecd590c07cab36366c12f79aad3c4f30739e
+curl module ssh-askpass:
+    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/4d71b990dce946e9f6297015151d69f1dcd19f8d/ssh-askpass.sh 
+    filename: ssh-askpass
+    executable: ssh-askpass
+    sha1: 1bd22855cf1052645d5310141c35a014e5cbd9ee
 
 curl module ssh-unlock:
-    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-unlock.sh 
+    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/4d71b990dce946e9f6297015151d69f1dcd19f8d/ssh-unlock.sh 
     filename: ssh-unlock
     executable: ssh-unlock
-    sha1: c0afe9f6af990a4b6adc8e8301676ae3f87d3aae
-
-curl module ssh-wrapper:
-    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/d18d0d5bdf6fe85a97c32ea0a1a9e0235a470b67/ssh-wrapper.sh 
-    filename: ssh-wrapper
-    executable: ssh-wrapper
-    sha1: 0bd64a4224d0343d8e5ae981e2dfd31cf66a8180
+    sha1: de6699ee59b693361f5b3e5c213e7f13c150bddf
 
 git module ubersicht-bottombar:
     url: https://github.com/heywoodlh/black-bottom-bar-ubersicht-widgets
@@ -166,7 +159,7 @@ curl module ime-vim:
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: 0913c0a3b6fc256e6de8dff00dfd1c9388cad9a6
+    rev: e4a57d0be4051010c5bb9dbc6454350bd33e4574
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -183,23 +176,23 @@ git module vim-colorizer:
 git module vim-copilot:
     url: https://github.com/github/copilot.vim
     reup: release
-    rev: 324ec9eb69e20971b58340d0096c3caac7bc2089
+    rev: 8c8416488ef21483dd5d2922ea194c05e9a3baaf
 
 git module vim-firenvim:
     url: https://github.com/glacambre/firenvim
-    rev: d1909c7abbc1857cc8b67e0234d7932ad7825644
+    rev: b6be2e074b8f62815a45e31eb0966b4dd5e57810
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 99cdb88bc64063dc4656ae53496f06fb2a394cd4
+    rev: 2febbe1f00be04f16daa6464cb39214a8566ec4b
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 3b2244077d3e7d299943077b33e0564ffcd1f384
+    rev: a79de11af78d98f3f1931870d2866012cc6e962a
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
-    rev: 0f03107bc94b31a9c7adcee6da8e5de7492e4b0b
+    rev: bdf48c282ad2174c25c059b3cdb7956427b07a99
 
 git module vim-glow:
     url: https://github.com/jclsn/glow.vim 
@@ -256,7 +249,7 @@ git module vim-syntastic:
 
 git module vim-terraform:
     url: https://github.com/hashivim/vim-terraform
-    rev: f0b17ac9f1bbdf3a29dba8b17ab429b1eed5d443
+    rev: d00503de9bed3a1da7206090cb148c6a1acce870
 
 git module vim-which-key:
     url: https://github.com/liuchengxu/vim-which-key
@@ -275,8 +268,8 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: 61e6ab29bacf887d8ae6179e0512c3cd435970fd
+    rev: dd686f35d1314f9cfcf20fa13ac7bb33b1d424e1
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: 35165798a83e2e4f2f0aa6c820e2f7fba23e0179
+    rev: 21e89cb61d9ed240c1ddf6dd09ce306e7c9cf437

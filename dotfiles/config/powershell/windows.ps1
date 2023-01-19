@@ -21,10 +21,11 @@ $env:PATH = "C:\Program Files (x86)\GnuWin32\bin;" + $env:PATH
 Remove-Alias -Name ls -ErrorAction silentlycontinue
 function ls { get-childitem -path $args[0] | format-wide -property name }
 
-Remove-Item -Path Function:\ssh-unlock -ErrorAction silentlycontinue
-function ssh-unlock { ssh-add "${env:HOME}\.ssh\id_rsa" }
-
 function conf { 
     docker pull heywoodlh/conf
     docker run -it --rm -v "//var/run/docker.sock://var/run/docker.sock" -v ${HOME}:/home/heywoodlh -v ${HOME}:/mnt/host/c/Users/$env:USER -w /home/heywoodlh -e LANG=en_US.UTF-8 heywoodlh/conf -NoLogo -c tmux
+}
+
+function pbcopy {
+    clip.exe
 }

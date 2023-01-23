@@ -12,7 +12,6 @@ imports:
   log: home/bin
 
   launcher: home/bin
-  mutt_oauth2: home/bin
   pbcopy: home/bin
   ssh-askpass: home/bin
   ssh-unlock: home/bin
@@ -108,11 +107,6 @@ curl module launcher:
     url: https://gist.githubusercontent.com/heywoodlh/9f4eab95a8f70e40b07e29c44d40b290/raw/7d98aed9ebad3f07fde2d04980c099426a9a4d14/launcher.sh
     executable: launcher.sh
     sha1: 4703c6b0523c913b376dc64de302ae3b7c5fad2e
-
-curl module mutt_oauth2:
-    url: https://gitlab.com/muttmua/mutt/-/raw/master/contrib/mutt_oauth2.py
-    executable: mutt_oauth2.py
-    sha1: 41550e9135c003102d0baaec4063cfb0538afd2c
 
 curl module log:
     url: https://gist.githubusercontent.com/heywoodlh/ecf518b57db2b4d4f4627661d6e9fb1c/raw/478ddb7560bc6498df70efb0d6681be3e28bd08a/log.sh 

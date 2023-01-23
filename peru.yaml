@@ -11,10 +11,11 @@ imports:
   journal: home/bin
   log: home/bin
 
+  launcher: home/bin
+  mutt_oauth2: home/bin
   pbcopy: home/bin
   ssh-askpass: home/bin
   ssh-unlock: home/bin
-  launcher: home/bin
   watch-lima: home/bin
 
   tmux-nord-theme: dotfiles/tmux/themes/nord-tmux
@@ -108,6 +109,11 @@ curl module launcher:
     executable: launcher.sh
     sha1: 4703c6b0523c913b376dc64de302ae3b7c5fad2e
 
+curl module mutt_oauth2:
+    url: https://gitlab.com/muttmua/mutt/-/raw/master/contrib/mutt_oauth2.py
+    executable: mutt_oauth2.py
+    sha1: 41550e9135c003102d0baaec4063cfb0538afd2c
+
 curl module log:
     url: https://gist.githubusercontent.com/heywoodlh/ecf518b57db2b4d4f4627661d6e9fb1c/raw/478ddb7560bc6498df70efb0d6681be3e28bd08a/log.sh 
     filename: log.sh
@@ -159,7 +165,7 @@ curl module ime-vim:
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: e4a57d0be4051010c5bb9dbc6454350bd33e4574
+    rev: c7460aa8836bcb05cf32331cc751739ba9392ae7
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -188,7 +194,7 @@ git module vim-fugitive:
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: a79de11af78d98f3f1931870d2866012cc6e962a
+    rev: aa7361337d3f78ae1e32283ba395446025323abb
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
@@ -272,4 +278,4 @@ git module zsh-completions:
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: 21e89cb61d9ed240c1ddf6dd09ce306e7c9cf437
+    rev: 0adbc1415bf1bad46a7fd111b39640d995294dad

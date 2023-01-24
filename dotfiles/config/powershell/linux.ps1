@@ -46,4 +46,10 @@ if ($isNixOS)
 	    nix-shell -p glib gnome.mutter --command 'env XDG_DATA_DIRS=$GSETTINGS_SCHEMAS_PATH gsettings set org.gnome.mutter.keybindings switch-monitor "[]"'
         } > $null
     }
+    # Podman function for NixOS to work properly
+    function docker {
+	$args = $args -replace "^run", "run --userns=keep-id"
+        $command = "/run/current-system/sw/bin/docker $($args -join ' ')"
+        invoke-expression $command
+    }
 }

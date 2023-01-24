@@ -180,6 +180,8 @@ function reaver() { docker run -it --rm --net host --privileged -w /data -v "$((
 
 function responder() { docker run -it --rm --net host heywoodlh/kali-linux responder $args }
 
+function s3scanner() { docker run -it --rm -v "$((get-location).path):/data" -w /data heywoodlh/s3scanner $args }
+
 function searchsploit() { docker run --rm heywoodlh/kali-linux searchsploit $args }
 
 function setoolkit() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/kali-linux setoolkit $args }

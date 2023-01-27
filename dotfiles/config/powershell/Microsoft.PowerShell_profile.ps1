@@ -78,6 +78,11 @@ if (${isWindows}) {
     . ~/.config/powershell/windows.ps1
 }
 
+# Everything not Windows
+if (-not (${isWindows})) {
+    . ~/.config/powershell/not-windows.ps1
+}
+
 # Docker setup
 if (get-command docker -erroraction 'silentlycontinue') {
     . ~/.config/powershell/docker.ps1

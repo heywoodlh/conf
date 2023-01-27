@@ -1,10 +1,5 @@
 function ansibuild { cd ${HOME}/opt/ansible && sudo ansible-playbook playbooks/workstation/workstation.yml }
 
-function ls {
-    $ls_bin = get-command -commandtype application ls | select-object -expandproperty source -First 1;
-    invoke-expression "${ls_bin} --color=tty $args"
-}
-
 function open {
     xdg-open $args
 }

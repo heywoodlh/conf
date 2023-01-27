@@ -10,7 +10,7 @@ function open {
 }
 
 function pbcopy {
-    xclip -selection clipboard
+    $input | xclip -selection clipboard
 }
 
 ## Gnome stuff

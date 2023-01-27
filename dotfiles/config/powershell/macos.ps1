@@ -10,7 +10,7 @@ if ($?)
 }
 
 function pbcopy () {
-    /usr/bin/pbcopy $args
+    $input | /usr/bin/pbcopy $args
 }
 
 ## Add /usr/local/bin to $PATH

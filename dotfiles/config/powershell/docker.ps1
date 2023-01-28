@@ -99,6 +99,13 @@ function lacework() {
 
 function links() { docker run -v ${HOME}/Downloads:/home/links/Downloads -it --rm heywoodlh/links:latest $args }
 
+function maltego() {
+    write-output "access maltego with RDP via localhost using creds maltego:maltego"
+    sleep 3
+    new-item -itemtype directory -path ${HOME}/Downloads -erroraction silentlycontinue
+    docker run -it --rm -v ${HOME}/Downloads:/home/maltego/Downloads -e USER=maltego -e PASSWORD=maltego -p 127.0.0.1:3389:3389 heywoodlh/maltego $args
+}
+
 function marp() { docker run --rm -v "$((get-location).path)":/home/marp/app/ -e LANG=$LANG marpteam/marp-cli $args }
 
 function masscan() { docker run --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp --privileged heywoodlh/telnet masscan $args }

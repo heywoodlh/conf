@@ -22,7 +22,7 @@ function beef() {
 
 function bettercap() { docker run -it --privileged --net=host bettercap/bettercap $args }
 
-Set-Alias -Name centos -Value "docker run -it --rm centos bash"
+function carbonyl() { docker run -it --rm fathyb/carbonyl $args }
 
 function cloud_enum() { docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/cloud_enum $args }
 

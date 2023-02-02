@@ -55,16 +55,6 @@ function freyr() { docker run -it --rm -v "$((get-location).path):/data" -w /dat
 
 function gf() { docker run --rm -it heywoodlh/tomnomnom-tools:latest gf $args }
 
-function gomuks { 
-    New-Item -ItemType Directory -Path ${HOME}/tmp 2> $null
-    New-Item -ItemType Directory -Path ${HOME}/Downloads 2> $null
-    New-Item -ItemType Directory -Path ${HOME}/.local/gomuks/config 2> $null
-    New-Item -ItemType Directory -Path ${HOME}/.local/gomuks/cache 2> $null 
-    New-Item -ItemType Directory -Path ${HOME}/.local/gomuks/share 2> $null
-
-    docker run --rm -it -e TZ=America/Denver -e TMUX='' -v ${HOME}/.local/gomuks/cache:/home/gomuks/.cache/gomuks -v ${HOME}/.local/gomuks/share:/home/gomuks/.local/share/gomuks -v ${HOME}/.local/gomuks/config:/home/gomuks/.config/gomuks -v ${HOME}/Downloads:/home/gomuks/Downloads -v ${HOME}/tmp:/tmp heywoodlh/gomuks $args 
-}
-
 function gron() { docker run --rm -i heywoodlh/tomnomnom-tools:latest gron $args }
 
 function grype() { 
@@ -180,7 +170,7 @@ function reaver() { docker run -it --rm --net host --privileged -w /data -v "$((
 
 function responder() { docker run -it --rm --net host heywoodlh/kali-linux responder $args }
 
-function s3scanner() { docker run -it --rm -v ${HOME}/.aws:/root/.aws -v "$((get-location).path):/data" -w /data heywoodlh/s3scanner $args }
+function s3scanner() { docker run -it --rm -v ${HOME}/.aws:/aws -e HOME=/aws -v "$((get-location).path):/data" -w /data heywoodlh/s3scanner $args }
 
 function searchsploit() { docker run --rm heywoodlh/kali-linux searchsploit $args }
 

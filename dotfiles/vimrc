@@ -99,7 +99,8 @@ set number
 " Vim-indentline config
 let g:indentLine_char = '⦙'
 set shiftwidth=4
-let g:vim_json_syntax_conceal = 0
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
 
 " Syntastic config
 set statusline+=%#warningmsg#

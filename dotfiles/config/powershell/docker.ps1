@@ -15,9 +15,9 @@ function beef() {
     new-item -erroraction silentlycontinue -itemtype directory -path ${HOME}/.local/beef
     if (-not (test-path ~/.local/beef/config.yaml)) {
 	write-output "downloading generic beef config"
-        curl --silent -L https://gist.github.com/heywoodlh/5d503e14f91ff9e5d6d4794aeffda652/raw/c64c4a2cec92d7af36bdb908ebe98fd42926b98c/config.yaml -o ~/.local/beef/config.yaml
+        curl --silent -L https://gist.githubusercontent.com/heywoodlh/5d503e14f91ff9e5d6d4794aeffda652/raw/925bc8e320b158169e9e079597b40978982d64b2/config.yaml -o ~/.local/beef/config.yaml
     }
-    docker run -it --rm -p 3000:3000 -p 6789:6789 -p 61985 -p 61986 -v "${HOME}/.local/beef/config.yaml:/beef/config.yaml" heywoodlh/beef $@
+    docker run -it --rm -p 127.0.0.1:3000:3000 -p 6789:6789 -p 61985 -p 61986 -v "${HOME}/.local/beef/config.yaml:/beef/config.yaml" --platform=linux/amd64 heywoodlh/beef $@
 }
 
 function bettercap() { docker run -it --privileged --net=host bettercap/bettercap $args }

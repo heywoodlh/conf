@@ -110,7 +110,7 @@ function mitmproxy() { docker run --rm -it -p 8080:8080 -p 127.0.0.1:8081:8081 m
 
 function msfconsole() { 
     New-Item -ItemType Directory -Path ${HOME}/.local/metasploit -erroraction silentlycontinue
-    docker run -it --rm --net host -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path):/root/session" heywoodlh/metasploit msfconsole $args 
+    docker run -it --rm -p 5000:5000 -p 8080:8080 -p 1337:1337 -v ${HOME}/.local/metasploit/:/root/.msf4 -w /root/session -v "$((get-location).path):/root/session" heywoodlh/metasploit msfconsole $args 
 }
 
 function msfvenom() { 

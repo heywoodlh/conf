@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     tmux \
     git \
     openssh-client \
+    python3 \
     python3-pip \
     vim \
     sudo 
@@ -63,6 +64,6 @@ RUN git clone --depth=1 https://github.com/heywoodlh/conf /home/heywoodlh/opt/co
 
 RUN pwsh -executionpolicy bypass -file /home/heywoodlh/opt/conf/setup.ps1
 
-RUN cd /home/heywoodlh/opt/conf && peru sync
+RUN cd /home/heywoodlh/opt/conf && python3 -m peru sync
 
 ENTRYPOINT ["ssh-agent", "pwsh"]

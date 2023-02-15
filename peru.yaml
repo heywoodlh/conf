@@ -3,23 +3,12 @@ imports:
 
   caffeine: home/bin/
   choose-file-manager: home/bin/
-  choose-launcher: home/bin/
-  choose-buku: home/bin/
   kind-sh: home/bin
   vultr-sh: home/bin
 
-  journal: home/bin
-  log: home/bin
-
-  launcher: home/bin
-  pbcopy: home/bin
-  ssh-askpass: home/bin
-  ssh-unlock: home/bin
   watch-lima: home/bin
 
   tmux-nord-theme: dotfiles/tmux/themes/nord-tmux
-
-  ubersicht-bottombar: dotfiles/config/ubersicht/widgets/bottombar
 
   nix-generations-trimmer: home/bin
 
@@ -81,11 +70,6 @@ curl module watch-lima:
     executable: watch-lima.sh
     sha1: 9e220301e67044f3b2f0d7911637e6d1d8f38233
 
-curl module choose-buku:
-    url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/4d181fe7b7da227399d1932494725a06b41f28ae/choose-buku.sh
-    executable: choose-buku.sh
-    sha1: 88534affb98cf34cf679c4d3c791ef1f18cd0413
-
 curl module kind-sh:
     url: https://raw.githubusercontent.com/heywoodlh/kind-argo-apps/722a3b22e925ec632ba9a2f4cc097c11ed5bd222/kind.sh
     executable: kind.sh
@@ -97,49 +81,10 @@ curl module vultr-sh:
     executable: vultr
     sha1: e842b486c30dc8bb37cb5fd35c0ca3104ca5b5e4
 
-curl module journal:
-    url: https://gist.githubusercontent.com/heywoodlh/e7c00daa11251c9d90a61e50fd49b2cc/raw/1676fdbdbce9886ad0d2a575c942b04aa0de48da/journal.sh 
-    filename: journal.sh
-    executable: journal.sh
-    sha1: bc565f353d7cd824e772fa5807e705c016099b79
-
-curl module launcher:
-    url: https://gist.githubusercontent.com/heywoodlh/9f4eab95a8f70e40b07e29c44d40b290/raw/7d98aed9ebad3f07fde2d04980c099426a9a4d14/launcher.sh
-    executable: launcher.sh
-    sha1: 4703c6b0523c913b376dc64de302ae3b7c5fad2e
-
-curl module log:
-    url: https://gist.githubusercontent.com/heywoodlh/ecf518b57db2b4d4f4627661d6e9fb1c/raw/478ddb7560bc6498df70efb0d6681be3e28bd08a/log.sh 
-    filename: log.sh
-    executable: log.sh
-    sha1: 30749e30dfbd52d697dd95c352bc9395d5932bdf
-
 git module tmux-nord-theme:
     url: https://github.com/heywoodlh/nord-tmux
     reup: develop
     rev: 59bcdc356a481074173c82ec37748abd2c646be0
-
-curl module pbcopy:
-    url: https://gist.githubusercontent.com/heywoodlh/d3ccf4723d260d7300e6bfa648cdc74c/raw/ed99396c447c84f61720b248f861e43e8c2b2d9b/pbcopy
-    filename: pbcopy
-    executable: pbcopy
-    sha1: e277b6d53cdcaebc8b983f7f61092ed42dbcfebc
-
-curl module ssh-askpass:
-    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/4d71b990dce946e9f6297015151d69f1dcd19f8d/ssh-askpass.sh 
-    filename: ssh-askpass
-    executable: ssh-askpass
-    sha1: 1bd22855cf1052645d5310141c35a014e5cbd9ee
-
-curl module ssh-unlock:
-    url: https://gist.githubusercontent.com/heywoodlh/b5c9b6f8da74f10a03d34aa0338aca97/raw/4d71b990dce946e9f6297015151d69f1dcd19f8d/ssh-unlock.sh 
-    filename: ssh-unlock
-    executable: ssh-unlock
-    sha1: de6699ee59b693361f5b3e5c213e7f13c150bddf
-
-git module ubersicht-bottombar:
-    url: https://github.com/heywoodlh/black-bottom-bar-ubersicht-widgets
-    rev: 4e3e065ef38efb7e2d2e546186a24a210d02b5e6
 
 curl module nix-generations-trimmer:
     url: https://gist.githubusercontent.com/Bondrake/27555c9d02c2882fd5e32f8ab3ed620b/raw/e1e5dd68761a7f7e6a253fcb64905466104b9df9/trim-generations.sh

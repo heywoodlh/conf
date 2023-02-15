@@ -104,7 +104,7 @@ curl module ime-vim:
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: c7460aa8836bcb05cf32331cc751739ba9392ae7
+    rev: 038e3a6ca59f11b3bb6a94087c1792322d1a1d5c
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -121,23 +121,23 @@ git module vim-colorizer:
 git module vim-copilot:
     url: https://github.com/github/copilot.vim
     reup: release
-    rev: 8c8416488ef21483dd5d2922ea194c05e9a3baaf
+    rev: 9e869d29e62e36b7eb6fb238a4ca6a6237e7d78b
 
 git module vim-firenvim:
     url: https://github.com/glacambre/firenvim
-    rev: b6be2e074b8f62815a45e31eb0966b4dd5e57810
+    rev: 2ff7e2df6b1ffe8935d24ae90f5c173ea4cd8b1b
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 2febbe1f00be04f16daa6464cb39214a8566ec4b
+    rev: 62f42f013d866139fa23068ac2651b3f7e05a56f
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: aa7361337d3f78ae1e32283ba395446025323abb
+    rev: 352ea072269dfe2a3c429785a95a2f22887ccda3
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
-    rev: bdf48c282ad2174c25c059b3cdb7956427b07a99
+    rev: dc71692255b62d1f67dc55c8e51ab1aa467b1d46
 
 git module vim-glow:
     url: https://github.com/jclsn/glow.vim 
@@ -213,8 +213,8 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: dd686f35d1314f9cfcf20fa13ac7bb33b1d424e1
+    rev: 86d55972f5cb65d545389fe0306e617b68328982
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: 0adbc1415bf1bad46a7fd111b39640d995294dad
+    rev: a30145b0f82d06770e924e9eac064ed223a94e6b

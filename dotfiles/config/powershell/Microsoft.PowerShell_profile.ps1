@@ -16,8 +16,19 @@ if (test-path ~/bin) {
     $env:PATH = "${HOME}/bin:" + $env:PATH
 }
 
+# Check if tmux session
+if (dir env:TMUX) {
+    $isTmux = 'true'
+}
+
 ## Create pure-looking prompt
 function prompt {
+    $global:OLDPWD = $global:PWD
+    $global:PWD = $(Get-Location -PSProvider FileSystem).ProviderPath
+    $env:PWD = $global:PWD
+    if ($isTmux -eq 'true') {
+        tmux setenv -g PWD $env:PWD
+    }
     $exit_code = $global:LASTEXITCODE
 
     if (git rev-parse --is-inside-work-tree) {
@@ -26,15 +37,26 @@ function prompt {
 	$git_branch = ''
     }
 
-    $working_dir = Split-Path -leaf -path (Get-Location)
+    $home_directory = $env:HOME
+    $working_dir = (get-location).Path
+    $terminal_width = (Get-Host).UI.RawUI.BufferSize.Width
+    $terminal_width = $terminal_width - 10
+
+    if ($working_dir.contains($home_directory)) {
+        $working_dir = $working_dir.Replace($HOME, "~")
+    }
+
+    if ($working_dir.Length -gt $terminal_width) {
+        $working_dir = "./$(Split-Path -leaf -path (Get-Location))"
+    }
 
     $global:LASTEXITCODE = $exit_code
     ## If last command succeeded, show white prompt, otherwise show red
     if ( $exit_code -eq 0 ) {
-	"$([char]27)[34m./${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[37m❯ "
+	"$([char]27)[34m${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[37m❯ "
     } else
     {
-	"$([char]27)[34m./${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[31m❯ "
+	"$([char]27)[34m${working_dir} $([char]27)[92m${git_branch}`r`n$([char]27)[31m❯ "
     }
 }
 

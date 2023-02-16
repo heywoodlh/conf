@@ -35,3 +35,14 @@ function start-ssh-agent () {
     $env:SSH_AUTH_SOCK = $ssh_agent_output | grep SSH_AUTH_SOCK | cut -d "=" -f 2 | cut -d ";" -f1
     $env:SSH_AGENT_PID = $ssh_agent_output | grep SSH_AGENT_PID | cut -d "=" -f 2 | cut -d ";" -f1
 }
+
+function url2md () {
+    $url = $args[0]
+    $help_message = "usage: url2md [url]"
+
+    if (${url} -ne $null) { 
+        pandoc -f html -t markdown ${url}
+    } else {
+        write-output ${help_message}
+    }
+}

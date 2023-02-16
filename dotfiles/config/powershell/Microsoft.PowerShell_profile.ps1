@@ -67,7 +67,7 @@ function prompt {
         $working_dir = "./$(Split-Path -leaf -path (Get-Location))"
     }
 
-    ## If last command succeeded
+    # If last command succeeded
     if ( $exit_code -eq 0 ) {
         ## Set prompt_cursor_color to white
         $prompt_cursor_color = "37m"
@@ -75,6 +75,7 @@ function prompt {
         ## Set prompt_cursor_color to red, when last command failed
         $prompt_cursor_color = "31m"
     }
+
 
     # Values that will always be visible in prompt
     $working_dir_prompt = "$([char]27)[34m${working_dir}"
@@ -100,8 +101,14 @@ function prompt {
         $kubectl_context_prompt = "$([char]27)[36m${kubectl_context}"
         $optional_prompt_values += $kubectl_context_prompt
     }
+    # Check if session is over SSH
+    if ($env:SSH_CONNECTION) {
+        $ssh_prompt = "$([char]27)[31m[$((dir env:SSH_CLIENT).Value.split(' ')[0])]"
+        $optional_prompt_values += $ssh_prompt
+    }
 
     # Define line_1 to append desired values shown in prompt, based on terminal width
+    # Place mandatory bits of info in this variable, otherwise, append optional stuff to the $optional_prompt_values array
     $line_1 = "${working_dir_prompt}"
 
     # Define function to append stuff to line_1

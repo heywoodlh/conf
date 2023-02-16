@@ -3,6 +3,15 @@ name: conf-buildx
 on:
   workflow_dispatch:
   push:
+    paths:
+    - setup.ps1
+    - peru.yaml
+    - docker/**
+    - dotfiles/tmux.conf
+    - dotfiles/tmux/**
+    - dotfiles/vimrc
+    - dotfiles/vim/**
+    - dotfiles/config/powershell/**
   
 jobs:
   docker:

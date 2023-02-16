@@ -39,15 +39,14 @@ function prompt {
    
     # If git is installed
     if (get-command git -erroraction silentlycontinue) { 
-        # If inside git repo
-	if (git rev-parse --is-inside-work-tree 2> $null) {
-	    $git_branch = $(git branch --show-current)
-	}
+        $git_branch = git branch --show-current 2> $null
+        $global:LASTEXITCODE = 0
     }
 
     # If kubectl is installed
     if (get-command kubectl -erroraction silentlycontinue) { 
-        $kubectl_context = kubectl config current-context
+        $kubectl_context = kubectl config current-context 2> $null
+        $global:LASTEXITCODE = 0
     }
 
     # Get current terminal_width

@@ -6,7 +6,8 @@ RUN /scripts/peru.sh
 # Download repo and run peru
 RUN git clone --depth=1 https://github.com/heywoodlh/conf /opt/conf \
     && cd /opt/conf \
-    && python3 -m peru sync
+    && printf "PERU VERSION: $(peru --version)" \
+    && peru sync
 
 ## Clean up caches
 RUN pip3 cache purge \

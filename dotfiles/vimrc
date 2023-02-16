@@ -101,6 +101,10 @@ let g:indentLine_char = '⦙'
 set shiftwidth=4
 let g:vim_json_conceal=0
 let g:markdown_syntax_conceal=0
+augroup filetype_indent
+  autocmd!
+  autocmd FileType dockerfile let g:indentLine_enabled = 0
+augroup END
 
 " Syntastic config
 set statusline+=%#warningmsg#

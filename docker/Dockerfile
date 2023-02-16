@@ -23,16 +23,16 @@ RUN /scripts/kind.sh \
 FROM heywoodlh/powershell
 LABEL MAINTAINER=heywoodlh
 
-## Install packages 
+## Install dependencies 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    docker.io \
     curl \
     tmux \
     git \
     openssh-client \
     vim \
     gnupg \
-    sudo 
+    sudo \
+    docker.io 
 
 ## Install stuff not included in apt repos
 COPY ./scripts /scripts
@@ -55,21 +55,34 @@ RUN /scripts/helm.sh
 ## Clean up caches
 RUN rm -rf /var/lib/apt/lists/* 
  
+## Delete Ubuntu user
+RUN userdel ubuntu \
+    && rm -rf /home/ubuntu
+
 ## Create heywoodlh
-RUN useradd -m -s /usr/bin/pwsh heywoodlh \
+RUN useradd -m --uid 1000 -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh \
     && mkdir -p /home/heywoodlh/opt
 
-## For Docker in Docker
+# For docker in docker
 RUN usermod -aG docker heywoodlh
-
-RUN chown -R heywoodlh /home/heywoodlh/opt
-
-USER heywoodlh 
 
 ## Copy repo from peru-build to  
 COPY --from=peru-build /opt/conf /home/heywoodlh/opt/conf
 
-RUN pwsh -executionpolicy bypass -file /home/heywoodlh/opt/conf/setup.ps1
+## Fix permissions
+RUN chown -R heywoodlh /home/heywoodlh/opt
 
-ENTRYPOINT ["ssh-agent", "pwsh"]
+## Setup symlinks
+USER heywoodlh 
+RUN pwsh -executionpolicy bypass -file /home/heywoodlh/opt/conf/setup.ps1 
+
+## Switch back to root 
+USER root
+## Fix ownerships
+RUN chown -R heywoodlh:heywoodlh /home/heywoodlh/
+
+## Switch back to heywoodlh
+USER heywoodlh
+
+ENTRYPOINT ["ssh-agent", "pwsh", "-NoProfileLoadTime", "-NoLogo"]

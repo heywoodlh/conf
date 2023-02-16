@@ -1,3 +1,17 @@
+FROM python AS peru-build
+COPY ./scripts /scripts
+
+RUN /scripts/peru.sh
+
+# Download repo and run peru
+RUN git clone --depth=1 https://github.com/heywoodlh/conf /opt/conf \
+    && cd /opt/conf \
+    && python3 -m peru sync
+
+## Clean up caches
+RUN pip3 cache purge \
+    && rm -rf /var/lib/apt/lists/* 
+
 FROM golang:buster AS go-build
 
 COPY ./scripts /scripts
@@ -9,25 +23,18 @@ FROM heywoodlh/powershell
 LABEL MAINTAINER=heywoodlh
 
 ## Install packages 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     docker.io \
     curl \
     tmux \
     git \
     openssh-client \
-    python3 \
-    python3-pip \
     vim \
+    gnupg \
     sudo 
 
 ## Install stuff not included in apt repos
 COPY ./scripts /scripts
-
-## peru install
-RUN /scripts/peru.sh
-
-## ansible install
-RUN /scripts/ansible.sh
 
 ## aws cli install
 RUN /scripts/aws.sh
@@ -45,8 +52,7 @@ COPY --from=go-build /go/bin/k9s /usr/local/bin/k9s
 RUN /scripts/helm.sh
 
 ## Clean up caches
-RUN pip3 cache purge \
-    && rm -rf /var/lib/apt/lists/* 
+RUN rm -rf /var/lib/apt/lists/* 
  
 ## Create heywoodlh
 RUN useradd -m -s /usr/bin/pwsh heywoodlh \
@@ -59,11 +65,10 @@ RUN usermod -aG docker heywoodlh
 RUN chown -R heywoodlh /home/heywoodlh/opt
 
 USER heywoodlh 
-## Copy repo to target directory
-RUN git clone --depth=1 https://github.com/heywoodlh/conf /home/heywoodlh/opt/conf
+
+## Copy repo from peru-build to  
+COPY --from=peru-build /opt/conf /home/heywoodlh/opt/conf
 
 RUN pwsh -executionpolicy bypass -file /home/heywoodlh/opt/conf/setup.ps1
-
-RUN cd /home/heywoodlh/opt/conf && python3 -m peru sync
 
 ENTRYPOINT ["ssh-agent", "pwsh"]

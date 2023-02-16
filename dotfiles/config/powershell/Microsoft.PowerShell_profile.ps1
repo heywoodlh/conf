@@ -40,12 +40,9 @@ function prompt {
     # If git is installed
     if (get-command git -erroraction silentlycontinue) { 
         # If inside git repo
-        if (git rev-parse --is-inside-work-tree) {
-            # Get git branch
-            $git_branch = $(git branch --show-current)
-        } else {
-            $git_branch = ''
-        }
+	if (git rev-parse --is-inside-work-tree 2> $null) {
+	    $git_branch = $(git branch --show-current)
+	}
     }
 
     # If kubectl is installed

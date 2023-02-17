@@ -76,7 +76,7 @@
     "Green Component" : 0.75577855110168457
   },
   "Icon" : 0,
-  "Use Non-ASCII Font" : false,
+  "Use Non-ASCII Font" : true,
   "Link Color" : {
     "Red Component" : 0.87367779016494751,
     "Color Space" : "Calibrated",
@@ -370,6 +370,7 @@
     "Green Component" : 0.23046499490737915
   },
   "Ambiguous Double Width" : false,
+  "Cursor Type" : 1,
   "Ansi 0 Color" : {
     "Red Component" : 0.17621420323848724,
     "Color Space" : "Calibrated",
@@ -377,9 +378,8 @@
     "Blue Component" : 0.25300124287605286,
     "Green Component" : 0.19692185521125793
   },
-  "Cursor Type" : 1,
   "Blur" : false,
-  "Normal Font" : "MesloLGS-NF-Regular 16",
+  "Normal Font" : "IosevkaNerdFontCompleteM-Medium 14",
   "Vertical Spacing" : 1,
   "Ansi 7 Color" : {
     "Red Component" : 0.87367779016494751,
@@ -390,7 +390,7 @@
   },
   "Space" : 0,
   "HotKey Window AutoHides" : false,
-  "Command" : "\/usr\/local\/bin\/tmux",
+  "Command" : "\/etc\/profiles\/per-user\/heywoodlh\/bin\/tmux",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
   "Tab Color" : {
@@ -419,7 +419,7 @@
     "Blue Component" : 0.77356863021850586,
     "Green Component" : 0.70216643810272217
   },
-  "Transparency" : 0.097648977726063832,
+  "Transparency" : 0.044431515957446807,
   "HotKey Activated By Modifier" : false,
   "Background Color" : {
     "Red Component" : 0.1357133686542511,
@@ -431,7 +431,7 @@
   "Initial Text" : "",
   "Screen" : -1,
   "HotKey Characters Ignoring Modifiers" : "t",
-  "Non Ascii Font" : "Monaco 12",
+  "Non Ascii Font" : "IosevkaNerdFontCompleteM-Medium 12",
   "Ansi 13 Color" : {
     "Red Component" : 0.64283657073974609,
     "Color Space" : "Calibrated",
@@ -821,6 +821,7 @@
     "Green Component" : 0.23046499490737915
   },
   "Ambiguous Double Width" : false,
+  "Cursor Type" : 1,
   "Ansi 0 Color" : {
     "Red Component" : 0.17621420323848724,
     "Color Space" : "Calibrated",
@@ -828,9 +829,8 @@
     "Blue Component" : 0.25300124287605286,
     "Green Component" : 0.19692185521125793
   },
-  "Cursor Type" : 1,
   "Blur" : false,
-  "Normal Font" : "MesloLGS-NF-Regular 16",
+  "Normal Font" : "IosevkaNerdFontCompleteM-Medium 14",
   "Vertical Spacing" : 1,
   "Ansi 7 Color" : {
     "Red Component" : 0.87367779016494751,
@@ -841,7 +841,7 @@
   },
   "Space" : -1,
   "HotKey Window AutoHides" : true,
-  "Command" : "\/usr\/local\/bin\/tmux",
+  "Command" : "\/etc\/profiles\/per-user\/heywoodlh\/bin\/tmux",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
   "Tab Color" : {

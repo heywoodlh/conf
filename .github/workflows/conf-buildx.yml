@@ -6,7 +6,7 @@ on:
     paths:
     - setup.ps1
     - peru.yaml
-    - docker/**
+    - .devcontainer/docker/**
     - dotfiles/tmux.conf
     - dotfiles/tmux/**
     - dotfiles/vimrc

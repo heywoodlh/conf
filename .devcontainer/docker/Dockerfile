@@ -55,10 +55,6 @@ RUN /scripts/helm.sh
 ## Clean up caches
 RUN rm -rf /var/lib/apt/lists/* 
  
-## Delete Ubuntu user
-RUN userdel ubuntu \
-    && rm -rf /home/ubuntu
-
 ## Create heywoodlh
 RUN useradd -m --uid 1000 -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh \

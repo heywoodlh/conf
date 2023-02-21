@@ -208,6 +208,8 @@ if executable('pwsh')
         set shellcmdflag=/c\ pwsh.exe\ -NoLogo
         set shellpipe=|
         set shellredir=>
+    else
+        set shell=pwsh\ -NoLogo
     endif
 endif
 

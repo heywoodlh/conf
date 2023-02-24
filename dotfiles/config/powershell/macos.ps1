@@ -23,7 +23,7 @@ $env:PATH = "${HOME}/bin/tfenv/bin:" + $env:PATH
 $env:PATH = "/run/current-system/sw/bin:" + $env:PATH
 
 function darbuild {
-    darwin-rebuild switch -I "darwin-config=$HOME/opt/nixos-builds/darwin/darwin-configuration.nix"
+   darwin-rebuild switch --flake .#$(hostname) --impure
 }
 
 $env:__NIX_DARWIN_SET_ENVIRONMENT_DONE = 1

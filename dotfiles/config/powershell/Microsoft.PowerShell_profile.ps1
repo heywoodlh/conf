@@ -1,12 +1,10 @@
 ## NixOS stuff must be loaded first so $PATH is setup right
-if (get-content -erroraction silentlycontinue /etc/os-release | select-string 'ID=nixos')
-{
+if (get-content -erroraction silentlycontinue /etc/os-release | select-string 'ID=nixos') {
     $isNixOS = 'true'
 }
 
 ## NixOS Path
-if ($isNixOS) 
-{
+if ($isNixOS)  {
     $env:PATH = "$env:HOME/bin:" + $env:PATH + ":/home/$env:USER/.nix-profile/bin:/etc/profiles/per-user/$env:USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
 }
 
@@ -93,7 +91,7 @@ function prompt {
         $aws_profile_prompt = "$([char]27)[33m${env:AWS_PROFILE}"
         $optional_prompt_values += $aws_profile_prompt
     }
-    if ($kubectl_context -ne $null -and $kubectl_context -ne '') {
+    if ($env:KUBE_PROMPT -and $kubectl_context -ne $null -and $kubectl_context -ne '') {
 	# Get the last string after "/" character in AWS context to clean up
 	if ($kubectl_context.contains("arn:aws")) {
             $kubectl_context = $kubectl_context.split('/')[1]
@@ -291,7 +289,7 @@ function marp-template {
             add-content -path ${file_path} -value "</footer>"
             add-content -path ${file_path} -value ""
             add-content -path ${file_path} -value "-------------------------------------------------"
-	}
+        }
         vim "${file_path}"
     }
 }
@@ -301,17 +299,30 @@ function mkvirtualenv {
         echo 'Usage: mkvirtualenv [name]'
     } else {
         $env_path = $args[0]
-	$env_name = split-path ${env_path} -leafbase
-	# Create virtualenv
-	python3 -m venv ${env_path}
-	# Activate virtualenv
-	cd ${env_name}
-	. ./bin/Activate.ps1
+        $env_name = split-path ${env_path} -leafbase
+        # Create virtualenv
+        python3 -m venv ${env_path}
+        # Activate virtualenv
+        cd ${env_name}
+        . ./bin/Activate.ps1
     }
 }
 
-function source {
-    . $args[0]
+function ksp {
+    $kube_contexts = (kubectl config get-contexts | select-string -notmatch 'NAME' | Out-String).Trim()
+    if (${kube_contexts} -ne '' -and ${kube_contexts} -ne $null) {
+        $env:KUBE_PROMPT = "true"
+        $selection = ${kube_contexts} | fzf
+        # Use column 1 if it is the current context, else, use column 0
+        if ($selection -match '\*') {
+            $profile_name = $selection | %{ $_.Split(" ",[StringSplitOptions]"RemoveEmptyEntries")[1] }
+        } else {
+            $profile_name = $selection | %{ $_.Split(" ",[StringSplitOptions]"RemoveEmptyEntries")[0] }
+        }
+        if (${profile_name} -ne '' -and ${profile_name} -ne $null) {
+            kubectl config use-context ${profile_name}
+	}
+    }
 }
 
 function ssh-unlock {
@@ -326,9 +337,9 @@ function which {
     $command_name = $args[0]
     $command_type = get-command -erroraction silentlycontinue ${command_name} | select-object -expandproperty commandtype 
     if (${command_type} -eq 'Application') {
-	get-command ${command_name} | select-object -expandproperty source
+        get-command ${command_name} | select-object -expandproperty source
     } else {
-	${command_type}
+        ${command_type}
     }
 }
 

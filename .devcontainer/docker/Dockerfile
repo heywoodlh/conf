@@ -9,10 +9,6 @@ RUN git clone --depth=1 https://github.com/heywoodlh/conf /opt/conf \
     && printf "PERU VERSION: $(peru --version)" \
     && peru sync
 
-## Clean up caches
-RUN pip3 cache purge \
-    && rm -rf /var/lib/apt/lists/* 
-
 FROM golang:buster AS go-build
 
 COPY ./scripts /scripts
@@ -32,7 +28,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     vim \
     gnupg \
     sudo \
-    docker.io 
+    docker.io \
+    && rm -rf /var/lib/apt/lists/*
 
 ## Install stuff not included in apt repos
 COPY ./scripts /scripts
@@ -52,9 +49,6 @@ COPY --from=go-build /go/bin/k9s /usr/local/bin/k9s
 ## helm install
 RUN /scripts/helm.sh
 
-## Clean up caches
-RUN rm -rf /var/lib/apt/lists/* 
- 
 ## Create heywoodlh
 RUN useradd -m --uid 1000 -s /usr/bin/pwsh heywoodlh \
     && mkdir -p /etc/sudoers.d/ && printf 'heywoodlh ALL=(ALL) NOPASSWD:ALL\n' | tee -a /etc/sudoers.d/heywoodlh \

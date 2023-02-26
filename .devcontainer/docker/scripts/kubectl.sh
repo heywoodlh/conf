@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
-
-apt-get update && apt-get install -y kubectl
+curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/$(arch)/kubectl" -o /usr/local/bin/kubectl

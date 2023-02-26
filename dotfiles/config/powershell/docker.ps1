@@ -231,5 +231,5 @@ function yersinia() { docker run -it --rm -w /data -v "$((get-location).path):/d
 function youtube-dl() { docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/youtube-dl $args }
 
 function youtube-dl-mp3() { 
-    docker run -it --rm -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp heywoodlh/youtube-dl --audio-quality 0 --audio-format mp3 -f "bestaudio/best" $args
+    docker run -it --rm -w /data -v "$((get-location).path):/data" heywoodlh/youtube-dl -x --audio-quality 0 --audio-format mp3 -o '%(title)s.%(ext)s' $args
 }

@@ -1,4 +1,7 @@
-function ansibuild { cd ${HOME}/opt/ansible && sudo ansible-playbook playbooks/workstation/workstation.yml }
+function nixos-switch {
+    $hostname = hostname
+    sudo nixos-rebuild switch --flake "github:heywoodlh/nixos-config#${hostname}"
+}
 
 function open {
     xdg-open $args

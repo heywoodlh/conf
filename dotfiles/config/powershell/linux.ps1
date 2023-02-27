@@ -1,7 +1,3 @@
-function nixos-switch {
-    $hostname = hostname
-    sudo nixos-rebuild switch --flake "github:heywoodlh/nixos-config#${hostname}"
-}
 
 function open {
     xdg-open $args
@@ -46,8 +42,14 @@ if ($isNixOS)
     }
     # Podman function for NixOS to work properly
     function docker {
-	$args = $args -replace "^run", "run --userns=keep-id"
+        $args = $args -replace "^run", "run --userns=keep-id"
         $command = "/run/current-system/sw/bin/docker $($args -join ' ')"
         invoke-expression $command
     }
+
+    function nixos-switch {
+        $hostname = hostname
+        sudo nixos-rebuild switch --flake "github:heywoodlh/nixos-config#${hostname}"
+    }
+
 }

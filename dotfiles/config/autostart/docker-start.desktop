@@ -3,5 +3,4 @@ Type=Application
 Name=Start Docker VM
 Comment=Start Lima Docker VM
 Exec=/home/heywoodlh/bin/watch-lima.sh
-Icon=gnome-terminal
 StartupNotify=false

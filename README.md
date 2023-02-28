@@ -1,9 +1,12 @@
 ## Quickstart
 
+Assuming you have PowerShell Core 7.2+ and [Peru](https://github.com/buildinspace/peru) installed:
+
 ```
 git clone --depth=1 https://github.com/heywoodlh/conf ~/opt/conf
 cd ~/opt/conf
 pwsh -executionpolicy bypass -file $HOME/opt/conf/setup.ps1 
+python3 -m peru sync
 ```
 
 Or if you just want to test out the environment, run [the container](https://hub.docker.com/r/heywoodlh/conf):

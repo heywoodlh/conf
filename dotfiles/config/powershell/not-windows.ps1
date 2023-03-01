@@ -30,6 +30,12 @@ function md2html() {
     md2
 }
 
+## Inject --no-ssh-pty into mosh commands
+function mosh() {
+    $mosh_bin = get-command -commandtype application mosh | select-object -expandproperty source -First 1;
+    invoke-expression "${mosh_bin} --no-ssh-pty $args"
+}
+
 function start-ssh-agent () {
     $ssh_agent_output = $(ssh-agent -s)    
     $env:SSH_AUTH_SOCK = $ssh_agent_output | grep SSH_AUTH_SOCK | cut -d "=" -f 2 | cut -d ";" -f1

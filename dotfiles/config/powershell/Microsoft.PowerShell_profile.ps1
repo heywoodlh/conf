@@ -9,7 +9,6 @@ if ($isNixOS)  {
 }
 
 ## Add ~/bin to PATH
-
 if (test-path ~/bin) {
     $env:PATH = "${HOME}/bin:" + $env:PATH
 }

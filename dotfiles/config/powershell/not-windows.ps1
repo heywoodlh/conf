@@ -36,6 +36,18 @@ function mosh() {
     invoke-expression "${mosh_bin} --no-ssh-pty $args"
 }
 
+# Append the nix-kube-cluster config to the current kubeconfig
+function nix-kube-cluster {
+    bw get notes nix-kube-cluster/config > ~/.kube/nix-cluster-config
+
+    $env:KUBECONFIG="$HOME/.kube/config:$HOME/.kube/nix-cluster-config"
+    kubectl config view --flatten > ~/.kube/config-merged
+    rm ~/.kube/config
+    mv ~/.kube/config-merged ~/.kube/config
+    $env:KUBECONFIG="~/.kube/config"
+    rm ~/.kube/nix-cluster-config
+}
+
 function start-ssh-agent () {
     $ssh_agent_output = $(ssh-agent -s)    
     $env:SSH_AUTH_SOCK = $ssh_agent_output | grep SSH_AUTH_SOCK | cut -d "=" -f 2 | cut -d ";" -f1

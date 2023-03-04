@@ -320,7 +320,9 @@ function ksp {
         }
         if (${profile_name} -ne '' -and ${profile_name} -ne $null) {
             kubectl config use-context ${profile_name}
-	}
+        } else {
+            remove-item env:KUBE_PROMPT
+        }
     }
 }
 

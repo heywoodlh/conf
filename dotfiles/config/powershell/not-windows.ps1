@@ -1,3 +1,11 @@
+function bm {
+    # If `~/opt/bookmarks` doesn't exist, run `git clone git@github.com:heywoodlh/bookmarks.git ~/opt/bookmarks`
+    if (-not (Test-Path ~/opt/bookmarks)) {
+        git clone git@github.com:heywoodlh/bookmarks ~/opt/bookmarks  
+    }
+    open ~/opt/bookmarks/index.html
+}
+
 function ls {
     $ls_bin = get-command -commandtype application ls | select-object -expandproperty source -First 1;
     invoke-expression "${ls_bin} --color=tty $args"

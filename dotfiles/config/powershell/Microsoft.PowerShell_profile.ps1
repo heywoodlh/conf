@@ -19,8 +19,6 @@ if (dir env:TMUX -erroraction silentlycontinue) {
     $isTmux = 'true'
 }
 
-## Function to compare terminal width to a string and append that string to the prompt
-
 ## Create pure-looking prompt
 function prompt {
     # Store exit code of previous command for prompt color

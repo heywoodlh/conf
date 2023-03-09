@@ -29,6 +29,7 @@ imports:
   vim-gitgutter: dotfiles/vim/bundle/gitgutter
   vim-indentline: dotfiles/vim/bundle/indentline
   vim-json: dotfiles/vim/bundle/json
+  vim-lastplace: dotfiles/vim/bundle/lastplace
   vim-marp: dotfiles/vim/bundle/marp
   vim-nerdtree: dotfiles/vim/bundle/nerdtree
   vim-nord: dotfiles/vim/bundle/nord
@@ -125,15 +126,15 @@ git module vim-copilot:
 
 git module vim-firenvim:
     url: https://github.com/glacambre/firenvim
-    rev: 2ff7e2df6b1ffe8935d24ae90f5c173ea4cd8b1b
+    rev: a9ac5e1e42fc62819749c9f10f3f18d924a66a35
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 62f42f013d866139fa23068ac2651b3f7e05a56f
+    rev: 82a9af133ce15afc232a9e754898a8ba252780e6
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 352ea072269dfe2a3c429785a95a2f22887ccda3
+    rev: 63cf9d04deab832a3a472b6e4de2db837932d957
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
@@ -145,7 +146,7 @@ git module vim-glow:
 
 git module vim-gitgutter:
     url: https://github.com/airblade/vim-gitgutter
-    rev: 00df1089b6267f47c7c0f13536789feb9db1e65b
+    rev: edb607cc4b329099da825c028c53b1264dbd2350
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
@@ -154,6 +155,10 @@ git module vim-indentline:
 git module vim-json:
     url: https://github.com/elzr/vim-json 
     rev: 3727f089410e23ae113be6222e8a08dd2613ecf2
+
+git module vim-lastplace:
+    url: https://github.com/farmergreg/vim-lastplace
+    rev: cef9d62165cd26c3c2b881528a5290a84347059e
 
 git module vim-marp:
     url: https://github.com/dhruvasagar/vim-marp
@@ -166,7 +171,7 @@ git module vim-nerdtree:
 git module vim-nord:
     url: https://github.com/arcticicestudio/nord-vim
     reup: main
-    rev: 0748955e9e8d9770b44f2bec8456189430b37d9d
+    rev: 684c345b8a8bf5e37919c38be6edaaa9356dbf4b
 
 git module vim-pathogen:
     url: https://github.com/tpope/vim-pathogen
@@ -174,7 +179,7 @@ git module vim-pathogen:
 
 git module vim-sensible:
     url: https://github.com/tpope/vim-sensible
-    rev: 16283468becaa6985839f96fea212f8634fbd7d2
+    rev: 5693bb650a26723975276bef7b1da2f00a571e0e
 
 git module vim-sudoedit:
     url: https://github.com/chrisbra/SudoEdit.vim
@@ -213,8 +218,8 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: 86d55972f5cb65d545389fe0306e617b68328982
+    rev: 98ea8e685c1a9630a21b39a1596cb94794d1cb3c
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: a30145b0f82d06770e924e9eac064ed223a94e6b
+    rev: 2aa16c54314f175e4f34fdd7fa1bdb03f1797c6a

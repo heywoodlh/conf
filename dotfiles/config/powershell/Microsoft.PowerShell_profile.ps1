@@ -242,6 +242,12 @@ function asp {
     $env:AWS_PROFILE = ${selection}
 }
 
+function bw-unlock {
+    if (-not $env:BW_SESSION) {
+        $env:BW_SESSION = $(bw unlock --raw)
+    }
+}
+
 function gpsup {
     git push --set-upstream origin $(git branch --show-current)
 }

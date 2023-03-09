@@ -59,17 +59,17 @@ colors:
 
 font:
   normal:
-    family: Iosevka
-    style: Regular
+    family: Iosevka Nerd Font
+    style: Mono
   bold:
-    family: Iosevka
-    style: Bold
+    family: Iosevka Nerd Font
+    style: Mono
   italic:
-    family: Iosevka
-    style: Italic
+    family: Iosevka Nerd Font
+    style: Mono
   bold_italic:
-    family: Iosevka
-    style: Bold Italic
+    family: Iosevka Nerd Font
+    style: Mono
   size: 14
 
 window:

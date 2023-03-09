@@ -6,3 +6,4 @@ dotfiles/config/powershell/Help/*
 dotfiles/oh-my-zsh/*
 dotfiles/bash.d/work
 home/bin/*
+**/nord-tmux/**

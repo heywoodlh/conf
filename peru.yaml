@@ -85,7 +85,7 @@ curl module vultr-sh:
 git module tmux-nord-theme:
     url: https://github.com/heywoodlh/nord-tmux
     reup: develop
-    rev: 59bcdc356a481074173c82ec37748abd2c646be0
+    rev: 07e8e57443e673b585223593e14f506a64f93d77
 
 curl module nix-generations-trimmer:
     url: https://gist.githubusercontent.com/Bondrake/27555c9d02c2882fd5e32f8ab3ed620b/raw/e1e5dd68761a7f7e6a253fcb64905466104b9df9/trim-generations.sh
@@ -130,7 +130,7 @@ git module vim-firenvim:
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 82a9af133ce15afc232a9e754898a8ba252780e6
+    rev: d4941aec931bfcb4086b6c80d3773191bab58f00
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf

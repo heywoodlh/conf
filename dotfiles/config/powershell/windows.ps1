@@ -29,3 +29,10 @@ function conf {
 function pbcopy {
     clip.exe
 }
+
+function ssh-unlock {
+    $sshkeyfile = New-TemporaryFile
+    bw get item ssh/id_rsa | jq -r .notes | Where { $_ } | Set-Content -Path $sshkeyfile
+    ssh-add $sshkeyfile.FullName
+    Remove-Item $sshkeyfile
+}

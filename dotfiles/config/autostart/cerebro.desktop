@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=cerebro
+Comment=cerebrostartup script
+Exec=/run/current-system/sw/bin/Cerebro
+StartupNotify=false
+Terminal=false

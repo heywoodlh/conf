@@ -1,0 +1,25 @@
+{
+	"locale": "en-US",
+	"lang": "en",
+	"country": "US",
+	"theme": "../dist/main/css/themes/dark.css",
+	"hotkey": "Command+Space",
+	"showInTray": true,
+	"firstStart": false,
+	"developerMode": false,
+	"cleanOnHide": true,
+	"selectOnShow": false,
+	"hideOnBlur": true,
+	"plugins": {},
+	"isMigratedPlugins": true,
+	"openAtLogin": true,
+	"winPosition": [
+		635,
+		517
+	],
+	"__internal__": {
+		"migrations": {
+			"version": "0.11.0"
+		}
+	}
+}

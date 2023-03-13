@@ -3,7 +3,7 @@
 	"lang": "en",
 	"country": "US",
 	"theme": "../dist/main/css/themes/dark.css",
-	"hotkey": "Command+Space",
+	"hotkey": "Control+Space",
 	"showInTray": true,
 	"firstStart": false,
 	"developerMode": false,

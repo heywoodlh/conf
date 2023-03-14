@@ -13,10 +13,10 @@ if ( $env:DESKTOP_SESSION -eq 'gnome' )
     get-command gsettings > $null
     if ($?)
     {
-	$caps_super=gsettings get org.gnome.desktop.input-sources xkb-options | grep caps | grep ctrl_modifier 
+	$caps_super=gsettings get org.gnome.desktop.input-sources xkb-options | grep caps | grep ctrl_super
 	if ($caps_super -eq $null)
 	{
-	    dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier']"
+	    dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:super']"
 	}
     } 
 }

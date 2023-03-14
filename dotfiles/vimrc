@@ -73,8 +73,17 @@ else
   	set splitbelow
   "	term ++kill=term
   end
+  let g:airline_statusline_ontop=1
+  let g:airline#extensions#tabline#enabled = 1
+  " Nerdfonts
+  let g:airline_powerline_fonts = 1
+  " Clear terminal buffer on exit (without it, Airline messes up shell)
+  set t_ti= t_te=
+  " Set Nord Airline Theme
+  let g:airline_theme='nord'
+  " Enable ale with airline
+  let g:airline#extensions#ale#enabled = 1
 endif
-
 
 syntax on
 
@@ -94,7 +103,10 @@ set number
 "	let g:NERDTreeWinSize=winwidth(0)/6
 "	autocmd VimEnter * NERDTree | wincmd p	
 "endif
-
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Vim-indentline config
 let g:indentLine_char = '⦙'
@@ -105,22 +117,6 @@ augroup filetype_indent
   autocmd!
   autocmd FileType dockerfile let g:indentLine_enabled = 0
 augroup END
-
-" Syntastic config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-function! SyntasticCheckHook(errors)
-    if !empty(a:errors)
-        let g:syntastic_loc_list_height = min([len(a:errors), 10])
-    endif
-endfunction
 
 " Custom keybinds
 nnoremap zz :wa <bar> :qa!<CR>
@@ -193,3 +189,4 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Ignore case
 set ignorecase smartcase
+

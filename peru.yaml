@@ -17,6 +17,7 @@ imports:
   ## Not a Vim plugin
   ime-vim: home/bin
 
+  vim-ale: dotfiles/vim/bundle/ale
   vim-airline: dotfiles/vim/bundle/airline
   vim-airline-themes: dotfiles/vim/bundle/airline-themes
   vim-base16: dotfiles/vim/bundle/base16
@@ -38,7 +39,6 @@ imports:
   vim-sneak: dotfiles/vim/bundle/sneak
   vim-sudoedit: dotfiles/vim/bundle/sudoedit
   vim-supertab: dotfiles/vim/bundle/supertab
-  vim-syntastic: dotfiles/vim/bundle/syntastic
   vim-terraform: dotfiles/vim/bundle/terraform
   vim-which-key: dotfiles/vim/bundle/which-key
 
@@ -103,6 +103,10 @@ curl module ime-vim:
     executable: vim-ime.py
     sha1: 66f6523b298297d96115250009e445df0e058907
 
+git module vim-ale:
+    url: https://github.com/dense-analysis/ale
+    rev: 011e4f6590e8fb26ee2b55bd6b368f1bb784a537
+
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
     rev: 038e3a6ca59f11b3bb6a94087c1792322d1a1d5c
@@ -126,15 +130,15 @@ git module vim-copilot:
 
 git module vim-firenvim:
     url: https://github.com/glacambre/firenvim
-    rev: a9ac5e1e42fc62819749c9f10f3f18d924a66a35
+    rev: d6d69b087c2b3430d837ec80ff71671112b2874b
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: d4941aec931bfcb4086b6c80d3773191bab58f00
+    rev: 5b52a0f395065d6cb7b65a00a5e17eaf9ebd64d5
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 63cf9d04deab832a3a472b6e4de2db837932d957
+    rev: 1116e481bef4f63abe0e506ce20469e244c505e6
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
@@ -146,7 +150,7 @@ git module vim-glow:
 
 git module vim-gitgutter:
     url: https://github.com/airblade/vim-gitgutter
-    rev: edb607cc4b329099da825c028c53b1264dbd2350
+    rev: 3d29f67380c428afbde61da0ac7ae55424f0aa52
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
@@ -193,10 +197,6 @@ git module vim-supertab:
     url: https://github.com/ervandew/supertab
     rev: f0093ae12a9115498f887199809a6114659fc858
 
-git module vim-syntastic:
-    url: https://github.com/vim-syntastic/syntastic
-    rev: 8d5e37c29cf5952fbf300b9230bffe424c61a488
-
 git module vim-terraform:
     url: https://github.com/hashivim/vim-terraform
     rev: d00503de9bed3a1da7206090cb148c6a1acce870
@@ -208,9 +208,6 @@ git module vim-which-key:
 git module zsh-autoupdate:
     url: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
     rev: 8c4f63db6a7a989f4eb8f8a3211bf96243e15bb9
-
-#git module zsh-fast-syntax-highlighting: 
-    #url: https://github.com/zdharma/fast-syntax-highlighting
 
 git module zsh-autosuggestions:
     url: https://github.com/zsh-users/zsh-autosuggestions

@@ -7,3 +7,4 @@ dotfiles/oh-my-zsh/*
 dotfiles/bash.d/work
 home/bin/*
 **/nord-tmux/**
+**/tmux/plugins**

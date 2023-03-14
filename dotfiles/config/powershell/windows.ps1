@@ -11,7 +11,7 @@ $Env:KOMOREBI_CONFIG_env:HOME = "$env:HOME\.config\komorebi"
 $vim_dir = Get-ChildItem -Path "C:\Program Files\Vim\" -Attribute 'Directory' -ErrorAction silentlycontinue | Select-Object -ExpandProperty FullName | Select -Last 1
 
 if (${vim_dir}) {
-	$env:PATH = "${vim_dir};" + $env:PATH
+    $env:PATH = "${vim_dir};" + $env:PATH
 }
 
 ## Add GNUWin32 executables to $PATH

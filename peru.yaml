@@ -9,7 +9,6 @@ imports:
   watch-lima: home/bin
 
   tmux-nord-theme: dotfiles/tmux/themes/nord-tmux
-  tmux-battery: dotfiles/tmux/plugins/battery
 
   nix-generations-trimmer: home/bin
 
@@ -87,10 +86,6 @@ git module tmux-nord-theme:
     url: https://github.com/heywoodlh/nord-tmux
     reup: develop
     rev: 07e8e57443e673b585223593e14f506a64f93d77
-
-git module tmux-battery:
-    url: https://github.com/tmux-plugins/tmux-battery
-    rev: 5c52d4f7f80384de0781c2277a8989ba98fae507
 
 curl module nix-generations-trimmer:
     url: https://gist.githubusercontent.com/Bondrake/27555c9d02c2882fd5e32f8ab3ed620b/raw/e1e5dd68761a7f7e6a253fcb64905466104b9df9/trim-generations.sh

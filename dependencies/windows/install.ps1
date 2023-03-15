@@ -1,14 +1,20 @@
 # This script will install my Windows config
 $current_directory = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
+function check_command () {
+    $command = $args[0]
+    while (!(Get-Command $command -ErrorAction SilentlyContinue)) {
+        Write-Host "Waiting for $command to be available in the PATH..."
+        Start-Sleep -Seconds 1
+    }
+    write-output "$command is installed"
+}
+
 if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
     Write-Host "Installing Chocolatey"
     Start-Process powershell -Verb RunAs -ArgumentList '-Command "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))"'
     # Wait until chocolatey is installed
-    write-output "Waiting for chocolatey to be installed"
-    do {
-        get-command choco.exe *> $null
-    } while ($LastExitCode -ne 0)
+    check_command choco.exe
 }
 
 write-output "chocolatey is installed, continuing with installing choco packages"
@@ -31,12 +37,8 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
     # delete file
     Remove-Item "${current_directory}\Setup.msix"
     # Wait until winget is installed
-    write-output "Waiting for winget to be installed"
-    do {
-        get-command winget.exe *> $null
-    } while ($LastExitCode -ne 0)
+    check_command winget.exe
 }
-write-output "winget is installed, continuing with installing winget packages"
 
 # Install winget packages
 Start-Process powershell -Verb RunAs -ArgumentList "winget import -i ${current_directory}\winget.json --ignore-unavailable --accept-package-agreements --accept-source-agreements"
@@ -49,20 +51,15 @@ copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\setting
 if (-not (get-command py.exe -errorAction SilentlyContinue)) {
     Start-Process powershell -Verb RunAs -ArgumentList "choco install python311 --yes --acceptlicense"
     write-output "Waiting for python to be installed"
-    do {
-      get-command py.exe *> $null
-    } while ($LastExitCode -ne 0)
+    check_command py.exe
 }
-write-output "python is installed, continuing with installing python packages"
 
 # Install peru
-Start-Process powershell -Verb RunAs -ArgumentList "py.exe -m pip install peru"
-# Wait until peru is installed
-write-output "Waiting for peru to be installed"
-do {
-    get-command peru *> $null
-} while ($LastExitCode -ne 0)
-write-output "peru is installed, continuing with installing dotfiles"
+if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
+    Start-Process powershell -Verb RunAs -ArgumentList "py.exe -m pip install peru"
+    # Wait until peru is installed
+    check_command peru
+}
 
 # Install dotfiles
 Start-Process powershell -Verb RunAs -ArgumentList "cd ${current_directory}..\..\; peru sync" -Wait

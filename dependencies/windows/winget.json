@@ -43,7 +43,7 @@
 					"PackageIdentifier" : "Microsoft.WindowsTerminal"
 				},
 				{
-					"PackageIdentifier" : "Python.Python.3.9"
+					"PackageIdentifier" : "Python.Python.3.11" 
 				},
 				{
 					"PackageIdentifier" : "stedolan.jq"

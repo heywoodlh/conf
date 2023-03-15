@@ -7,7 +7,7 @@ if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
     # Wait until chocolatey is installed
     write-output "Waiting for chocolatey to be installed"
     do {
-        get-command choco.exe > $null
+        get-command choco.exe *> $null
     } while ($LastExitCode -ne 0)
 }
 
@@ -33,7 +33,7 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
     # Wait until winget is installed
     write-output "Waiting for winget to be installed"
     do {
-        get-command winget.exe > $null
+        get-command winget.exe *> $null
     } while ($LastExitCode -ne 0)
 }
 write-output "winget is installed, continuing with installing winget packages"
@@ -48,7 +48,7 @@ copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\setting
 # Wait until python is installed
 write-output "Waiting for python to be installed"
 do {
-    get-command py.exe > $null
+    get-command py.exe *> $null
 } while ($LastExitCode -ne 0)
 write-output "python is installed, continuing with installing python packages"
 
@@ -57,7 +57,7 @@ Start-Process powershell -Verb RunAs -ArgumentList "py.exe -m pip install peru"
 # Wait until peru is installed
 write-output "Waiting for peru to be installed"
 do {
-    get-command peru > $null
+    get-command peru *> $null
 } while ($LastExitCode -ne 0)
 write-output "peru is installed, continuing with installing dotfiles"
 

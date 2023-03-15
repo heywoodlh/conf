@@ -4,13 +4,13 @@ $current_directory = Split-Path -Parent $MyInvocation.MyCommand.Definition
 if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
     Write-Host "Installing Chocolatey"
     Start-Process powershell -Verb RunAs -ArgumentList '-Command "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))"'
+    # Wait until chocolatey is installed
+    write-output "Waiting for chocolatey to be installed"
+    do {
+        get-command choco.exe > $null
+    } while ($LastExitCode -ne 0)
 }
 
-# Wait until chocolatey is installed
-write-output "Waiting for chocolatey to be installed"
-do {
-    get-command choco.exe > $null
-} while ($LastExitCode -ne 0)
 write-output "chocolatey is installed, continuing with installing choco packages"
 
 Start-Process powershell -Verb RunAs -ArgumentList "choco install ${current_directory}\packages.config --yes --acceptlicense"

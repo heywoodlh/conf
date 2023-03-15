@@ -25,5 +25,5 @@ Expand-Archive -Force -Path "$HOME\Downloads\conf.zip" -DestinationPath "$HOME\D
 Remove-Item "$HOME\Downloads\conf.zip"
 New-Item -ItemType Directory -ErrorAction SilentlyContinue -Path "$HOME\opt\"
 Move-Item -Path "$HOME\Downloads\conf-master" -Destination "$HOME\opt\conf"
-. $HOME\opt\conf\dependencies\windows\install.ps1
+powershell.exe -ExecutionPolicy Bypass -File $HOME\opt\conf\dependencies\windows\install.ps1
 ```

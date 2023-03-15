@@ -46,10 +46,13 @@ new-item -itemtype directory -path "$HOME\AppData\Local\Packages\Microsoft.Windo
 copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 
 # Wait until python is installed
-write-output "Waiting for python to be installed"
-do {
-    get-command py.exe *> $null
-} while ($LastExitCode -ne 0)
+if (-not (get-command py.exe -errorAction SilentlyContinue)) {
+    Start-Process powershell -Verb RunAs -ArgumentList "choco install python311 --yes --acceptlicense"
+    write-output "Waiting for python to be installed"
+    do {
+      get-command py.exe *> $null
+    } while ($LastExitCode -ne 0)
+}
 write-output "python is installed, continuing with installing python packages"
 
 # Install peru

@@ -17,16 +17,16 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
             Where-Object "browser_download_url" -Match '.msixbundle' |
             Select-Object -ExpandProperty "browser_download_url"
     # download
-    Invoke-WebRequest -Uri $url -OutFile "Setup.msix" -UseBasicParsing
+    Invoke-WebRequest -Uri $url -OutFile "${current_directory}\Setup.msix" -UseBasicParsing
     # install
-    Add-AppxPackage -Path "Setup.msix"
+    Start-Process powershell -Verb RunAs -ArgumentList "Add-AppxPackage -Path ${current_directory}\Setup.msix"
     # delete file
-    Remove-Item "Setup.msix"
+    Remove-Item "${current_directory}\Setup.msix"
 }
 
 # Install winget packages
 Start-Process powershell -Verb RunAs -ArgumentList "winget import -i ${current_directory}\winget.json --ignore-unavailable --accept-package-agreements --accept-source-agreements"
 
 # Setup Windows Terminal config
-new-item -ItemType Directory -Path "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
-cp -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+new-item -itemtype directory -path "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -erroraction silentlycontinue
+copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"

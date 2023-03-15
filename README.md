@@ -14,3 +14,16 @@ Or if you just want to test out the environment, run [the container](https://hub
 ```
 docker run -it --rm -w /home/heywoodlh heywoodlh/conf
 ```
+
+### Windows 11:
+
+Run the following PowerShell snippet to install my Windows environment:
+
+```
+Invoke-WebRequest -Uri "https://github.com/heywoodlh/conf/archive/refs/heads/master.zip" -OutFile "$HOME\Downloads\conf.zip"
+Expand-Archive -Force -Path "$HOME\Downloads\conf.zip" -DestinationPath "$HOME\Downloads\"
+Remove-Item "$HOME\Downloads\conf.zip"
+New-Item -ItemType Directory -ErrorAction SilentlyContinue -Path "$HOME\opt\"
+Move-Item -Path "$HOME"\Downloads\conf-master -DestinationPath "$HOME\opt\conf"
+. $HOME\opt\conf\dependencies\windows\install.ps1
+```

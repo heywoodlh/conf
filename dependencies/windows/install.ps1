@@ -1,4 +1,4 @@
-# This script will install chocolatey and winget packages
+# This script will install my Windows config
 $current_directory = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
 if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
@@ -26,3 +26,7 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
 
 # Install winget packages
 Start-Process powershell -Verb RunAs -ArgumentList "winget import -i ${current_directory}\winget.json --ignore-unavailable --accept-package-agreements --accept-source-agreements"
+
+# Setup Windows Terminal config
+new-item -ItemType Directory -Path "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
+cp -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"

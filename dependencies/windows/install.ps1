@@ -49,8 +49,10 @@ copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\setting
 
 # Wait until python is installed
 if (-not (get-command py.exe -errorAction SilentlyContinue)) {
-    Start-Process powershell -Verb RunAs -ArgumentList "choco install python311 --yes --acceptlicense"
+    $python_version="311"
+    Start-Process powershell -Verb RunAs -ArgumentList "choco install python${python_version} --yes --acceptlicense"
     write-output "Waiting for python to be installed"
+    $env:PATH += ";C:\Python${python_version}\Scripts"
     check_command py.exe
 }
 

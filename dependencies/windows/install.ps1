@@ -15,6 +15,7 @@ if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
     Start-Process powershell -Verb RunAs -ArgumentList '-Command "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))"'
     # Wait until chocolatey is installed
     check_command choco.exe
+    $env:PATH += "C:\ProgramData\chocolatey\bin;"
 }
 
 write-output "chocolatey is installed, continuing with installing choco packages"
@@ -52,7 +53,7 @@ if (-not (get-command py.exe -errorAction SilentlyContinue)) {
     $python_version="311"
     Start-Process powershell -Verb RunAs -ArgumentList "choco install python${python_version} --yes --acceptlicense"
     write-output "Waiting for python to be installed"
-    $env:PATH += ";C:\Python${python_version}\Scripts"
+    $env:PATH += "C:\Python${python_version}\Scripts;"
     check_command py.exe
 }
 

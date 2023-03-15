@@ -9,7 +9,7 @@ if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
 # Wait until chocolatey is installed
 write-output "Waiting for chocolatey to be installed"
 do {
-    Start-Process powershell -ArgumentList 'get-command choco.exe' -Wait -WindowStyle Hidden
+    get-command choco.exe > $null
 } while ($LastExitCode -ne 0)
 write-output "chocolatey is installed, continuing with installing choco packages"
 
@@ -33,7 +33,7 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
     # Wait until winget is installed
     write-output "Waiting for winget to be installed"
     do {
-        Start-Process powershell -ArgumentList 'get-command winget.exe' -Wait -WindowStyle Hidden
+        get-command winget.exe > $null
     } while ($LastExitCode -ne 0)
 }
 write-output "winget is installed, continuing with installing winget packages"
@@ -48,7 +48,7 @@ copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\setting
 # Wait until python is installed
 write-output "Waiting for python to be installed"
 do {
-    Start-Process powershell -ArgumentList 'get-command py.exe' -Wait -WindowStyle Hidden
+    get-command py.exe > $null
 } while ($LastExitCode -ne 0)
 write-output "python is installed, continuing with installing python packages"
 
@@ -57,14 +57,16 @@ Start-Process powershell -Verb RunAs -ArgumentList "py.exe -m pip install peru"
 # Wait until peru is installed
 write-output "Waiting for peru to be installed"
 do {
-    Start-Process powershell -ArgumentList 'get-command peru' -Wait -WindowStyle Hidden
+    get-command peru > $null
 } while ($LastExitCode -ne 0)
 write-output "peru is installed, continuing with installing dotfiles"
 
 # Install dotfiles
-Start-Process powershell -Verb RunAs -ArgumentList "cd ${current_directory}..\..\; peru sync"
-Start-Process powershell -Verb RunAs -ArgumentList "${current_directory}\..\..\setup.ps1"
+Start-Process powershell -Verb RunAs -ArgumentList "cd ${current_directory}..\..\; peru sync" -Wait
+Start-Process powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\..\..\setup.ps1"
 
 # Additional scripts
+## User interface preferences
+Start-Process powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\scripts\user-interface.ps1"
 ## Privacy
-Start-Process powershell -Verb RunAs -ArgumentList "${current_directory}\scripts\privacy.bat"
+Start-Process powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\scripts\privacy.bat"

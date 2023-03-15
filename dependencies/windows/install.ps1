@@ -14,8 +14,8 @@ if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
     Write-Host "Installing Chocolatey"
     Start-Process powershell -Verb RunAs -ArgumentList '-Command "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(''https://chocolatey.org/install.ps1''))"'
     # Wait until chocolatey is installed
-    check_command choco.exe
     $env:PATH += "C:\ProgramData\chocolatey\bin;"
+    check_command choco.exe
 }
 
 write-output "chocolatey is installed, continuing with installing choco packages"

@@ -14,14 +14,6 @@
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "right"
-            },
-            "keys": "ctrl+shift+\\"
-        },
-        {
-            "command": 
-            {
                 "action": "copy",
                 "singleLine": false
             },
@@ -31,10 +23,9 @@
             "command": 
             {
                 "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
+                "split": "right"
             },
-            "keys": "alt+shift+d"
+            "keys": "ctrl+shift+\\"
         },
         {
             "command": "unbound",
@@ -55,10 +46,11 @@
         {
             "command": 
             {
-                "action": "moveFocus",
-                "direction": "nextInOrder"
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
             },
-            "keys": "ctrl+shift+]"
+            "keys": "alt+shift+d"
         },
         {
             "command": 
@@ -67,6 +59,14 @@
                 "split": "down"
             },
             "keys": "ctrl+shift+minus"
+        },
+        {
+            "command": 
+            {
+                "action": "moveFocus",
+                "direction": "nextInOrder"
+            },
+            "keys": "ctrl+shift+]"
         },
         {
             "command": 
@@ -98,6 +98,11 @@
             },
             {
                 "commandline": "pwsh.exe -NoLogo",
+                "font": 
+                {
+                    "face": "Iosevka Nerd Font Mono",
+                    "size": 14.0
+                },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",

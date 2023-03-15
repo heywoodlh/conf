@@ -24,6 +24,6 @@ Invoke-WebRequest -Uri "https://github.com/heywoodlh/conf/archive/refs/heads/mas
 Expand-Archive -Force -Path "$HOME\Downloads\conf.zip" -DestinationPath "$HOME\Downloads\"
 Remove-Item "$HOME\Downloads\conf.zip"
 New-Item -ItemType Directory -ErrorAction SilentlyContinue -Path "$HOME\opt\"
-Move-Item -Path "$HOME"\Downloads\conf-master -DestinationPath "$HOME\opt\conf"
+Move-Item -Path "$HOME"\Downloads\conf-master -Destination "$HOME\opt\conf"
 . $HOME\opt\conf\dependencies\windows\install.ps1
 ```

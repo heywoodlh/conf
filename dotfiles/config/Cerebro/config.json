@@ -6,7 +6,7 @@
 	"hotkey": "Control+Space",
 	"showInTray": true,
 	"firstStart": false,
-	"developerMode": false,
+	"developerMode": true,
 	"cleanOnHide": true,
 	"selectOnShow": false,
 	"hideOnBlur": true,

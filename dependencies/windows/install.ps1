@@ -15,6 +15,7 @@ write-output "chocolatey is installed, continuing with installing choco packages
 
 Start-Process powershell -Verb RunAs -ArgumentList "choco install ${current_directory}\packages.config --yes --acceptlicense"
 
+# Install winget if not installed
 if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
     Write-Host "Installing winget"
     # get latest download url
@@ -29,20 +30,40 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
     Start-Process powershell -Verb RunAs -ArgumentList "Add-AppxPackage -Path ${current_directory}\Setup.msix"
     # delete file
     Remove-Item "${current_directory}\Setup.msix"
+    # Wait until winget is installed
+    write-output "Waiting for winget to be installed"
+    do {
+        Start-Process powershell -ArgumentList 'get-command winget.exe' -Wait -WindowStyle Hidden
+    } while ($LastExitCode -ne 0)
 }
-
-# Wait until winget is installed
-write-output "Waiting for chocolatey to be installed"
-do {
-    Start-Process powershell -ArgumentList 'get-command winget.exe' -Wait -WindowStyle Hidden
-} while ($LastExitCode -ne 0)
+write-output "winget is installed, continuing with installing winget packages"
 
 # Install winget packages
 Start-Process powershell -Verb RunAs -ArgumentList "winget import -i ${current_directory}\winget.json --ignore-unavailable --accept-package-agreements --accept-source-agreements"
 
 # Setup Windows Terminal config
-new-item -itemtype directory -path "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -erroraction silentlycontinue
-copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+new-item -itemtype directory -path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -erroraction silentlycontinue
+copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+
+# Wait until python is installed
+write-output "Waiting for python to be installed"
+do {
+    Start-Process powershell -ArgumentList 'get-command py.exe' -Wait -WindowStyle Hidden
+} while ($LastExitCode -ne 0)
+write-output "python is installed, continuing with installing python packages"
+
+# Install peru
+Start-Process powershell -Verb RunAs -ArgumentList "py.exe -m pip install peru"
+# Wait until peru is installed
+write-output "Waiting for peru to be installed"
+do {
+    Start-Process powershell -ArgumentList 'get-command peru' -Wait -WindowStyle Hidden
+} while ($LastExitCode -ne 0)
+write-output "peru is installed, continuing with installing dotfiles"
+
+# Install dotfiles
+Start-Process powershell -Verb RunAs -ArgumentList "cd ${current_directory}..\..\; peru sync"
+Start-Process powershell -Verb RunAs -ArgumentList "${current_directory}\..\..\setup.ps1"
 
 # Additional scripts
 ## Privacy

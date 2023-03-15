@@ -7,9 +7,11 @@ if (-not (get-command choco.exe -errorAction SilentlyContinue)) {
 }
 
 # Wait until chocolatey is installed
+write-output "Waiting for chocolatey to be installed"
 do {
-    Start-Process powershell -ArgumentList 'get-command choco.exe' -Wait
+    Start-Process powershell -ArgumentList 'get-command choco.exe' -Wait -WindowStyle Hidden
 } while ($LastExitCode -ne 0)
+write-output "chocolatey is installed, continuing with installing choco packages"
 
 Start-Process powershell -Verb RunAs -ArgumentList "choco install ${current_directory}\packages.config --yes --acceptlicense"
 
@@ -30,8 +32,9 @@ if (-not (get-command winget.exe -errorAction SilentlyContinue)) {
 }
 
 # Wait until winget is installed
+write-output "Waiting for chocolatey to be installed"
 do {
-    Start-Process powershell -ArgumentList 'get-command winget.exe' -Wait
+    Start-Process powershell -ArgumentList 'get-command winget.exe' -Wait -WindowStyle Hidden
 } while ($LastExitCode -ne 0)
 
 # Install winget packages

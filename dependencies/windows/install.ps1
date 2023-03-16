@@ -44,8 +44,8 @@ if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
 }
 
 # Install dotfiles
-Start-Process -Wait powershell -Verb RunAs -ArgumentList "cd ${dotfiles_directory}; peru sync"
-Start-Process -Wait powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1"
+cd ${dotfiles_directory}; peru sync
+powershell -ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1
 
 # Additional scripts
 ## User interface preferences

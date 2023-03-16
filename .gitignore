@@ -2,7 +2,10 @@ dotfiles/bash.d/custom
 .peru/*
 dotfiles/vim/*
 dotfiles/config/*
+!dotfiles/config/powershell
 dotfiles/config/powershell/Help/*
+dotfiles/config/powershell/custom.ps1
+dotfiles/config/powershell/work.ps1
 dotfiles/oh-my-zsh/*
 dotfiles/bash.d/work
 home/bin/*

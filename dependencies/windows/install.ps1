@@ -1,5 +1,6 @@
 # This script will install my Windows config
 $current_directory = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$dotfiles_directory = "${HOME}\opt\conf"
 
 function check_command () {
     $command = $args[0]
@@ -43,8 +44,8 @@ if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
 }
 
 # Install dotfiles
-Start-Process -Wait powershell -Verb RunAs -ArgumentList "cd ${current_directory}..\..\; peru sync"
-Start-Process -Wait powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\..\..\setup.ps1"
+Start-Process -Wait powershell -Verb RunAs -ArgumentList "cd ${dotfiles_directory}; peru sync"
+Start-Process -Wait powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1"
 
 # Additional scripts
 ## User interface preferences

@@ -36,3 +36,8 @@ function ssh-unlock {
     ssh-add $sshkeyfile.FullName
     Remove-Item $sshkeyfile
 }
+
+function update-dotfiles {
+    git -C "${HOME}\opt\conf" pull origin master
+    powershell.exe -executionpolicy bypass -file "${HOME}\opt\conf\dependencies\windows\install.ps1"
+}

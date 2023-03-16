@@ -12,16 +12,8 @@ function check_command () {
 }
 
 function test-symlink($filePath) {
-    # For Windows check if file is symlink using dir
-    if ($isWindows) {
-        (Get-ItemProperty "${filePath}").LinkType 2>$null
-        $global:symcheck_code = $?
-    } 
-    # For everything not Windows, use BASH to check symlink
-    else {
-        bash -c "test -L ${filePath}"
-        $global:symcheck_code = $?
-    }
+    (Get-ItemProperty "${filePath}").LinkType 2>$null
+    $global:symcheck_code = $?
 }
 
 if (-not (get-command choco.exe -errorAction SilentlyContinue)) {

@@ -15,7 +15,7 @@ Or if you just want to test out the environment, run [the container](https://hub
 docker run -it --rm -w /home/heywoodlh heywoodlh/conf
 ```
 
-### Windows 11:
+### Windows:
 
 Run the following PowerShell snippet to install my Windows environment:
 

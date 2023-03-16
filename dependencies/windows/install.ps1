@@ -55,18 +55,23 @@ if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
     check_command peru.exe
 }
 
+# Remove ~/.config file if it exists
+if (-not (test-symlink $HOME\.config)) {
+    remove-item $HOME\.config -force -recurse -erroraction silentlycontinue
+}
+
 # Install dotfiles
 cd ${dotfiles_directory}; peru sync
 pwsh -ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1
-if (test-path ${dotfiles_directory}\.git) {
+if (-not (test-path ${dotfiles_directory}\.git)) {
     git -C ${dotfiles_directory} init
-    git remote add origin https://github.com/heywoodlh/conf
+    git -C ${dotfiles_directory} remote add origin https://github.com/heywoodlh/conf
 }
 
 # Setup pwsh profile
 if (-not (test-path $HOME\Documents\PowerShell\windows.ps1)) {
     remove-item $HOME\Documents\PowerShell\ -force -recurse -erroraction silentlycontinue
-    $command = "new-item -itemtype SymbolicLink -Path $HOME\Documents\PowerShell -Target ${dotfiles_directory}\dotfiles\config\powershell"
+    $command = "new-item -itemtype SymbolicLink -Path $HOME\Documents\PowerShell -Target $HOME\.config\powershell"
     start-process -wait pwsh -verb RunAs -argumentlist "-C ${command}"
 }
 

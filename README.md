@@ -20,10 +20,12 @@ docker run -it --rm -w /home/heywoodlh heywoodlh/conf
 Run the following PowerShell snippet to install my Windows environment:
 
 ```
-Invoke-WebRequest -Uri "https://github.com/heywoodlh/conf/archive/refs/heads/master.zip" -OutFile "$HOME\Downloads\conf.zip"
-Expand-Archive -Force -Path "$HOME\Downloads\conf.zip" -DestinationPath "$HOME\Downloads\"
-Remove-Item "$HOME\Downloads\conf.zip"
-New-Item -ItemType Directory -ErrorAction SilentlyContinue -Path "$HOME\opt\"
-Move-Item -Path "$HOME\Downloads\conf-master" -Destination "$HOME\opt\conf"
+if (-not (test-path $HOME\opt\conf\setup.ps1) {
+    Invoke-WebRequest -Uri "https://github.com/heywoodlh/conf/archive/refs/heads/master.zip" -OutFile "$HOME\Downloads\conf.zip"
+    Expand-Archive -Force -Path "$HOME\Downloads\conf.zip" -DestinationPath "$HOME\Downloads\"
+    Remove-Item "$HOME\Downloads\conf.zip"
+    New-Item -ItemType Directory -ErrorAction SilentlyContinue -Path "$HOME\opt\"
+    Move-Item -Path "$HOME\Downloads\conf-master" -Destination "$HOME\opt\conf"
+}
 powershell.exe -ExecutionPolicy Bypass -File $HOME\opt\conf\dependencies\windows\install.ps1
 ```

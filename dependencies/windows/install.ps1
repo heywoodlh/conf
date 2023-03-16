@@ -34,7 +34,7 @@ if (-not (test-symlink $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8w
     if (test-path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json) {
         start-process -wait powershell -verb RunAs -argumentlist "remove-item $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -force"
     }
-    start-process -wait powershell -verb RunAs -argumentlist "new-item -itemtype SymbolicLink -path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -target ${dotfiles_directory}\dotfiles\config\windows-terminal\settings.json"
+    pwsh -C "new-item -itemtype SymbolicLink -path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -target ${dotfiles_directory}\dotfiles\config\windows-terminal\settings.json"
 }
 
 $python_version="311"
@@ -65,7 +65,7 @@ if (test-path ${dotfiles_directory}\.git) {
 # Setup pwsh profile
 if (-not (test-path $HOME\Documents\PowerShell\windows.ps1)) {
     remove-item $HOME\Documents\PowerShell\ -force -recurse -erroraction silentlycontinue
-    new-item -itemtype SymbolicLink -Path "$HOME\Documents\PowerShell" -Target "${dotfiles_directory}\dotfiles\config\powershell"
+    pwsh -C "new-item -itemtype SymbolicLink -Path $HOME\Documents\PowerShell -Target ${dotfiles_directory}\dotfiles\config\powershell"
 }
 
 # Additional scripts

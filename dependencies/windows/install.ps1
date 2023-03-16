@@ -36,6 +36,7 @@ write-output "chocolatey is installed, continuing with installing choco packages
 
 Start-Process -Wait powershell -Verb RunAs -ArgumentList "choco install ${current_directory}\packages.config --yes --acceptlicense"
 
+new-item -itemtype directory -path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -erroraction silentlycontinue
 # Create symlink for Windows Terminal settings
 if (-not (test-symlink $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json)) {
     if (test-path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json) {
@@ -43,8 +44,6 @@ if (-not (test-symlink $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8w
     }
     start-process -wait powershell -verb RunAs -argumentlist "new-item -itemtype SymbolicLink -path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -target ${dotfiles_directory}\dotfiles\config\windows-terminal\settings.json"
 }
-new-item -itemtype directory -path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -erroraction silentlycontinue
-copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 
 $python_version="311"
 $env:PATH += "C:\Python${python_version}\Scripts;"
@@ -73,7 +72,7 @@ if (test-path ${dotfiles_directory}\.git) {
 
 # Setup pwsh profile
 if (-not (test-path $HOME\Documents\PowerShell\windows.ps1)) {
-    start-process -wait powershell -verb RunAs -argumentlist "remove-item $HOME\Documents\PowerShell\ -force -recurse -erroraction silentlycontinue"
+    remove-item $HOME\Documents\PowerShell\ -force -recurse -erroraction silentlycontinue
     new-item -itemtype SymbolicLink -Path "$HOME\Documents\PowerShell" -Target "${dotfiles_directory}\dotfiles\config\powershell"
 }
 

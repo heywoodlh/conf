@@ -39,7 +39,7 @@ Start-Process -Wait powershell -Verb RunAs -ArgumentList "choco install ${curren
 # Create symlink for Windows Terminal settings
 if (-not (test-symlink $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json)) {
     if (test-path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json) {
-        start-process -wait powershell -verb RunAs -argumentlist "move-item $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json.bak"
+        start-process -wait powershell -verb RunAs -argumentlist "remove-item $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -force"
     }
     start-process -wait powershell -verb RunAs -argumentlist "new-item -itemtype SymbolicLink -path $HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -target ${dotfiles_directory}\dotfiles\config\windows-terminal\settings.json"
 }

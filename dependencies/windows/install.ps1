@@ -25,20 +25,20 @@ Start-Process powershell -Verb RunAs -ArgumentList "choco install ${current_dire
 new-item -itemtype directory -path "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -erroraction silentlycontinue
 copy-item -v ${current_directory}\..\..\dotfiles\config\windows-terminal\settings.json "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 
+$python_version="311"
+$env:PATH += "C:\Python${python_version}\Scripts;"
 # Wait until python is installed
 if (-not (get-command py.exe -errorAction SilentlyContinue)) {
-    $python_version="311"
     Start-Process powershell -Verb RunAs -ArgumentList "choco install python${python_version} --yes --acceptlicense"
     write-output "Waiting for python to be installed"
-    $env:PATH += "C:\Python${python_version}\Scripts;"
     check_command py.exe
 }
 
 # Install peru
 if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
-    Start-Process powershell -Verb RunAs -ArgumentList "py.exe -m pip install peru"
+    Start-Process powershell -Verb RunAs -ArgumentList "pip.exe install peru"
     # Wait until peru is installed
-    check_command peru
+    check_command peru.exe
 }
 
 # Install dotfiles

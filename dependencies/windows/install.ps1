@@ -65,14 +65,20 @@ if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
 
 # Install dotfiles
 cd ${dotfiles_directory}; peru sync
-powershell -ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1
+pwsh -ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1
 if (test-path ${dotfiles_directory}\.git) {
     git -C ${dotfiles_directory} init
     git remote add origin https://github.com/heywoodlh/conf
 }
 
+# Setup pwsh profile
+if (-not (test-path $HOME\Documents\PowerShell\windows.ps1)) {
+    start-process -wait powershell -verb RunAs -argumentlist "remove-item $HOME\Documents\PowerShell\ -force -recurse -erroraction silentlycontinue"
+    new-item -itemtype SymbolicLink -Path "$HOME\Documents\PowerShell" -Target "${dotfiles_directory}\dotfiles\config\powershell"
+}
+
 # Additional scripts
 ## User interface preferences
-Start-Process -Wait powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\scripts\user-interface.ps1"
+Start-Process -Wait pwsh -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\scripts\user-interface.ps1"
 ## Privacy
-Start-Process -Wait powershell -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\scripts\privacy.bat"
+Start-Process -Wait pwsh -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File ${current_directory}\scripts\privacy.bat"

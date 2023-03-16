@@ -14,9 +14,11 @@ function test-symlink($filePath) {
 
 ## Get file path/name
 $script_path = $MyInvocation.MyCommand.Path
+write-output "Script path: ${script_path}"
 
 ## Get parent of file
 $working_dir = Split-Path ${script_path} -Parent
+write-output "Working directory: ${working_dir}"
 
 # Function to create symlinks in target directory
 function create-symlink-in-dir($src_dir, $target_dir, $dot) {

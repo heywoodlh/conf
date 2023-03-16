@@ -66,6 +66,10 @@ if (-not (get-command peru.exe -errorAction SilentlyContinue)) {
 # Install dotfiles
 cd ${dotfiles_directory}; peru sync
 powershell -ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1
+if (test-path ${dotfiles_directory}\.git) {
+    git -C ${dotfiles_directory} init
+    git remote add origin https://github.com/heywoodlh/conf
+}
 
 # Additional scripts
 ## User interface preferences

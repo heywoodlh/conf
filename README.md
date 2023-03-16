@@ -20,7 +20,7 @@ docker run -it --rm -w /home/heywoodlh heywoodlh/conf
 Run the following PowerShell snippet to install my Windows environment:
 
 ```
-if (-not (test-path $HOME\opt\conf\setup.ps1) {
+if (-not (test-path $HOME\opt\conf\setup.ps1)) {
     Invoke-WebRequest -Uri "https://github.com/heywoodlh/conf/archive/refs/heads/master.zip" -OutFile "$HOME\Downloads\conf.zip"
     Expand-Archive -Force -Path "$HOME\Downloads\conf.zip" -DestinationPath "$HOME\Downloads\"
     Remove-Item "$HOME\Downloads\conf.zip"

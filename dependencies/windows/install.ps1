@@ -61,7 +61,8 @@ if (-not (test-symlink $HOME\.config)) {
 }
 
 # Install dotfiles
-cd ${dotfiles_directory}; peru sync
+$command="cd ${dotfiles_directory}; peru.exe sync"
+start-process -wait pwsh -argumentlist "-C ${command}"
 pwsh -ExecutionPolicy Bypass -File ${dotfiles_directory}\setup.ps1
 if (-not (test-path ${dotfiles_directory}\.git)) {
     git -C ${dotfiles_directory} init

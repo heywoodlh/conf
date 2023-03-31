@@ -24,7 +24,7 @@ $env:PATH = "/run/current-system/sw/bin:" + $env:PATH
 
 function darbuild {
     git -C ${HOME}/opt/nixos-configs pull origin master 
-    darwin-rebuild switch --flake .#$(hostname)
+    darwin-rebuild switch --flake ${HOME}/opt/nixos-configs#$(hostname)
 }
 
 $env:__NIX_DARWIN_SET_ENVIRONMENT_DONE = 1

@@ -41,7 +41,7 @@ if ($isNixOS)
     }
     # Function to install nixos configs
     function nixos-switch {
-        sudo nixos-rebuild switch --flake github:heywoodlh/nixos-configs#$(hostname)
+        sudo nixos-rebuild switch --flake github:heywoodlh/nixos-configs#$(hostname) -p current
     }
 
 }

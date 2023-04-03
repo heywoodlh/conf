@@ -41,13 +41,13 @@ if ($isNixOS)
     }
     # Functions to install nixos configs
     function nixos-switch {
-        sudo nixos-rebuild switch --flake github:heywoodlh/nixos-configs#$(hostname)
+        if (-not (test-path ~/opt/nixos-configs))
+        {
+            git clone https://github.com/heywoodlh/nixos-configs.git ~/opt/nixos-configs
+        }
+        git -C ~/opt/nixos-configs pull origin master
+        sudo nixos-rebuild switch --flake ~/opt/nixos-configs#$(hostname) --impure
     }
-    
-    function nixos-desktop {
-        sudo nixos-rebuild switch --flake github:heywoodlh/nixos-configs#$(hostname) -p current
-    }
-
 }
 
 # Start ssh agent if connected over SSH

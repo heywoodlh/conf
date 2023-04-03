@@ -41,6 +41,11 @@ if ($isNixOS)
     }
     # Functions to install nixos configs
     function nixos-switch {
+        if (-not (test-path ~/opt/conf))
+        {
+            git clone https://github.com/heywoodlh/conf.git ~/opt/conf
+        }
+        git -C ~/opt/conf pull origin master
         if (-not (test-path ~/opt/nixos-configs))
         {
             git clone https://github.com/heywoodlh/nixos-configs.git ~/opt/nixos-configs

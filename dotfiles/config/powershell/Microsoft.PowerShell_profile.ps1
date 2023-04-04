@@ -389,3 +389,8 @@ $env:EDITOR = "vim"
 
 ## Disable paging in AWS
 $env:AWS_PAGER = ""
+
+## Disable glyphs over SSh
+if ($env:SSH_CONNECTION) {
+    $env:PROMPT_GLYPHS_DISABLE = 'true'
+}

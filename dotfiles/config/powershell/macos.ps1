@@ -23,6 +23,7 @@ $env:PATH = "${HOME}/bin/tfenv/bin:" + $env:PATH
 $env:PATH = "/run/current-system/sw/bin:" + $env:PATH
 
 function darbuild {
+    git -C ${HOME}/opt/conf pull origin master 
     git -C ${HOME}/opt/nixos-configs pull origin master 
     darwin-rebuild switch --flake ${HOME}/opt/nixos-configs#$(hostname)
 }

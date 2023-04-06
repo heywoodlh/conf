@@ -76,8 +76,6 @@ function httrack() { docker run --rm -it --net host -v "$((get-location).path)":
 
 function hydra() { docker run --rm --net host -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp --privileged docker.io/heywoodlh/kali-linux hydra $args }
 
-function inim() { docker run -it --rm -v "$((get-location).path)":/app -w /app docker.io/heywoodlh/inim $args }
-
 function jekyll() { docker run --rm -it -p 4000:4000 -v "$((get-location).path)":/srv/jekyll jekyll/jekyll:3.8 jekyll $args }
 
 function kali() { docker run -it --rm --net host --privileged docker.io/heywoodlh/kali-linux /bin/bash $args }
@@ -136,16 +134,6 @@ function netscan() { docker run -it --rm --net host docker.io/heywoodlh/netscan 
 function netdiscover() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp docker.io/heywoodlh/kali-linux netdiscover }
 
 function nikto() { docker run -it --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp docker.io/heywoodlh/nikto $args }
-
-function nim() {
-    new-item -type directory ${HOME}/.nimble -erroraction silentlycontinue
-    docker run -it --rm -e "NIMBLE_DIRECTORY=/root/.nimble" --rm -v "${HOME}/.nimble:/root/.nimble" -v "$((get-location).path):/app" -w /app docker.io/heywoodlh/nim nim $args
-}
-
-function nimble() {
-    new-item -type directory ${HOME}/.nimble -erroraction silentlycontinue
-    docker run -it -e "NIMBLE_DIRECTORY=/root/.nimble" --rm -v "${HOME}/.nimble:/root/.nimble" -v "$((get-location).path):/app" -w /app docker.io/heywoodlh/nim nimble $args 
-}
 
 function nmap() {
     docker run --rm -v "$((get-location).path):/data" -w /data --net host --privileged docker.io/heywoodlh/telnet nmap $args 

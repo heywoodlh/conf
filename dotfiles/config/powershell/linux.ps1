@@ -39,11 +39,20 @@ if ($isNixOS)
 	    nix-shell -p glib gnome.mutter --command 'env XDG_DATA_DIRS=$GSETTINGS_SCHEMAS_PATH gsettings set org.gnome.mutter.keybindings switch-monitor "[]"'
         } > $null
     }
-    # Function to install nixos configs
+    # Functions to install nixos configs
     function nixos-switch {
-        sudo nixos-rebuild switch --flake github:heywoodlh/nixos-configs#$(hostname)
+        if (-not (test-path ~/opt/conf))
+        {
+            git clone https://github.com/heywoodlh/conf.git ~/opt/conf
+        }
+        git -C ~/opt/conf pull origin master
+        if (-not (test-path ~/opt/nixos-configs))
+        {
+            git clone https://github.com/heywoodlh/nixos-configs.git ~/opt/nixos-configs
+        }
+        git -C ~/opt/nixos-configs pull origin master
+        sudo nixos-rebuild switch --flake ~/opt/nixos-configs#$(hostname) --impure
     }
-
 }
 
 # Start ssh agent if connected over SSH

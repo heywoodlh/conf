@@ -74,18 +74,35 @@ function prompt {
 
     # Values that will always be visible in prompt
     $working_dir_prompt = "$([char]27)[34m${working_dir}"
-    $prompt_cursor = "$([char]27)[$prompt_cursor_color❯ "
+    # If $env:PROMPT_GLYPH_DISABLE is true, don't show the prompt glyph
+    if ($env:PROMPT_GLYPHS_DISABLE -ne 'true') {
+        $prompt_cursor_symbol = "❯"  
+    } else {
+        $prompt_cursor_symbol = "$"
+    }
+    $prompt_cursor = "$([char]27)[$prompt_cursor_color${prompt_cursor_symbol} "
 
     # Array to add optional values to
     $optional_prompt_values = @()
     # Values that may or may not be visible in my prompt, based on terminal width
     # (Make sure that checks for null or empty values are here)
     if ($git_branch -ne $null -and $git_branch -ne '') {
-        $git_branch_prompt = "$([char]27)[92m${git_branch}"
+        if ($env:PROMPT_GLYPHS_DISABLE -ne 'true') {
+            $git_symbol = ""  
+        } else {
+            $git_symbol = ""
+        }
+       
+        $git_branch_prompt = "$([char]27)[92m${git_symbol}${git_branch}"
         $optional_prompt_values += $git_branch_prompt
     }
     if ($env:AWS_PROFILE) {
-        $aws_profile_prompt = "$([char]27)[33m${env:AWS_PROFILE}"
+        if ($env:PROMPT_GLYPHS_DISABLE -ne 'true') {
+            $aws_symbol = ""  
+        } else {
+            $aws_symbol = ""
+        }
+        $aws_profile_prompt = "$([char]27)[33m${aws_symbol}${env:AWS_PROFILE}"
         $optional_prompt_values += $aws_profile_prompt
     }
     if ($env:KUBE_PROMPT -and $kubectl_context -ne $null -and $kubectl_context -ne '') {
@@ -93,12 +110,22 @@ function prompt {
 	if ($kubectl_context.contains("arn:aws")) {
             $kubectl_context = $kubectl_context.split('/')[1]
 	}
-        $kubectl_context_prompt = "$([char]27)[36m${kubectl_context}"
+        if ($env:PROMPT_GLYPHS_DISABLE -ne 'true') {
+            $kube_symbol = ""  
+        } else {
+            $kube_symbol = ""
+        }
+        $kubectl_context_prompt = "$([char]27)[36m${kube_symbol}${kubectl_context}"
         $optional_prompt_values += $kubectl_context_prompt
     }
     # Check if session is over SSH
     if ($env:SSH_CONNECTION) {
-        $ssh_prompt = "$([char]27)[31m[$((dir env:SSH_CLIENT).Value.split(' ')[0])]"
+        if ($env:PROMPT_GLYPHS_DISABLE -ne 'true') {
+            $ssh_symbol = ""  
+        } else {
+            $ssh_symbol = ""
+        }
+        $ssh_prompt = "$([char]27)[31m${ssh_symbol}[$((dir env:SSH_CLIENT).Value.split(' ')[0])]"
         $optional_prompt_values += $ssh_prompt
     }
 
@@ -362,3 +389,8 @@ $env:EDITOR = "vim"
 
 ## Disable paging in AWS
 $env:AWS_PAGER = ""
+
+## Disable glyphs over SSh
+if ($env:SSH_CONNECTION) {
+    $env:PROMPT_GLYPHS_DISABLE = 'true'
+}

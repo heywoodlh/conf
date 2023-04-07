@@ -48,7 +48,13 @@ if ($isNixOS)
         git -C ~/opt/conf pull origin master
         if (-not (test-path ~/opt/nixos-configs))
         {
-            git clone https://github.com/heywoodlh/nixos-configs.git ~/opt/nixos-configs
+            if ($(hostname) | grep -iq culug)
+            {
+                $git_url = "https://github.com/central-utah-lug/nixos-configs.git"
+            } else {
+                $git_url = "https://github.com/heywoodlh/nixos-configs.git"
+            }
+            git clone ${git_url} ~/opt/nixos-configs
         }
         git -C ~/opt/nixos-configs pull origin master
         sudo nixos-rebuild switch --flake ~/opt/nixos-configs#$(hostname) --impure

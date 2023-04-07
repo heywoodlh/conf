@@ -48,7 +48,7 @@ if ($isNixOS)
         git -C ~/opt/conf pull origin master
         if (-not (test-path ~/opt/nixos-configs))
         {
-            if (grep -iq culug /etc/hostname)
+            if ($(grep -iq culug /etc/hostname))
             {
                 $git_url = "https://github.com/central-utah-lug/nixos-configs.git"
             } else {

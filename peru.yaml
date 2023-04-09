@@ -62,6 +62,11 @@ curl module choose-file-manager:
     executable: choose-file-manager.sh
     sha1: c025e5ea4f8574bb2af560b525921cbd6348576a
 
+curl module macos-battpop:
+    url: https://gist.githubusercontent.com/heywoodlh/1baa13d67544245c11112e58fc45d967/raw/4ef13706bcfc1335e8abadc2821862478aa77b5d/macos-battpop.sh 
+    executable: macos-battpop.sh
+    sha1: 83b99e1859e8cfe01a46d086077cda4771a2cf20
+
 curl module macos-notify-send:
     url: https://gist.githubusercontent.com/heywoodlh/651a02008600259ef9e508e30872f934/raw/5f04c2818f65fbbbd5ec54a9b796128f0f8327c4/macos-notify-send.sh 
     executable: macos-notify-send.sh

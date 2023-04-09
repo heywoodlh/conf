@@ -3,6 +3,7 @@ imports:
 
   caffeine: home/bin/
   choose-file-manager: home/bin/
+  macos-notify-send: home/bin/
   kind-sh: home/bin
   vultr-sh: home/bin
 
@@ -61,10 +62,10 @@ curl module choose-file-manager:
     executable: choose-file-manager.sh
     sha1: c025e5ea4f8574bb2af560b525921cbd6348576a
 
-curl module choose-launcher:
-    url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/e95fb35c7ff6c3e02a5719d5baec722b8722a947/choose-launcher.sh
-    executable: choose-launcher.sh
-    sha1: 58858d211ca1e3eb0f974cc6834e5b24841331f3
+curl module macos-notify-send:
+    url: https://gist.githubusercontent.com/heywoodlh/651a02008600259ef9e508e30872f934/raw/5f04c2818f65fbbbd5ec54a9b796128f0f8327c4/macos-notify-send.sh 
+    executable: macos-notify-send.sh
+    sha1: 7b1d9d06343c2c5c30085b2e9ccefe07f9f8adb9
 
 curl module watch-lima:
     url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/3d053104e966cf3a162a1ed19ee9fecbfe5d4129/watch-lima.sh 
@@ -105,11 +106,11 @@ curl module ime-vim:
 
 git module vim-ale:
     url: https://github.com/dense-analysis/ale
-    rev: e1a0781f9de7d90554ea572cd220d72f823be3dc
+    rev: 57254db9ef1e0b0bf21466ed2d3ebaf60338768f
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: 038e3a6ca59f11b3bb6a94087c1792322d1a1d5c
+    rev: a532fed72ace069e61c0132125b728316f9abd3c
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -126,19 +127,19 @@ git module vim-colorizer:
 git module vim-copilot:
     url: https://github.com/github/copilot.vim
     reup: release
-    rev: 9e869d29e62e36b7eb6fb238a4ca6a6237e7d78b
+    rev: b6e5624351ba735e25eb8864d7d22819aad00606
 
 git module vim-firenvim:
     url: https://github.com/glacambre/firenvim
-    rev: d6d69b087c2b3430d837ec80ff71671112b2874b
+    rev: ee4ef314bd990b2b05b7fbd95b857159e444a2fe
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: 5b52a0f395065d6cb7b65a00a5e17eaf9ebd64d5
+    rev: ef99f1d90cdb33a52931aed5868785b51fb9411d
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: 1116e481bef4f63abe0e506ce20469e244c505e6
+    rev: f1a96296525975ea7d4c45aebc4fed5117cecb72
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
@@ -146,11 +147,11 @@ git module vim-fzf-vim:
 
 git module vim-glow:
     url: https://github.com/jclsn/glow.vim 
-    rev: 3d2600519a6ed1048a75c195bcad951d9de022f0
+    rev: a78229e28b5d87c12e95dd3bf44f2bef2c918e8c
 
 git module vim-gitgutter:
     url: https://github.com/airblade/vim-gitgutter
-    rev: 3d29f67380c428afbde61da0ac7ae55424f0aa52
+    rev: 44dbd57dd19e8ec58b2a50c787c8ae7bb231c145
 
 git module vim-indentline:
     url: https://github.com/Yggdroot/indentLine
@@ -183,7 +184,7 @@ git module vim-pathogen:
 
 git module vim-sensible:
     url: https://github.com/tpope/vim-sensible
-    rev: 5693bb650a26723975276bef7b1da2f00a571e0e
+    rev: 3e878abfd6ddc6fb5dba48b41f2b72c3a2f8249f
 
 git module vim-sudoedit:
     url: https://github.com/chrisbra/SudoEdit.vim
@@ -215,8 +216,8 @@ git module zsh-autosuggestions:
 
 git module zsh-completions:
     url: https://github.com/zsh-users/zsh-completions 
-    rev: 98ea8e685c1a9630a21b39a1596cb94794d1cb3c
+    rev: 820aaba911fce0594bf17f0e9a82092a6af7810e
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: 2aa16c54314f175e4f34fdd7fa1bdb03f1797c6a
+    rev: fb1287fedbb877201572d164ba0bad5c9d375b4f

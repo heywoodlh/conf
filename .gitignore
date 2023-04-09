@@ -2,6 +2,7 @@ dotfiles/bash.d/custom
 .peru/*
 dotfiles/vim/*
 dotfiles/config/*
+!dotfiles/config/alacritty
 !dotfiles/config/powershell
 dotfiles/config/powershell/Help/*
 dotfiles/config/powershell/custom.ps1

@@ -70,6 +70,3 @@ font:
 
 window:
   decorations: none
-  dimensions:
-    columns: 500
-    lines: 30

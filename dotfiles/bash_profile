@@ -1,4 +1,4 @@
-export PS1="\W $ "
+export PS1="\u@\h:\w\ $"
 if [[ -n ${SSH_TTY} ]]
 then
     export PS1="[\u@\h \W] $ "

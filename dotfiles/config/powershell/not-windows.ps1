@@ -66,6 +66,15 @@ function nix-kube-cluster {
     }
 }
 
+function pass-insert-otp() {
+    if ($args[0]) {
+        $entry = $args[0]
+        printf "otpauth://totp/PROVIDER?secret=SECRET&issuer=totp-secret" | vipe | pass otp append -e "$entry"
+    } else {
+        echo "usage: pass-insert-otp [entry]"
+    }
+}
+
 function start-ssh-agent () {
     $ssh_agent_output = $(ssh-agent -s)    
     $env:SSH_AUTH_SOCK = $ssh_agent_output | grep SSH_AUTH_SOCK | cut -d "=" -f 2 | cut -d ";" -f1

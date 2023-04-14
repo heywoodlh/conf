@@ -13,6 +13,11 @@ if (test-path ~/bin) {
     $env:PATH = "${HOME}/bin:" + $env:PATH
 }
 
+## Add ~/bin to PATH
+if (test-path ~/go/bin) {
+    $env:PATH = "${HOME}/go/bin:" + $env:PATH
+}
+
 # Check if tmux session
 if (dir env:TMUX -erroraction silentlycontinue) {
     $isTmux = 'true'
@@ -214,11 +219,6 @@ if (get-command docker -erroraction 'silentlycontinue') {
     . ~/.config/powershell/docker.ps1
 }
 
-# Stuff not to save in dotfiles repo
-if (test-path ~/.config/powershell/custom.ps1) {
-    . ~/.config/powershell/custom.ps1
-}
-
 # Lima docker stuff
 if (test-path ~/.lima/docker/sock/docker.sock) {
     . ~/.config/powershell/lima.ps1
@@ -370,6 +370,8 @@ function which {
     $command_type = get-command -erroraction silentlycontinue ${command_name} | select-object -expandproperty commandtype 
     if (${command_type} -eq 'Application') {
         get-command ${command_name} | select-object -expandproperty source
+    } elseif (${command_type} -eq 'Function') {
+        "${command_type}: $(get-command ${command_name} | select-object -expandproperty scriptblock)"
     } else {
         ${command_type}
     }
@@ -393,4 +395,9 @@ $env:AWS_PAGER = ""
 ## Disable glyphs over SSh
 if ($env:SSH_CONNECTION) {
     $env:PROMPT_GLYPHS_DISABLE = 'true'
+}
+
+# Stuff not to save in dotfiles repo (leave this last so custom stuff to machine is final)
+if (test-path ~/.config/powershell/custom.ps1) {
+    . ~/.config/powershell/custom.ps1
 }

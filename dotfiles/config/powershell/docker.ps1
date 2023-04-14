@@ -94,8 +94,6 @@ function maltego() {
     docker run -it --rm -v ${HOME}/Downloads:/home/maltego/Downloads -e USER=maltego -e PASSWORD=maltego -p 127.0.0.1:3389:3389 docker.io/heywoodlh/maltego $args
 }
 
-function marp() { docker run --rm -v "$((get-location).path)":/home/marp/app/ -e LANG=$LANG marpteam/marp-cli $args }
-
 function masscan() { docker run --rm --net host -w /data -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp --privileged docker.io/heywoodlh/telnet masscan $args }
 
 function medusa() { docker run -i --rm docker.io/heywoodlh/kali-linux medusa $args }

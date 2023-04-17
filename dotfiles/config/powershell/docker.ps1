@@ -76,7 +76,7 @@ function httrack() { docker run --rm -it --net host -v "$((get-location).path)":
 
 function hydra() { docker run --rm --net host -v "$((get-location).path):/data" -v ${HOME}/tmp:/tmp --privileged docker.io/heywoodlh/kali-linux hydra $args }
 
-function jekyll() { docker run --rm -it -p 4000:4000 -v "$((get-location).path)":/srv/jekyll jekyll/jekyll:3.8 jekyll $args }
+function jekyll() { docker run --rm -it -p 4000:4000 -v "$((get-location).path):/srv/jekyll" jekyll/jekyll:3.8 jekyll $args }
 
 function kali() { docker run -it --rm --net host --privileged docker.io/heywoodlh/kali-linux /bin/bash $args }
 

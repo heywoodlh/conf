@@ -153,6 +153,7 @@ module.exports = {
           'Ctrl+Alt+t':  'new-window',
           'Command+Enter':  'new-window',
         },
+        opacity: 0.9,
     },
     // a list of plugins to fetch and install from npm
     // format: [@org/]project[#version]
@@ -162,6 +163,8 @@ module.exports = {
     //   `project#1.0.1`
     plugins: [
       "hyper-keymap",
+      "hyper-opacity",
+      "hyper-quit",
       "hyperterm-overlay",
       "nord-hyper"
     ],

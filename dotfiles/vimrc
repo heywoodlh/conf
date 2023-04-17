@@ -112,6 +112,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 let g:indentLine_char = '⦙'
 set shiftwidth=4
 let g:vim_json_conceal=0
+let g:vim_json_syntax_conceal = 0
 let g:markdown_syntax_conceal=0
 augroup filetype_indent
   autocmd!

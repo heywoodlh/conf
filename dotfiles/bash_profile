@@ -9,10 +9,19 @@ export PAGER="less"
 export GH_PAGER="cat"
 
 ## Start SSH agent
-if [[ -z ${SSH_AGENT_PID} ]]
-then
-	eval "$(ssh-agent -s)" > /dev/null
-fi
+function idempotent-ssh-agent {
+        local timeout=${1:-1h}
+        mkdir -p ~/.ssh
+        local ssh_agent_source_file=${2:-$HOME/.ssh/agent.sourceme}
+        local pid=$(pgrep -u $USER '^ssh-agent')
+        if [[ -z $pid ]]; then
+                ssh-agent -t $timeout > "$ssh_agent_source_file"
+        fi
+        source "$ssh_agent_source_file"
+}
+
+idempotent-ssh-agent
+
 
 ## Bash aliases (loaded after functions so the functions can be referenced)
 if [ -f ~/.bash_aliases ]

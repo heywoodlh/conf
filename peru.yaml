@@ -2,6 +2,7 @@ imports:
   base16-shell: dotfiles/config/base16-shell
 
   caffeine: home/bin/
+  choose-bwmenu: home/bin/
   choose-file-manager: home/bin/
   choose-launcher: home/bin/
   macos-notify-send: home/bin/
@@ -58,6 +59,11 @@ curl module caffeine:
     url: https://gist.githubusercontent.com/heywoodlh/acff340879a19e2e13141e99dcb5dc94/raw/57632b00cafdf835cf424872223c17918540c148/caffeine.sh
     executable: caffeine.sh
     sha1: b3ee564650f9a67b025485f1bda265360e43d2e6
+
+curl module choose-bwmenu:
+    url: https://raw.githubusercontent.com/heywoodlh/choose-bwmenu/master/bwmenu 
+    executable: bwmenu 
+    sha1: 517d9e7880d6123d9412b4d74e49d8ab796a3e4d
 
 curl module choose-file-manager:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/9c71f70a3094072e4527fa2e7ebd0ccfaad133c2/choose-file-manager.sh

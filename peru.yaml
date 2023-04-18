@@ -76,7 +76,7 @@ curl module macos-notify-send:
 curl module pass-choose:
     url: https://raw.githubusercontent.com/heywoodlh/pass-choose/master/choose.sh
     executable: choose.sh
-    sha1: d52d3fbb407f46d2f944a7df4aa33508b376b27f
+    sha1: 4da4b4cc1e23af1b072711e4f55ef282397ff20c
 
 curl module watch-lima:
     url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/3d053104e966cf3a162a1ed19ee9fecbfe5d4129/watch-lima.sh 

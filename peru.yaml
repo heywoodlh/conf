@@ -4,6 +4,7 @@ imports:
   caffeine: home/bin/
   choose-file-manager: home/bin/
   macos-notify-send: home/bin/
+  pass-choose: home/bin
   kind-sh: home/bin
   vultr-sh: home/bin
 
@@ -72,6 +73,11 @@ curl module macos-notify-send:
     executable: macos-notify-send.sh
     sha1: 7b1d9d06343c2c5c30085b2e9ccefe07f9f8adb9
 
+curl module pass-choose:
+    url: https://raw.githubusercontent.com/heywoodlh/pass-choose/master/choose.sh
+    executable: choose.sh
+    sha1: d52d3fbb407f46d2f944a7df4aa33508b376b27f
+
 curl module watch-lima:
     url: https://gist.githubusercontent.com/heywoodlh/42abd3358288cb881a86d980751d82c0/raw/3d053104e966cf3a162a1ed19ee9fecbfe5d4129/watch-lima.sh 
     executable: watch-lima.sh
@@ -91,7 +97,7 @@ curl module vultr-sh:
 git module tmux-nord-theme:
     url: https://github.com/heywoodlh/nord-tmux
     reup: develop
-    rev: 07e8e57443e673b585223593e14f506a64f93d77
+    rev: a06d2835e7fa4b60d82723420a160f89b8218c7f
 
 curl module nix-generations-trimmer:
     url: https://gist.githubusercontent.com/Bondrake/27555c9d02c2882fd5e32f8ab3ed620b/raw/e1e5dd68761a7f7e6a253fcb64905466104b9df9/trim-generations.sh
@@ -111,11 +117,11 @@ curl module ime-vim:
 
 git module vim-ale:
     url: https://github.com/dense-analysis/ale
-    rev: 57254db9ef1e0b0bf21466ed2d3ebaf60338768f
+    rev: fdadaed2ba93432add241bb25f9935dc2ebb4152
 
 git module vim-airline:
     url: https://github.com/vim-airline/vim-airline
-    rev: a532fed72ace069e61c0132125b728316f9abd3c
+    rev: 5891a3f7bedb5d0b23a546189a607836913814bb
 
 git module vim-airline-themes:
     url: https://github.com/vim-airline/vim-airline-themes
@@ -140,11 +146,11 @@ git module vim-firenvim:
 
 git module vim-fugitive:
     url: https://github.com/tpope/vim-fugitive
-    rev: ef99f1d90cdb33a52931aed5868785b51fb9411d
+    rev: e6651a79facf5cc2b7c554fdc19eb8a9fe89602c
 
 git module vim-fzf:
     url: https://github.com/junegunn/fzf
-    rev: f1a96296525975ea7d4c45aebc4fed5117cecb72
+    rev: 96670d5f16dcf23d590eb1d83d1de351b2e8fb15
 
 git module vim-fzf-vim:
     url: https://github.com/junegunn/fzf.vim
@@ -181,7 +187,7 @@ git module vim-nerdtree:
 git module vim-nord:
     url: https://github.com/arcticicestudio/nord-vim
     reup: main
-    rev: 684c345b8a8bf5e37919c38be6edaaa9356dbf4b
+    rev: f725ac643afce04021c9abcbb57711fcb9fa71e9
 
 git module vim-pathogen:
     url: https://github.com/tpope/vim-pathogen
@@ -225,4 +231,4 @@ git module zsh-completions:
 
 git module zsh-powerlevel10k:
     url: https://github.com/romkatv/powerlevel10k
-    rev: fb1287fedbb877201572d164ba0bad5c9d375b4f
+    rev: 045f006c50d782a6d3acbd8a07d1595322ff7e43

@@ -3,6 +3,7 @@ imports:
 
   caffeine: home/bin/
   choose-file-manager: home/bin/
+  choose-launcher: home/bin/
   macos-notify-send: home/bin/
   pass-choose: home/bin
   kind-sh: home/bin
@@ -62,6 +63,11 @@ curl module choose-file-manager:
     url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/9c71f70a3094072e4527fa2e7ebd0ccfaad133c2/choose-file-manager.sh
     executable: choose-file-manager.sh
     sha1: c025e5ea4f8574bb2af560b525921cbd6348576a
+
+curl module choose-launcher:
+    url: https://gist.githubusercontent.com/heywoodlh/2f3f3bd83bb32719cb89ec3ee137fb5b/raw/e95fb35c7ff6c3e02a5719d5baec722b8722a947/choose-launcher.sh 
+    executable: choose-launcher.sh
+    sha1: 58858d211ca1e3eb0f974cc6834e5b24841331f3
 
 curl module macos-battpop:
     url: https://gist.githubusercontent.com/heywoodlh/1baa13d67544245c11112e58fc45d967/raw/4ef13706bcfc1335e8abadc2821862478aa77b5d/macos-battpop.sh 

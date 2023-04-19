@@ -76,7 +76,15 @@ function pass-insert-otp() {
 }
 
 function start-ssh-agent () {
-    $ssh_agent_output = $(ssh-agent -s)    
+    $timeout="1h"
+    mkdir -p ~/.ssh
+    $ssh_agent_source_file = "~/.ssh/agent.sourceme"
+    $pid = $(pgrep -u $(whoami) '^ssh-agent')
+    if (-not $pid) {
+        ssh-agent -t $timeout > "$ssh_agent_source_file"
+    } 
+
+    $ssh_agent_output = $(cat ~/.ssh/agent.sourceme)    
     $env:SSH_AUTH_SOCK = $ssh_agent_output | grep SSH_AUTH_SOCK | cut -d "=" -f 2 | cut -d ";" -f1
     $env:SSH_AGENT_PID = $ssh_agent_output | grep SSH_AGENT_PID | cut -d "=" -f 2 | cut -d ";" -f1
 }

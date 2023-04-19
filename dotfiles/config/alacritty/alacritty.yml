@@ -72,4 +72,4 @@ window:
   decorations: none
 
 shell:
-  program: /etc/profiles/per-user/heywoodlh/bin/tmux
+  program: ./.config/alacritty/launch.ps1

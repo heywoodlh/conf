@@ -5,6 +5,7 @@ dotfiles/config/*
 !dotfiles/config/alacritty
 !dotfiles/config/iterm2
 dotfiles/config/iterm2/*.plist
+dotfiles/config/iterm2/AppSupport
 !dotfiles/config/powershell
 dotfiles/config/powershell/Help/*
 dotfiles/config/powershell/custom.ps1

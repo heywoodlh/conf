@@ -3,6 +3,8 @@ dotfiles/bash.d/custom
 dotfiles/vim/*
 dotfiles/config/*
 !dotfiles/config/alacritty
+!dotfiles/config/iterm2
+dotfiles/config/iterm2/*.plist
 !dotfiles/config/powershell
 dotfiles/config/powershell/Help/*
 dotfiles/config/powershell/custom.ps1

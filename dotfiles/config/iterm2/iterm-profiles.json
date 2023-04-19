@@ -1,7 +1,7 @@
 {
 "Profiles": [
 {
-  "Working Directory" : "\/Users\/heywoodlh",
+  "Working Directory" : "\/Users\/$USER",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
     "Red Component" : 0.81214714050292969,
@@ -390,7 +390,7 @@
   },
   "Space" : 0,
   "HotKey Window AutoHides" : false,
-  "Command" : "\/etc\/profiles\/per-user\/heywoodlh\/bin\/tmux",
+  "Command" : "\/etc\/profiles\/per-user\/$USER\/bin\/tmux",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
   "Tab Color" : {
@@ -454,7 +454,7 @@
   }
 },
 {
-  "Working Directory" : "\/Users\/heywoodlh",
+  "Working Directory" : "\/Users\/$USER",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
     "Red Component" : 0.81214714050292969,
@@ -841,7 +841,7 @@
   },
   "Space" : -1,
   "HotKey Window AutoHides" : true,
-  "Command" : "\/etc\/profiles\/per-user\/heywoodlh\/bin\/tmux",
+  "Command" : "\/etc\/profiles\/per-user\/$USER\/bin\/tmux",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
   "Tab Color" : {

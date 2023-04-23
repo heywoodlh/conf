@@ -1,3 +1,7 @@
+## ARCHIVED!
+
+Now using my [nixos-configs](https://github.com/heywoodlh/nixos-configs) repo to manage my dotfiles.
+
 ## Quickstart
 
 Assuming you have PowerShell Core 7.2+ and [Peru](https://github.com/buildinspace/peru) installed:

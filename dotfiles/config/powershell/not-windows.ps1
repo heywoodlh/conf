@@ -1,5 +1,5 @@
 # Add /etc/profiles/per-user/$USER/bin to PATH
-$env:PATH = "/etc/profiles/per-user/$env:USER/bin:$env:PATH"
+$env:PATH = "$env:HOME/.nix-profile/bin/:/etc/profiles/per-user/$env:USER/bin:$env:PATH"
 
 function bm {
     # If `~/opt/bookmarks` doesn't exist, run `git clone git@github.com:heywoodlh/bookmarks.git ~/opt/bookmarks`
